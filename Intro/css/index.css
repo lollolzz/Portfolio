@@ -1,0 +1,66 @@
+#myhome{
+    color: #bbbbbb;
+}
+strong {
+    font-size: 20px;
+    font-family: 'Palanquin Dark', sans-serif;
+    color: white;
+    padding: 5px;
+}
+strong:hover {
+    color: black;
+}
+/* pag1 */
+#page1{
+    background-color: whitesmoke;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center; 
+    /* 가로 축을 기준으로 좌우에 대한 정렬을 관장합니다 */
+}
+#intro{
+    position: absolute;
+    top: 50%;
+    height: 240px;
+    margin-top: -220px;
+    
+}
+#intro p {
+    text-align: center;
+}
+.profile{
+    width: 250px;
+    height: 250px;
+    border-radius: 125px;
+}
+
+h1 {
+    font-family: 'Palanquin Dark', sans-serif;
+    font-weight: 600;
+    font-size: 42px;
+    text-align: center;
+    }
+h3{
+    font-family: "Apple SD Gothic Neo", sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: #555555;
+    text-align: center;
+    }
+
+/* page2 */
+#page2 {
+    background: #FEAC5E;
+    background: -webkit-linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);
+    background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }

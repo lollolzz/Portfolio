@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;600&family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <title>I'm Neunghan!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            width: 100%;
+            text-align: center;
+            height: 50px;
+            position: fixed;
+        }
+        strong{
+            display: inline-block; 
+            margin-left: 50px; 
+            margin-top: 20px; 
+            cursor: pointer;
+        }
+        div{
+            width: 100vw; height: 880px;
+            /* vw,vh 와 %의 차이는 100으로 지정시 전체지정된 화면에 스크롤바가 생기냐 안생기냐의 차이 */
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <strong id="myhome">Who Am I</strong>
+        <strong id="my01">Main</strong>
+        <strong id="my02">Skill</strong>
+        <strong id="my03">Portfolio</strong>
+    </header>
+    <section>
+        <div id="page1">
+            <div id="intro">
+                <p>
+                    <img class="profile" src="img/IMG_1338.JPG" alt="자기소개 사진">  
+                </p>
+                <h1>Hey, I'm Neunghan</h1>
+                <h3>만나서 반갑습니다! 저에 대해 더 알고 싶으시다면, 스크롤를 내려봐주세요 :)</h3>
+                <!-- 원형으로 자기 사진 넣고, h3 전에 who am i 소개 글 간단히 적고 
+                그 다음에 h3 넣자-->
+            </div>
+        </div>
+        <div id="page2">
+            <div id="intro2">
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </div>
+        </div>
+    </section>
+    <footer></footer>
+</body>
+</html>
