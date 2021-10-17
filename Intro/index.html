@@ -26,7 +26,7 @@
             cursor: pointer;
         }
         div{
-            width: 100vw; height: 970px;
+            width: 100vw; height: 760px;
             /* vw,vh 와 %의 차이는 100으로 지정시 전체지정된 화면에 스크롤바가 생기냐 안생기냐의 차이 */
         }
         
@@ -40,29 +40,46 @@
     </header>
     <section>
         <div id="page1">
-            <div id="intro">
+            <div class="intro">
                 <p>
                     <img class="profile" src="img/IMG_1338.JPG" alt="자기소개 사진">  
                 </p>
-                <h1>Hey, I'm Neunghan</h1>
+                <h1>Kwon Neunghan</h1>
                 <h3>새로운 도전! 저는 영문과 국경을 복수 전공하고 사무직 철새로 일하다가<br>
                     프론트엔드 개발자로 새로운 지작을 <br>
-                    준비하고 있어요 이전에는 이런것들을 해왓어요.<br</h3>
-                <h4>만나서 반갑습니다! 저에 대해 더 알고 싶으시다면, 스크롤를 내려봐주세요 :)</h4>
+                    준비하고 있어요 
+                    <a href="#">이전에는</a>이런것들을 해왓어요.<br></h3>
+                
                 <!-- 원형으로 자기 사진 넣고, h3 전에 who am i 소개 글 간단히 적고 
                 그 다음에 h3 넣자-->
-                <div id="contact_logo">
-                    <a href="https://github.com/lollolzz"><img class="contact_git" src="img/Githublogo.JPG.png" alt="github"></a>
-                    <a href="mailto:lollolzz1018@gmail.com"><img class="contact_email" src="img/email.png" alt="email"></a>
-                </div>
+                <div class="contact_logo">
+                    <a href="https://github.com/lollolzz">
+                        <img src="img/Githublogo.JPG.png" alt="github">
+                    </a>
+                    <a href="mailto:lollolzz1018@gmail.com">
+                        <img src="img/email.png" alt="email">
+                    </a>
+                </div>    
             </div> 
         </div>
-
         <div id="page2">
-           
+            <h1 class="favorites">Favorites</h1>
+            <div class="container">
+                <div class="hobby">
+                  <img class="hobby_img" src="01.png" alt="">
+                  <p class="hobby_text">손흥민 영상</p>
+                </div>
+                <div class="hobby">
+                  <img class="hobby_img" src="02.png" alt="">
+                  <p class="hobby_text">마블 영화</p>
+                </div>
+                <div class="hobby">
+                  <img class="hobby_img" src="03.png" alt="">
+                  <p class="hobby_text">여행</p>
+                </div>
+              </div>
         </div>
-
+       
     </section>
-    <footer></footer>
 </body>
 </html>

@@ -22,67 +22,74 @@ strong:hover {
     justify-content: center; 
     /* 가로 축을 기준으로 좌우에 대한 정렬을 관장합니다 */
 }
-#intro{
+.intro{
     position: absolute;
     top: 50%;
     height: 240px;
     margin-top: -220px;
     
 }
-#intro p {
+.intro p {
     text-align: center;
 }
 .profile{
-    width: 250px;
-    height: 250px;
-    border-radius: 125px;
+    width: 270px;
+    height: 270px;
+    border-radius: 135px;
 }
 
-h1 {
+.intro h1 {
     font-family: 'Palanquin Dark', sans-serif;
     font-weight: 600;
     font-size: 42px;
     text-align: center;
     }
-h3{
-    font-family: "Apple SD Gothic Neo", sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-    color: #555555;
-    text-align: center;
-    }    
-h4{
+.intro h3{
     font-family: "Apple SD Gothic Neo", sans-serif;
     font-weight: 400;
     font-size: 24px;
     color: #555555;
     text-align: center;
     }
-#contact_logo{
+.intro a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}        
+.contact_logo{
+    height: 163px;
     line-height: 220px;
     text-align: center;
 }
-#contact_logo img {
-    
+.contact_logo img {
     width: 70px;
-    height: 70px;
+    height: 60px;
+    padding-left: 12px;
 }
 
 /* page2 */
 #page2 {
-    background: #FEAC5E;
-    background: -webkit-linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);
-    background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: center;
+    background: white;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
+    justify-content: center; 
   }
-#page2 h1 {
-    position: absolute;
-    top: 50%;
-    height: 240px;
-    margin-top: 540px
-  }
+.favorites{
+    font-family: 'Palanquin Dark', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50px;
+} 
+.container {
+    text-align: center;
+    display: flex;
+    margin-top: 150px;
+    
+}
+
+
+  
+
