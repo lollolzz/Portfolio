@@ -9,36 +9,32 @@
     <link rel="stylesheet" href="css/index.css">
     <title>I'm Neunghan!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        header{
-            width: 100%;
-            text-align: center;
-            height: 50px;
-            position: fixed;
-        }
-        strong{
-            display: inline-block; 
-            margin-left: 50px; 
-            margin-top: 20px; 
-            cursor: pointer;
-        }
-        div{
-            width: 100vw; height: 760px;
-            /* vw,vh 와 %의 차이는 100으로 지정시 전체지정된 화면에 스크롤바가 생기냐 안생기냐의 차이 */
-        }
         
     </style>
+     <script>
+        $(function(){
+            getHeight();
+
+            $(window).resize(function(){
+                getHeight();
+            });
+
+        });
+
+        function getHeight(){
+            var h = $(window).height();
+            $('#wrap > div').height(h);
+        }
+
+    </script>
 </head>
 <body>
     <header>
-        <strong id="myhome">Who Am I</strong>
-        <strong id="my01">Skill</strong>
-        <strong id="my02">Portfolio</strong>
+        <a href="index.html"><strong id="myhome">Who Am I</strong></a>
+        <a href="skill.html"><strong id="my01">Skill</strong></a>
+        <a href="protfolio.html"><strong id="my02">Portfolio</strong></a>
     </header>
-    <section>
+    <section id="wrap">
         <div id="page1">
             <div class="intro">
                 <p>
@@ -46,9 +42,9 @@
                 </p>
                 <h1>Kwon Neunghan</h1>
                 <h3>새로운 도전! 저는 영문과 국경을 복수 전공하고 사무직 철새로 일하다가<br>
-                    프론트엔드 개발자로 새로운 지작을 <br>
-                    준비하고 있어요 
-                    <a href="#">이전에는</a>이런것들을 해왓어요.<br></h3>
+                    프론트엔드 개발자로 새로운 시작을 <br>
+                    준비하고 있어요 이전에는
+                    <a href="#">이런것들</a>을 해왓어요.<br></h3>
                 
                 <!-- 원형으로 자기 사진 넣고, h3 전에 who am i 소개 글 간단히 적고 
                 그 다음에 h3 넣자-->

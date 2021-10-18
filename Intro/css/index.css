@@ -1,7 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#wrap {
+    width: 100%;
+    height: auto;
+}
+#wrap > div {            
+    width: 100vw; 
+    height: 100vh;
+}
 #myhome{
     color: #bbbbbb;
 }
-strong {
+header{
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    position: fixed;
+}
+strong{
+    display: inline-block; 
+    margin-left: 50px; 
+    margin-top: 20px; 
+    cursor: pointer;
     font-size: 20px;
     font-family: 'Palanquin Dark', sans-serif;
     color: white;
@@ -15,7 +37,7 @@ strong:hover {
     background-color: whitesmoke;
     background-repeat: no-repeat;
     background-size: cover;
-    display: table;
+    display: flex;
     margin-left: auto;
     margin-right: auto;
     align-items: center;
@@ -27,6 +49,8 @@ strong:hover {
     top: 50%;
     height: 240px;
     margin-top: -220px;
+    margin-left: 440px;
+    margin-right: 420px;
     
 }
 .intro p {
@@ -70,7 +94,7 @@ strong:hover {
 /* page2 */
 #page2 {
     background: white;
-    display: table;
+    display: flex;
     margin-left: auto;
     margin-right: auto;
     align-items: center;
@@ -80,14 +104,17 @@ strong:hover {
     font-family: 'Palanquin Dark', sans-serif;
     font-weight: 600;
     font-size: 40px;
-    text-align: center;
-    margin-top: 50px;
+    position: absolute;
+    display: flex;
+    margin-top: -550px; 
 } 
 .container {
-    text-align: center;
     display: flex;
-    margin-top: 150px;
-    
+    margin-top: -120px;
+    justify-content: center; 
+}
+.hobby{
+    padding: 0 200px;
 }
 
 
