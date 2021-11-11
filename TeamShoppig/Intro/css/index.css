@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.wrap {
+    width: 100%;
+    height: auto;
+}
+.wrap > div {            
+    width: 100vw; 
+    height: 100vh;
+}
+#myhome{
+    color: #bbbbbb;
+}
+header{
+    background-color: whitesmoke;
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    z-index: 150;
+    width: 100%;
+    height: 78px;
+    align-items: center;
+    justify-content: space-between¿; 
+    border: 1px solid yellow;
+}
+strong{
+    display: inline-block; 
+    margin-left: 50px; 
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Palanquin Dark', sans-serif;
+    color: white;
+    padding: 5px;
+}
+strong:hover {
+    color: black;
+}
+/* main */
+main{
+    flex: 0 0 auto;
+    width: 100%;
+    padding-top: 78px;
+    position: relative;
+}
+/* index */
+.index1{
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    border: 1px solid red;
+    justify-content: center; 
+    /* 가로 축을 기준으로 좌우에 대한 정렬을 관장합니다 */
+}
+.banner{
+    position: relative;
+    width: 100vw; 
+    height: 98vh;
+    border: 1px solid blue;
+}
+.bannerimg{
+    width: 100vw; 
+    height: 98vh;
+    border: 1px solid green;
+}
+
+.banner > ul {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /*범위에 넘치는 것들을 숨겨주는 기능 */
+    /*애니메이션 화를 시키기 위해서는 1번 그림 옆으로 정렬되어 있어야 한다*/
+}
+.banner > ul > li {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+}
+/* 세로정렬이 아닌 가로 정렬을 해야 옆에서 넘어오는 슬라이드 애니메이션이 가능하기 때문에 아래와 같이 자리를 설정해줌 */
+.banner > ul > li:nth-child(1) {left: 0;}
+.banner > ul > li:nth-child(2) {left: 100%;}
+.banner > ul > li:nth-child(3) {left: 200%;}
+
+.banner > img {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+}
+
+
+  
+
