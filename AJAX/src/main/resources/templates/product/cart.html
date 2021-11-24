@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />   
+    <title>CreativeAJAX-Cart</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="shortcut icon" href="@{/img/favicon.ico}">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script th:src="@{/js/jsscript.js}"></script>
+</head>
+<body>
+    <div id="payment-wrapper">
+    	<th:block th:include="@{_header.html}"/>
+        <main class = "payment">
+            <section class="cart-center1" style="background-color: rgb(236, 239, 241);">        
+                <div class = "payment-center-header">
+                    <li>
+                    <a href="#"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+                    <span>쇼핑백</span> 
+                    </li>
+                    <li>
+                    <a th:href="@{/product/delivery}"><i class="fa fa-square" aria-hidden="true"></i></a>
+                    <span> 배송</span>
+                    </li>
+                    <li>
+                    <a th:href="@{/product/payment}"><i class="fa fa-square" aria-hidden="true"></i></a>
+                    <span> 결제</span>
+                    <div>
+                    </li>
+                     
+                </div>
+                <div class="cart-center">
+                    <div class="cart-center-left">
+                        <div class="cart-product">
+                            <div class="cart-product-left">
+                                <a href="#">
+                                    <img src="../img/sampleImg.avif">
+                                </a>
+                            </div>
+                            <!-- <div th:each="product:${cartProducts}" class="cart-product-right"> -->
+                            <div class="cart-product-right">
+                            	<!-- <div>[[${product.name}]]</div> -->
+                                <div>(여성)점프 서브 슬립 캔버스 스니커즈</div>
+                                <div>사이즈 : 240</div>
+                                <!-- <div class="cart-price">[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]</div>  -->
+                                <div>139,000원</div>
+                                <select>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="customer">
+                            <div class="customer-message">
+                                <span>도움이 필요하세요?</span>
+                                <br>
+                                <br>
+                                <span>고객센터가 도와드리겠습니다.</span>
+                                <br>
+                                <br>
+                                <span>1588-****</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-center-right">
+
+                        <div class="cart-payment">
+                            <table class="cart-table">
+                                <tbody>
+                                    <tr>
+                                    <td>1개상품</td>
+                                    <td>139,000원</td>
+                                    <!-- <td class=class="cart-price"> [[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]  -->
+                                    </tr>
+                                    <tr>
+                                    <td>배송비</td>
+                                    <td>0원</td>
+                                    <!-- <td class="cart-delivery" th:if="${product.delivery == 0}">무료배송</td>
+                        				 <td class="cart-delivery" th:if="${product.delivery != 0}">[[${#numbers.formatInteger(product.delivery, 3, 'COMMA')}]]</td> -->
+                                    </tr>
+                                    <tr>
+                                    <td>총 상품금액</td>
+                                    <td>139,000원</td>
+                                    <!-- <td class="cart-total">[[${#numbers.formatInteger(product.total, 3, 'COMMA')}]]</td> -->
+                                    </tr>
+                                </tbody>
+                            </table>        
+                            <input type="button" style="background-color:darkseagreen; border-color:white;" value="주문하기">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <th:block th:include="@{_footer.html}"/>
+    </div>    
+</body>
+</html>
