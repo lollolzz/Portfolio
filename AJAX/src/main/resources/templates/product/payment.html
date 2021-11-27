@@ -138,33 +138,36 @@
                     </div>
                     <div class = "rightcol">
                         <div class = "rightpayment">
-                            <div class = "summary-products"><img src="../img/대표1_썸네일.jpg" ><p>(남성) 베이직 라운드 MTM 셔츠</p><span>169,000 원</span></div>
-                            <div class = "summary-products"><img src="../img/대표1_썸네일.jpg" ><p>(남성) 베이직 라운드 MTM 셔츠</p><span>169,000 원</span></div>
-                            <div class = "summary-products"><img src="../img/대표1_썸네일.jpg" ><p>(남성) 베이직 라운드 MTM 셔츠</p><span>169,000 원</span></div>
+                            <!-- <div class = "summary-products"><img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1}, cate2=${product.cate2}, img=${product.thumb1})}" alt="상품 이미지"/><p>(남성) 베이직 라운드 MTM 셔츠</p><span>169,000 원</span></div>
+                            <div class = "summary-products"><img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1}, cate2=${product.cate2}, img=${product.thumb1})}" alt="상품 이미지"/><p>(남성) 베이직 라운드 MTM 셔츠</p><span>169,000 원</span></div>
+                            <div class = "summary-products"><img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1}, cate2=${product.cate2}, img=${product.thumb1})}" alt="상품 이미지"/><p>(남성) 베이직 라운드 MTM 셔츠</p><span>169,000 원</span></div> -->
+                            <div class = "summary-products"><img src="" alt="상품 이미지"/><p>(남성) 베이직 라운드 MTM 셔츠</p><span>169,000 원</span></div>
+                            <div class = "summary-products"><img src="" alt="상품 이미지"/><p>(남성) 베이직 라운드 MTM 셔츠</p><span>169,000 원</span></div>
+                            <div class = "summary-products"><img src="" alt="상품 이미지"/><p>(남성) 베이직 라운드 MTM 셔츠</p><span>169,000 원</span></div>
                         </div>
                         
                         <div class = "rightpayment"> 
-                            <div>
-                                <li><span style="font-weight: bold;">7개 상품</span>    <span  style="font-weight: bold;">823,000 원</span></li>
-                                <li><span>배송비</span>    <span>0 원</span></li>
-                                <li><span>seasonoff</span>    <span>- 137,100 원</span></li>
-                                <li><span>부가세 포함</span>    <span>0 원</span></li>
-                                <li><span>총 결제금액</span>    <span>685,900 원</span></li>
+                        	<div>
+                                <li><span style="font-weight: bold;"> 상품</span>    <span  style="font-weight: bold;"> 원</span></li>
+                                <li><span>배송비</span>    <span> 원</span></li>
+                                <li><span>총 결제금액</span>    <span> 원</span></li>
                             </div>
+                            <!-- <div>
+                                <li><span style="font-weight: bold;">[[${productOrderVo.count}]] 상품</span>    <span  style="font-weight: bold;">[[${#numbers.formatInteger(productOrderVo.price, 3, 'COMMA')}]] 원</span></li>
+                                <li><span>배송비</span>    <span>[[${#numbers.formatInteger(productOrderVo.delivery, 3, 'COMMA')}]] 원</span></li>
+                                <li><span>총 결제금액</span>    <span>[[${#numbers.formatInteger(productOrderVo.total, 3, 'COMMA')}]] 원</span></li>
+                            </div> -->
                         </div>
                         <div class = "rightpayment">
-                            <div class = "address">
-                              
-                                <p class = address2>
+                            <div class = "payment-address">
+                                <p class = payment-address-detail>
                                     <i class="fa fa-truck" aria-hidden="true"></i> 일반 배송
                                 </p>
-                                <p class = address2>
-                                    남성 변진하
+                                <p class = payment-address-name>
+                                    <!-- [[${productOrderVo.uName}]] -->
                                 </p>
-                                <p class = address2>
-                                    대구 동구 첨단로 7 (신서동, 신용보증기금본점)
-                                    304호
-                                    동구
+                                <p class = payment-address-redetail>
+                                   <!--  [[${productOrderVo.uAddr1}]] 우리 register칸에 주소가 없다 흠... -->
                                 </p>
                             </div>
                         </div>

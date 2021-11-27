@@ -40,13 +40,13 @@ header {
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   z-index: 100;
 }
 
 header > div {
-  width: 1200px;
-  height: 150px;
+  width: 1260px;
+  height: 90px;
   box-sizing: border-box;
   margin: 0 auto;
 }
@@ -70,7 +70,7 @@ header > div > .logo > img {
 
 header > div > ol {
   float: right;
-  margin-top: 65px;
+  margin-top: 36px;
   margin-right: 40px;
 }
 
@@ -83,7 +83,6 @@ header > nav {
   display: none;
   width: 100%;
   height: 150px;
-  background-color: white;
   box-sizing: border-box;
 }
 
@@ -135,14 +134,49 @@ header > nav > div > div > ol > li {
     padding-bottom: 0;
   }
 }
+
+.MainBanner{
+    position: relative;
+    width: 100%; 
+    height: 98%;
+
+}
+
 .MainBanner > ul{
   list-style: none;
   padding-left: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /*범위에 넘치는 것들을 숨겨주는 기능 */
+  /*애니메이션 화를 시키기 위해서는 1번 그림 옆으로 정렬되어 있어야 한다*/
 }
+
+.MainBanner > ul > li {
+
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
 .bannerimg{
   width: 100%;
   height: 100%;
+  margin-top: 77px;
 }
+
+/* 세로정렬이 아닌 가로 정렬을 해야 옆에서 넘어오는 슬라이드 애니메이션이 가능하기 때문에 아래와 같이 자리를 설정해줌 */
+.MainBanner > ul > li:nth-child(1) {left: 0;}
+.MainBanner > ul > li:nth-child(2) {left: 100%;}
+.MainBanner > ul > li:nth-child(3) {left: 200%;}
+
+.MainBanner > img {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+}
+
 /* Tick */
 .page-section {
   padding-top: 100px;
@@ -1469,7 +1503,7 @@ color : rgb(68, 67, 67);
 
 #ABOUTUS {
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 120px;
   padding: 16px;
   box-sizing: border-box;
 }
@@ -1674,7 +1708,7 @@ color : rgb(68, 67, 67);
 
 /* 결제페이지*/
 .payment{
-  height: 100%;
+  height: auto;
  
 }
 .payment-header > a > img{
@@ -2073,7 +2107,7 @@ margin: 10px;
 .register-name-email{
   width: 100%;
 }
-.name{
+.register-name{
   margin-top: 20px;
   width: 50%;
   float: left;
@@ -2098,7 +2132,7 @@ margin: 10px;
   border-radius: 0;
 }
 
-.email{
+.register-email{
   width: 90% ;
   margin-left: 0;
   margin-bottom: 20px;
@@ -2550,16 +2584,20 @@ font-size: 13px;
   width: 100%;
   height: 200px;
   margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 10px;
   background-color: white;
+  border-bottom: 1px solid rgb(236, 239, 241);
 
+}
+
+.cart-checkProduct{
+	text-align: left;
 }
 
 .customer {
   width: 100%;
   height: 200px;
-  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
   background-color: white;
 }
 
@@ -2578,8 +2616,7 @@ font-size: 13px;
 .cart-payment {
   width: 100%;
   height: 410px;
-  margin-top: 50px;
-  padding-top: 30px;
+  padding-top: 3px;
   background-color: white;
 }
 .cart-center {
@@ -2591,27 +2628,68 @@ font-size: 13px;
 }
 .cart-center-left {
   float: left;
-  width: 48%;
-  height: 100%;
-  box-sizing: border-box;
-}
-.cart-center-right {
-  float: right;
-  width: 48%;
-  height: 100%;
-  box-sizing: border-box;
-}
-.cart-product-left {
-  float: left;
-  width: 30%;
+  width: 60%;
   height: 100%;
   box-sizing: border-box;
 }
 
+.cart-allCheck{
+	text-align: left;
+    padding-bottom: 15px;
+}
+.cart-allCheck > label{
+	font-size: 1.3rem;
+    padding-left: 10px;
+}
+
+.in-cart-selectCheck{
+	float: right;
+    font-size: 1.2rem;
+	margin-right: 3px;
+	cursor: pointer;
+    border-color: #bdbdbd;
+    border-bottom-color: #828282;
+    background: #fafafa;
+    color: #4d4d4d;
+    border-width: 1px;
+    padding: 2px 5px;
+}
+
+.in-cart-del{
+	float: right;
+	padding: 5px;
+}
+
+.cart-center-right {
+  float: right;
+  width: 35%;
+  height: 100%;
+  margin-top : 33px;
+  box-sizing: border-box;
+  
+}
+
+.cart-center-right .name{
+	
+	margin: 0px;
+	padding: 0px;
+}
+
+.cart-product-left {
+  float: left;
+  width: 30%;
+  height: 93%;
+  box-sizing: border-box;
+}
+
+.cart-chBox{
+	float:left;
+}
+
 .cart-product-left > a > img {
-  width: 100px;
-  height: 100px;
-  margin: 30px;
+  width: 116px;
+  height: 158px;
+  margin-top: 10px;
 }
 
 .cart-product-right {
@@ -2622,15 +2700,35 @@ font-size: 13px;
 }
 
 .cart-product-right > div {
-  padding: 15px;
+  padding: 5px;
   color: #222;
   font-size: 15px;
   text-align: left;
 
 }
+.cart-product-right > div:nth-child(1){
+	margin-top: 20px;
+}
+
+.cart-product-right > input[name=del] {
+	float: right;
+    margin-right: 5px;
+    margin-top: -2px;
+    border-color: #bdbdbd;
+    border-bottom-color: #828282;
+    background: #fafafa;
+    color: #4d4d4d;
+    padding: 6px 11px;
+    border-width: 1px;
+    cursor: pointer;
+}
 .cart-product-right > select {
   padding: 10px;
   color: #222;
+  float: left;
+  margin-left: 7px;
+  padding: 3px;
+  padding-right: 17px;
 }
 
 .cart-table {
@@ -2656,20 +2754,25 @@ font-size: 13px;
 
 .cart-payment > input {
   width: 80%;
-  padding: 10px;
-  margin-top: 50px;
+  padding: 20px;
+  margin-top: 40px;
   border: 0;
   outline: 0;
   border-radius: 8px;
+  font-size: 1.3rem;
+  cursor: pointer;
 }
 
 .cart-center1 {
+	
 background-color:rgb(236, 239, 241);
 float :none;
+display: inline-block;
 width: 100%;
-height: 700PX;
-margin-top: 150px;
+height: auto;
+margin-top: 90px;
 text-align: center;
+
 }
 
 
@@ -3469,7 +3572,7 @@ ul {
 }
 
 /*배송페이지*/
-.delivery{
+.Rdelivery{
   height: 100%;
  
 }
@@ -3511,614 +3614,7 @@ margin: 10px;
 
   width: 100%;
   height: 1100px;
-  margin-top: 150px;
-
-  text-align: center;
-}
-.delivery-header > h1 {
-  width: 5%;
-}
-.stepdelivery {
-  display: block;
-  margin:  0 auto;
-  width: 920px;
-  height: 530px;
- 
-}
-
-.stepdelivery > .leftcol {
-  float:left;
-  margin :  0;
-  padding  : 0;
-  width: 60%;
-  height:100%;
-  
-}
-.stepdelivery > .rightcol {
-  float:right;
-  margin :  0;
-  padding  : 0;
-  width: 40%;
-  height: 100%;
-
-}
-.leftdelivery{
-  display: inline-block;
-  
-  width: 90%;
-  min-height: 20%;
-
-  margin-top : 10px;
-  background-color: rgb(255, 255, 255);
-  
-}
-.leftdelivery > h3 {
-  font-size: 22px;
-  color: #000;
-  padding-top: 40px;
-  
-}
-.leftdelivery > a {
-  float: left;
-  margin: 47px 0 0 30px;
-  font-size: 18px;
-  color: #000;
- 
-}
-
-.hidedelivery {
-  background-color:  rgb(255, 255, 255);
-  height: 0px;
-  float: left;
-  width: 100%;
-  text-align: left;
-  font-size: 18px;
-  color: #000;
-}
-.hidedelivery > p {
-  padding: 20px 50px 20px 50px;
-  float: left;
-  width: 100%;
-  text-align: left;
-  font-size: 13px;
-  color: #000;
-}
-.rightdelivery{
-
-  margin : 0;
-  width: 90%;
-  height: 35%;
-  list-style-type: none;
-  margin :  10px;
-  background-color: rgb(255, 255, 255);
-}
-.rightdelivery > div > li {
-  width: 100%;
-  height: 20px;
- 
-}
-.rightdelivery > div > li > span:nth-child(1){
-  float: left;
-  height: 20px;
-  width: 40%;
-  font-size: 18px;
-  margin :3px 18px 5px 20px;
-  padding-top: 17px;
-  padding-left: 15px;
-  color :rgb(20, 20, 20)
-}
-.rightdelivery > div > li > span:nth-child(2){
-  float:right;
-  text-align: right;
-  height: 20px;
-  width: 40%;
-  font-size: 18px;
-  margin: 3px 20px 5px 0px;
-  padding-top: 17px;
-  padding-right: 15px;
-  color :rgb(20, 20, 20)
-}
-.delivery-wrapper{
-  margin: 0 auto;
-}
-
-#list-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  margin-top: 150px;
-}
-#list-wrap .banners{
-  width: 100%;
-  height: 100px;
-  line-height: 30px;
-  margin-right: 520px;
-  padding: 0; 
-}
-
-.banners .bigbanner {
-  margin: 0 auto;
-  width: 110px;
-}
-
-#list-wrap .banners .bigbanner > p{
-  margin: 0 0 0px;
-}
-a{
-  text-decoration: none;
-  color: #000;
-}
-p {
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-}
-div{
-  margin: 0;
-  padding: 0;
-}
-a{
-  text-decoration: none;
-  color: #000;
-}
-
-ul {
-  list-style-type: none;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
-}
-
-.list-paging-ol {
-  list-style: decimal;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
-}
-
-#list-wrap .banners .bigbanner > .fmenu > h2 {
-  padding: 0 0 10px;
-  color: #555;
-  text-align: center;
-  font-size: 14px;
-}
-
-li {
-  margin-left: 0;
-}
-
-#list-wrap .banners > .sub-banners > .subcate {
-  border: 0 solid #d7d5d5;
-  font-size: 0;
-  line-height: 0;
-  text-align:center;
-}
-
-#list-wrap .banners > .sub-banners > .subcate > li{
-  display: inline-block;
-  margin: 10px 0;
-  padding: 0 0px 0 0;font-size: 12px;
-  line-height: 14px;
-  vertical-align: top;
-  list-style: none;
-}
-
-#list-wrap .banners > .sub-banners > .subcate > li > a {
-  padding: 0 10px;
-  font-weight: bold;
-  color: #777;
-}
-
-#list-wrap .clothes-lists  {
-  margin-left: 320px;
-}
-
-.clothes-lists  .function {
-  overflow: hidden;
-  text-align: right;
-  line-height: 38px;
-  border: 0px solid #d7d5d5;
-}
-
-.clothes-lists .function  .prdCnt {
-  float: left;
-  padding: 0 0 0 8px;
-  color: #555;
-  font-size: 1.3rem;
-}
-
-strong {
-  font-weight: bold;
-  font-size: 1.4rem;
-}
-
-.clothes-lists .function .list-type-good{
-  float: right;
-  margin-right: 330px;
-  margin-top: 13px;
-  
-}
-
-.clothes-lists .function #list-type {
-  display: inline;
-  margin: 0 4px 0 0;
-  padding: 0;
-
-}
-
-.clothes-lists .function #list-type li {
-  display: inline;
-  float: left;
-  padding: 0 0 0 10px;
-  
-}
-
-.clothes-lists .function #list-type li:first-child {
-  background: none;
-
-}
-
-.clothes-lists .function #list-type li a {
-  font-size: 1.3rem;
-  color: #555;
-}
-
-.jinjja-clothes-lists{
-  justify-content: center; 
-  
-}
-.jinjja-clothes-lists #rows-and-columns {
-  display: table;
-  width: 1250px;
-  margin-left: 330px;
-  margin-right: 430px;
-  font-size: 0px;
-  line-height: 0;
-}
-
-.jinjja-clothes-lists #rows-and-columns li.btn_1st-item {
-  width: 25%;
-  display: inline-block;
-
-  color: #838383;
-  vertical-align: top;
-}
-
-.jinjja-clothes-lists #rows-and-columns li.btn_1st-item .box {
-  width: 235px;
-  float: left;
-  font-size: 12px;
-  line-height: 18px;
-}
-
-.jinjja-clothes-lists #rows-and-columns span.top {
-  display: block;
-  margin: 0 0 10px;
-  text-align: center;
-}
-
-.jinjja-clothes-lists #rows-and-columns .prdImg {
-  position: relative;
-}
-
-.jinjja-clothes-lists #rows-and-columns .prdImg .thumb {
-  width: 280px;
-  height: 370px;
-}
-
-.jinjja-clothes-lists #rows-and-columns .prdImg .wishIcon {
-  position: absolute;
-  right: 5px;
-  bottom:5px;
-  z-index: 1;
-  cursor: pointer;
-}
-
-.jinjja-clothes-lists #rows-and-columns .list-product-name {
-  padding: 7px 0;
-  width: 280px;
-  text-align: center;
-  display: block;
-  border-bottom: 1px solid #ddd;
-}
-
-.jinjja-clothes-lists #rows-and-columns .list-product-name a {
-  color: #555;
-}
-
-.jinjja-clothes-lists #rows-and-columns .list-product-name .title_displaynone {
-  font-weight: normal;
-}
-.jinjja-clothes-lists #rows-and-columns .list-product-name .title_displaynone span {
-  font-size: 12px;
-
-  color: #555555;
-}
-
-.jinjja-clothes-lists #rows-and-columns .product-listitem {
-  margin: 0;
-  text-align: center;
-  width: 247px;
-}
-
-.product-listitem li {
-  text-align: center;
-}
-
-.product-listitem li strong {
-  font-weight: normal;
-  vertical-align: top;
-}
-
-.product-listitem li strong span {
-  font-size: 12px;
-  color: #555555;
-  vertical-align: top;
-}
-
-.product-listitem > .price > .title span {
-  font-weight: bold;
-}
-
-.product-listitem .price span.numbers {
-  font-size: 12px;
-  color: #555555;
-  font-weight: bold;
-  text-decoration: line-through;
-}
-
-.product-listitem .price #tax-type {
-  text-decoration: line-through;
-}
-
-.product-listitem .salePrice span {
-  font-size: 12px;
-  color: #ff4040;
-}
-
-.product-listitem .salePrice #tax-type {
-  font-size: 12px;
-  color: #555555;
-}
-
-.product-listitem .point .numeric {
-  font-size: 12px;
-  color: #555555;
-}
-
-.box .icon {
-  overflow: hidden;
-  zoom: 1;
-  text-align: center;
-}
-.box .button {
-  overflow: hidden;
-  zoom: 1;
-  text-align: center;
-}
-
-.box .button .bag {
-  padding: 7px 0 0 5px;
-}
-
-.box .button img {
-  cursor: pointer;
-  margin: 0;
-  vertical-align: middle;
-}
-
-.box .button .option {
-  padding: 7px 0 0 5px;
-}
-
-.paging {
-  display: block;
-  width: 308px;
-  height: 40px;
-  margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  text-align: center;
-  font-family: Verdana, "돋움", Dotum, sans-serif;
-}
-
-.paging > a {
-  float: left;
-}
-.paging > ol {
-  float: left;
-  padding: 0;
-}
-
-.paging img {
-  
-}
-
-.paging ol {
-
-  font-size: 0;
-  line-height: 0;
-}
-
-.paging li {
-  display: inline-block;
-  margin: 0 0 0 -1px;
-  border: 1px solid #d7d5d5;
-  font-size: 12px;
-  color: #757575;
-  vertical-align: top;
-}
-
-.paging li a {
-  display: block;
-  width: 33px;
-  padding: 9px 0;
-  text-align: center;
-  font-weight: bold;
-  line-height: 14px;
-  background: #fff;
-}
-
-.paging li a.this {
-  padding-bottom: 6px;
-  border-bottom: 3px solid #495164;
-  color: #495164;
-}
-
-/* 배송페이지 */
-.delivery-section{
-  margin-top: 150px;
-width: 100%;
-height: 100%;
-background-color: rgb(236, 239, 241);
-}
-
-.delivery-header{
-height: 10%;
-}
-
-.delivery-main{
-width: 100%;
-height: 1000px;
-border: 1px solid black;
-}
-
-.delivery-header > a > img {
-height: 100px;
-object-fit: cover;
-margin: 10px;
-margin-top: 20px;
-}
-
-
-
-.delivery-center-header > li{
-text-align: center;
-float: left;
-list-style-type: none;
-width: 110px;
-padding : 30px;
-}
-
-.delivery-center-header > li > a {
-color :rgb(29, 29, 29);
-font-size: 50px;
-}
-
-.delivery-center-header > li > span {
-width: 500px;
-font-size: 15px;
-color: #000;
-}
-
-
-.delivery-center-left {
-float: left;
-width: 48%;
-height: 100%;
-border: 1px solid blueviolet;
-}
-
-.delivery-center-right {
-
-float: right;
-width: 48%;
-height: 100%;
-border: 1px solid blueviolet;
-}
-
-.delivery > div > li {
-  width: 100%;
-  height: 20px;
- 
-}
-.delivery > div > li > span:nth-child(1){
-  float: left;
-  height: 20px;
-  width: 40%;
-  font-size: 18px;
-  margin :3px 18px 5px 20px;
-  padding-top: 17px;
-  padding-left: 15px;
-  color :rgb(20, 20, 20)
-}
-.delivery > div > li > span:nth-child(2){
-  float:right;
-  text-align: right;
-  height: 20px;
-  width: 40%;
-  font-size: 18px;
-  margin: 3px 20px 5px 0px;
-  padding-top: 17px;
-  padding-right: 15px;
-  color :rgb(20, 20, 20)
-}
-.delivery-paymentBTN{
-  display: inline-block;
-  background-color:darkseagreen; border-color:white;
-}
-.rightdelivery{
-  margin : 0;
-  width: 90%;
-
-  list-style-type: none;
-  margin :  10px;
-  background-color: rgb(255, 255, 255);
-}
-
-
-
-/*배송페이지*/
-.delivery{
-  height: 100%;
- 
-}
-.delivery-header > a > img{
-height: 100px;
-object-fit: cover;
-margin: 10px;
-}
-.delivery-header{
-  height: 10%;
-
-}
-.delivery-center-header{
-  margin: 0 auto;
-  display: block;
-  width: 18%;
-  height: 100px;
-  text-align: center;
-}
-.delivery-center-header > li{
-  text-align: center;
-  float: left;
-  list-style-type: none;
-  width: 110px;
- 
-  padding : 30px;
-}
-.delivery-center-header > li>a{
-  color :rgb(29, 29, 29);
-  font-size: 50px;
-}
-
-.delivery-center-header > li>span{
-  width: 500px;
-  font-size: 15px;
-  color: #000;
-}
-.delivery-center {
-
-  width: 100%;
-  height: 1100px;
-  margin-top: 150px;
+  margin-top: 90px;
 
   text-align: center;
 }

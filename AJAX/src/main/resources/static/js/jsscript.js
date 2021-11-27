@@ -38,6 +38,20 @@ $(".popup_bg4").css({"display" : "none"})
 })
 });
 
+/* 메인 베너  */
+/* $('.MainBanner>ul>li').hide(); 
+    
+$('.MainBanner>ul>li:first-child').show(); 
+
+setInterval(function(){ 
+	
+    $('.MainBanner>ul>li:first-child').fadeOut()
+    .next().fadeIn().end(2000)
+    .appendTo('.MainBanner>ul');
+},3000); */
+
+
+
 /* about us 영역 */  
 $( document ).ready( function() {
     $( 'article[class=smdgks]' ).show("slide", { direction: "right" },700, function() {

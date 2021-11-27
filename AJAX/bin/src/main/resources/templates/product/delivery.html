@@ -15,19 +15,19 @@
 <body>
     <div id="delivery-wrapper">
     	<th:block th:include="@{_header.html}"/>
-        <main class = "delivery">
-            <section class="delivery-center" style="background-color: rgb(236, 239, 241);"   >                
+        <main class = "Rdelivery">
+            <section class="delivery-center" style="background-color: rgb(236, 239, 241);">                
                 <div class = "delivery-center-header">
                     <li>
-                    <a href="#"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+                    <a th:href="@{/product/cart}"><i class="fa fa-check-square" aria-hidden="true"></i></a>
                     <span>쇼핑백</span> 
                     </li>
                     <li>
-                    <a href="#"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+                    <a th:href="@{/product/delivery}"><i class="fa fa-check-square" aria-hidden="true"></i></a>
                     <span> 배송</span>
                     </li>
                     <li>
-                    <a href="#"><i class="fa fa-square" aria-hidden="true"></i></a>
+                    <a th:href="@{/product/payment}"><i class="fa fa-square" aria-hidden="true"></i></a>
                     <span> 결제</span>
                     <div>
                     </li>

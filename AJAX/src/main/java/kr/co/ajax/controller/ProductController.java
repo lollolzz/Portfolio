@@ -15,17 +15,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import kr.co.ajax.service.ProductCartService;
+import kr.co.ajax.service.ProductOrderService;
 import kr.co.ajax.vo.MemberVo;
 import kr.co.ajax.vo.ProductCartVo;
-import kr.co.ajax.vo.ProductVo;
-import kr.co.ajax.service.ProductOrderService;
-import kr.co.ajax.vo.ProductOrderVo;
 
 
 @Controller
 public class ProductController {	
 	
-	
+	// 2021.11.27 권능한 작업 수정
 	@Autowired
 	private ProductCartService cartService;
 	
@@ -101,7 +99,7 @@ public class ProductController {
 //		model.addAttribute("orderProducts", orderProducts);
 //		model.addAttribute("productOrderVo", orderProducts.get(0));
 //		
-//		return "/product/order";
+//		return "/product/payment";
 //	}
 
 //	@ResponseBody
@@ -131,6 +129,8 @@ public class ProductController {
 //		
 //		return new Gson().toJson(json);
 //	}
+	
+	// 2021.11.27 권능한 작업 수정 
 	
 	
 	@GetMapping("/product/view")
