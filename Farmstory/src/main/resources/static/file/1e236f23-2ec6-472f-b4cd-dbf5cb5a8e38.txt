@@ -1,0 +1,103 @@
+개념 정리 (java, jsp 등)
+
+** ArrayList는 List 인터페이스를 상속받은 클래스로 크기가 가변적으로 변하는 선형리스트입니다. 일반적인 배열과 같은 순차리스트이며 인덱스로 내부의 객체를 관리한다는점등이 유사하지만 한번 생성되면 크기가 변하지 않는 배열과는 달리 ArrayList는 객체들이 추가되어 저장 용량(capacity)을 초과한다면 자동으로 부족한 크기만큼 저장 용량(capacity)이 늘어난다는 특징을 가지고 있습니다.
+
+** getter, setter -> 객체지향 프로그래밍에서는 메소드를 통해서 데이터를 변경하는 방법을 선호 
+		    데이터는 외부에서 접근할 수 없도록 막고 메소드를 공개해서 외부에서 데이터에 접근하게 하는 방법
+
+- setter : 값을 저장(셋팅)하게 유도하는 메소드 
+- getter : 값을 return받게 해주는 메서드 
+
+** executeQuery , executeUpdate
+
+- update 는 5단계가 없다 : sql.insert, sql.update등에 사용 
+-> 객체에 임시로 저장된 값을 바로바로 사용하기 위해 사용 때문에 5단계가 없다
+
+- 일반 query는 5단계가 있다 : sql.select에 사용 
+-> 임시로 저장된 값을 다시 저장 후에 원하는 결과값을 얻어내기 위해 5단계를 사용한다.
+
+~ 참조 링크 https://wjun.tistory.com/2 
+
+
+** Statement 클래스
+- SQL 구문을 실행하는 역할
+- 스스로 SQL구문 이해 못함(구문해석 X )-> 전달역할
+- SQL관리 o + 연결 정보 x
+			  
+PreparedStatemnet 클래스
+- Statement 클래스의 기능 향상
+- 인자와 관련된 작업이 특화(매개 변수)
+- 코드 안전성 높음. 가독성 높음
+- 코드량이 증가 -> 매개변수를 set해줘야하기 때문에 ...
+- 텍스트 SQL 호출 
+++ SQL문을 표현 즉, statment객체는 실행시 sql명령어를 지정하여 여러
+  sql구문을 하나의 statement객체로 수행이 가능(재사용 가능)
+  하지만 , preparedStatement는 객체 생성시 지정된 sql명령어만을 실행 할 수 잇다.
+  다른 sql은 사용x -> 재사용 x)
+			 
+
+** 싱글톤
+
+** include
+include 
+ - 인클루드 지시자
+ 1. 설명 : 정적 인클루드는 지시문 Directive를 이용하여 페이지를 인클루드 하는 방식이다.
+	형식 : <%@include file="/common/header.jsp" %>
+	특징 : 정적이라는 의미와 같이 메인 페이지에, 포함되는 JSP 페이지를 로드하고 그것을 java로 변경후, 컴파일
+	         여러 페이지를 합쳐허 하나의 페이지를 만든다는 의미로, class로 컴파일 할때 한번만 컴파일 하면 되기 때문에 성능상의 이점이 있다.
+	         WAS에 따라 포함되는 내용이 변경되어도, 전체를 재 컴파일 하지 않을 수 있기 때문에 변화된 내용이 반영되지 않는 경우가 있다.
+	
+ - 인클루드 테그
+ 2. 설명 : 매번 메인 페이지가 호출 될때마다. 포함되는 내용을 재 컴파일 수행한다.
+	형식 : <jsp:include src="/common/header.jsp" />
+	특징 : 매번 내용을 새롭게 컴파일 하기 때문에 성능상의 문제가 발생한다.
+	         하지만 변경이 이루어 져야하거나, 특정 파라미터를 전달하고 싶은경우 이용하면 편리하다. 
+
+
+** <%%> -- 스크립트릿 
+-> jsp 입력하는곳 ,,, 리케스트로 받는 곳 자바로 된것을 사용하는곳 
+-> 자바를 jsp화 시키는 공간
+- > html에서
+	자바를 쓰기위한
+	문법이라고하면
+	더 좋을 듯 
+-> 이클립스에서 <%%>사용해서 안에 자바를 jsp화 시키면 이것이 jsp 파일 
+-> 이것을 servlet으로 다시 컴파일해서 그걸가지고 다시 html로 바꿔서 화면에 출력 
+(참고 링크 ) --https://hoon2kc.tistory.com/entry/%EC%99%80-script%EC%B0%A8%EC%9D%B4-%EC%A0%90-%EC%84%A4%EB%AA%85
+
+클라이언트에서 데이터 수신시 get , post 방식이 있다 물론 ajax도 가능
+주소에 실어보내는 방식 get을 쓰려면 ? 키.값을 사용 하면 된다  -- > json형태 이다 
+두개를 수신할때는 & 사용하면된다 키값 & 키 값 
+
+---- request 객체 메소드 간단 정리 링크 
+https://tnsgud.tistory.com/656
+
+
+** request 관련
+---- 예제
+requestUrl: http://cushion.flxsrv.biz/services/log_visit.jsp
+
+requestUri: /services/log_visit.jsp
+
+URL은 호스트 정보를 포함한 정보이고,
+
+URI는 호스트 정보를 제외한 정보이다.
+
+++)
+request.getContextPath() : 프로젝트 path만 얻어온다.
+
+예) http://localhost:8081/board/list.jsp
+
+     return: /board
+
+ 
+
+request.getRequestURI() : 프로젝트와 파일경로까지 얻어온다.
+
+예) http://localhost:8081/board/list.jsp
+
+     return: /board/list.jsp
+
+
+
+

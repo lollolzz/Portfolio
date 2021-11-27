@@ -1,0 +1,18 @@
+* lombox설치 방법
+cmd (관리자권한으로 실행) -> spring설치된 폴더 경로 복사 후 
+cd 경로
+java -jar lombok-1.18.22.jar
+-> 설치화면 뜨면 'specify location'선택해서 spring.exe선택 한 후
+-> 설치하고 -> maven repository로 들어가서 dependency복하해서
+-> pom.xml에 디펜던시 붙여넣자  
+
+컨트롤러에 사용하는 
+@ResponseBody를 사용한 이유는 gson라이브러리를 사용해서 json데이터를 전송하기위한 어노테이션,,,
+그리고 json데이터를 view 페이지에서 forward시키지 않게 하기 위해 사용한다 
+
+맵퍼에 selectCountUid등의 결과값은 1 또는 0이기 때문에 resultType=int를 사용한다
+
+service에서 selectCountUid등을 return 하는이유는 아마 화면에 그대로 출력되는것이아니라 데이터를 return 시켜 
+확인해야 하기 때문일거라고 생각한다.
+
+맵퍼에 `uid`=#{uid}; 이부분으로 맵핑을 해주엇기 때문에 serviec와 dao부분에서 (String uid)를 적어주어 적용시킨다
