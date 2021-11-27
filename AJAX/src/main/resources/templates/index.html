@@ -6,6 +6,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>CreativeAJAX-Index</title>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
@@ -14,6 +15,19 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/jsscript.js}"></script>
+    <script>
+    
+    $('.MainBanner>ul>li').hide(); 
+    $('.MainBanner>ul>li:first-child').show(); 
+
+    setInterval(function(){ 
+        $('.MainBanner>ul>li:first-child').fadeOut()
+        .next().fadeIn().end(1000)
+        .appendTo('.MainBanner>ul');
+    },3000);
+    
+    
+    </script>
 </head>
  <body>
  	<div id="wrapper">
@@ -22,7 +36,9 @@
 		      <section class="MainTop">
 		         <div class="MainBanner">
 		             <ul>
+		                 <li><img class="bannerimg" src="./img/bannerimg1.JPG" alt="배너이미지2"></li>
 		                 <li><img class="bannerimg" src="./img/bannerimg2.JPG" alt="배너이미지2"></li>
+		                 <li><img class="bannerimg" src="./img/bannerimg3.JPG" alt="배너이미지2"></li>
 		             </ul>
 		         </div>
 		     </section>
@@ -142,7 +158,7 @@
 		     <section class="page-section aboutus">
 		         <div class="container-about">
 		             <h2 class="abouttit">Inside Ajax</h2>
-		             <a class="btn aboutus-click" href="#">About us</a>
+		             <a class="btn aboutus-click" th:href="@{about/aboutus}">About us</a>
 		         </div>
 		     </section>
 		 </main>

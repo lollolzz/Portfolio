@@ -5,7 +5,8 @@
 <mapper namespace="kr.co.ajax.dao.MemberDao">
 	<insert id="insertMember">
 	</insert>
-	<select id="selectMember">
+	<select id="selectMember" resultType="kr.co.ajax.vo.MemberVo">
+		SELECT * FROM `aj_member` WHERE `uid`=#{uid} AND `pass`=#{pass};
 	</select>
 	<select id="selectMembers"></select>
 	<select id="selectTerms" resultType="kr.co.ajax.vo.TermsVo">

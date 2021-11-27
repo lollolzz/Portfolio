@@ -10,8 +10,8 @@ public interface MemberDao {
 	
 	public void insertMember(MemberVo vo);
 	
-	public void selectMember();
-	public void selectsMember();
+	public MemberVo selectMember(String uid, String pass);
+	public void selectsMembers();
 	public void updateMember();
 	public void deleteMember();
 	

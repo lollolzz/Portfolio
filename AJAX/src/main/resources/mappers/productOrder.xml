@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.ajax.dao.ProductOrderDao">
+	<insert id="insertOrder" useGeneratedKeys="true" keyProperty="orderId">
+		INSERT INTO `aj_product_order` SET
+		`uid`=#{uid},
+		`count`=#{count},
+		`price`=#{price},
+		`delivery`=#{delivery},
+		`total`=#{total},
+		`rdate`=NOW();
+	</insert>
+	<select id="selectOrder"></select>
+	<select id="selectOrders">
+	
+	</select>
+	<update id="updateOrder"></update>
+	<delete id="deleteOrder"></delete>
+</mapper>
+
+
+
+
+
+
