@@ -21,6 +21,10 @@ public class ProductCartService {
 	public void insertCart(ProductCartVo vo) {
 		dao.insertCart(vo);
 	}
+	
+	public void completeOrder(String uid){
+		dao.completeOrder(uid);
+	}
 	public void selectCart() {};
 	
 	public List<ProductCartVo> selectCarts(String uid) {

@@ -11,6 +11,7 @@ import kr.co.ajax.vo.ProductVo;
 public interface ProductCartDao {
 
 	public void insertCart(ProductCartVo vo);
+	public void completeOrder(String uid);
 	public void selectCart();
 	public List<ProductCartVo> selectCarts(String uid);
 	public int selectCountCart(ProductCartVo vo);

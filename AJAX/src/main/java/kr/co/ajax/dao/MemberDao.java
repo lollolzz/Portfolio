@@ -10,12 +10,13 @@ public interface MemberDao {
 	
 	public void insertMember(MemberVo vo);
 	
-	public MemberVo selectMember(String uid, String pass);
+	public MemberVo selectMember(MemberVo vo);
+	public MemberVo selectMember2(String email);
 	public void selectsMembers();
 	public void updateMember();
 	public void deleteMember();
 	
 	public TermsVo selectTerms();
-	
+	public int selectCountEmail(String email);
 	
 }

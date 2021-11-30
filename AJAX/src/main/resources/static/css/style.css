@@ -2,7 +2,7 @@
 * {
     margin: 0;                /* 바깥 여백 */
     padding: 0;               /* 내부 여백 */
-    font: normal 12px '돋움체';   /* 폰트 설정  */
+    font: normal 12px '고딕';   /* 폰트 설정  */
     box-sizing: border-box;
 }
 *::before,
@@ -101,8 +101,14 @@ header > nav > div > div {
 header > nav > div > div > ol {
   display: inline-block;
   width: 25%;
+  margin-top: 20px;
   margin-left: 23px;
   margin-right: 27px;
+}
+
+/**************시현 수정 20211130***************/
+header > nav > div > div > ol.on {
+	background-color: lightgrey;
 }
 
 header > nav > div > div > ol > li:nth-child(1) {
@@ -113,7 +119,10 @@ header > nav > div > div > ol > li {
   margin-top: 10px;
   padding: 2px;
 }
-
+header .menu > li > a {
+	font-size: 15px;
+	font-family: '고딕';
+}
 
 
 /* main 속성 정의 */
@@ -243,33 +252,6 @@ header > nav > div > div > ol > li {
     top: 40px;
 }
 
-/* Tick */
-.page-section {
-  padding-top: 100px;
-  padding: 8rem 0;
-}
-.bg-primary {
-  --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
-}
-.container-tick{
-  width: 100%;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  margin-right: auto;
-  margin-left: auto;
-}
-.row{
-  --bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
-  --bs-gutter-x: 0;
-  --bs-gutter-y: 0;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: calc(-1 * var(--bs-gutter-y));
-  margin-right: calc(-0.5 * var(--bs-gutter-x));
-  margin-left: calc(-0.5 * var(--bs-gutter-x));
-}
 
 /* Recommend-text */
 .page-section {
@@ -563,6 +545,14 @@ h5.rating.star5 {background-position: 0 -200px;}
     padding: 16px;
     box-sizing: border-box;
 }
+
+#view > nav {
+ 	width: 100%;
+    height: 36px;
+    margin-top: 150px;
+    border-bottom: 1px solid #000;
+    box-sizing: border-box;
+}
 #view > section {}
 #view > section > article {
     width: 100%;
@@ -579,7 +569,7 @@ h5.rating.star5 {background-position: 0 -200px;}
 #view .info {}
 #view .info > div {
     float: left;
-    width: 50%;
+    width: 46%;
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -673,7 +663,7 @@ h5.rating.star5 {background-position: 0 -200px;}
     position :fixed; 
 }
 #view .info > .summary .cardhyeteckPage > img {
-  width: 650px; height: 650px; padding-left: 250px; padding-top: 100px;
+  width: 589px; height: 487px; padding-left: 225px; padding-top: 30px;
 }
 #view .info > .summary > .cardhyeteckPage > .hyeteckCheck {
     margin: 20px;
@@ -726,7 +716,7 @@ h5.rating.star5 {background-position: 0 -200px;}
     padding-right: 100px;
  }
 .sizeSelectPage > .selectSize2 {
-    margin: 50px;
+    margin: 30px;
     margin-top : 100px;
     background: none;
     border: 1px solid #dbdbdb;
@@ -991,6 +981,19 @@ h5.rating.star5 {background-position: 0 -200px;}
     content: "원";
 }
 
+#view-quantity {
+	float: right;
+	}
+
+#view-quantity > label {
+	font-size: 15px;
+	font-family:고딕;
+}
+
+#view-quantity > select {
+	font-size: 15px;	
+}	
+
 #view .info > .summary > .button {
     overflow: hidden;
     margin-top: 16px;
@@ -998,7 +1001,7 @@ h5.rating.star5 {background-position: 0 -200px;}
 
 #view .info > .summary > .button > input {
     float: left;
-    width: 49%;
+    width: 412px;
     height: 50px;
     margin: 2px;
     font-size: 20px;
@@ -1016,8 +1019,8 @@ h5.rating.star5 {background-position: 0 -200px;}
     border: 1px solid #a3a3a3;
     color: #fff;
     border-radius: 30px 30px 30px 30px;
-    width: 400px;
-    height: 60px;
+    width: 412px;
+    height: 53px;
     font-size: 17px;
 }
 #view .info > .summary > .button > .order:hover {
@@ -1030,6 +1033,7 @@ color : rgb(68, 67, 67);
 
 
 #view .info > .summary > .button > .selectSize {
+    
     background: none;
     border: 1px solid #a3a3a3;
     color: rgb(20, 20, 20);
@@ -1051,7 +1055,8 @@ color : rgb(68, 67, 67);
     color: #0e1218;
 }
 #view .info > .summary > a {
-    float: right;
+	margin-bottom: 20px;
+	float: right;
      font-size: 15px;
     color: #0e1218;
     text-decoration: underline;
@@ -1131,7 +1136,7 @@ color : rgb(68, 67, 67);
     box-sizing: border-box;
 }
 #view .review > ul > li {
-    padding-top: 16px;
+    padding-top: 10px;
     border-bottom: 1px solid #ececec;
     box-sizing: border-box;
 }
@@ -1152,7 +1157,7 @@ color : rgb(68, 67, 67);
 }
 #view .review > ul > li > p {
     width: 100%;
-    height: 60px;
+    height: 30px;
     color: #555;
     font-size: 14px;
     line-height: 19px;
@@ -1161,11 +1166,8 @@ color : rgb(68, 67, 67);
     margin-top: 10px;
 }
 
-#view .review > .paging {
-    width: 100%;
-    padding: 30px 0;
-    text-align: center;
-}
+
+
 
 #view .review > .paging > .prev {}
 #view .review > .paging > .next {}
@@ -1201,6 +1203,7 @@ color : rgb(68, 67, 67);
     color: #fe434c;
     font-weight: bold;
 }
+-->
 
 
 /* �λ컮援щ땲 */
@@ -1632,7 +1635,7 @@ color : rgb(68, 67, 67);
 }
 
 #login {
-  width: 100%;  /*  넓이 100% */
+  width: 100%;  /*  �꼻�씠 100% */
   height: 1000px;
   display : block;
   padding: 9% 0 0 0;
@@ -1650,28 +1653,29 @@ color : rgb(68, 67, 67);
   
   text-align: center;
 }
+#center-v > form {
+	height: 149%;
+}
 
 .login-header{
   width: auto;
   border-bottom: 1px solid rgb(214, 214, 214);
   height: 7%;
-  
+   position:block;
 }
-
-#center-v > .login-header > h1{
-  font-weight:bold;
-  float: left;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 25px;
-  color :rgb(20, 20, 20);
-  padding : 10px 57px 5px 57px;
-  vertical-align: baseline;
-  box-sizing: border-box;
+.login-h1{
+     font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    color: rgb(20, 20, 20);
+    padding: 20px 58px 17px 57px;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    text-align: center;
 }
 .login-body{
-  height: 60%;
-  
-
+  height: 40%;
+	position:block;
 }
 .login-body > section > h3{
   font-family: 'Courier New', Courier, monospace;
@@ -1694,7 +1698,8 @@ color : rgb(68, 67, 67);
 }
 .login-footer{
   border-top : 1px solid rgb(214, 214, 214);
-  height: 33%;
+  height: 20%; 
+  position:block;
 }
 .login-footer > p{
   font-family: 'Courier New', Courier, monospace;
@@ -1771,7 +1776,6 @@ color : rgb(68, 67, 67);
 .logos{
   display: inline-block;
 }
-
 /* 결제페이지*/
 .payment{
   height: auto;
@@ -1951,11 +1955,10 @@ margin: 10px;
   text-align: left;
   color :rgb(20, 20, 20);
 }
-.summary-products{
-  padding: 20px 0px 0px 25px ;
-  margin: 10px 10px 10px 10px;
-  width: 288px;
-  height: 40px;
+.summary-products{/******************시현 추가************************/
+    margin: 10px;
+    width: 288px;
+    height: 40px;
 }
 .summary-products > img {
   float: left;
@@ -2136,6 +2139,7 @@ margin: 10px;
   width: 48%;
   float: left;
   margin-bottom: 40px;
+  padding-bottom: 57px;
 
 }
 .register-left-in{
@@ -2206,9 +2210,9 @@ margin: 10px;
   float: left;
 }
 .name > input{
-  margin-left: 50px;
+  margin-left: 6px;
   padding: 8px 10px;
-  width: 100%;
+  width: 76%;
   cursor: auto;
   border: 1px solid #ededed;
   color: #454545;
@@ -2242,7 +2246,7 @@ margin: 10px;
 }
 
 .emailFirst{
-  margin-left: 50px;
+  margin-left: 5px;
   padding: 6px 10px;
 
   cursor: auto;
@@ -2296,8 +2300,8 @@ margin: 10px;
   clear: both;
 }
 .mobile{
-  width: 22% !important;
-  margin-right: 5px;
+  width: 21% !important;
+  margin-right: 13px;
   padding: 6px 10px;
   cursor: auto;
   border: 1px solid #ededed;
@@ -2323,6 +2327,7 @@ margin: 10px;
   display: inline-block;
   line-height: 1.7;
   cursor: pointer;
+  margin-right: 220px;
 }
 .selectbirtharea{
   width: 100%;
@@ -2332,10 +2337,14 @@ margin: 10px;
   padding-left : 50px;
 
 }
+.select year{
+	margin-left: 50px;
+}
 .birthday-year{
   float: left;
   width: 24% !important;
   margin-right: 5px;
+  margin-left: 43px;
   padding: 6px 10px;
   cursor: auto;
   border: 1px solid #ededed;
@@ -2404,33 +2413,33 @@ margin: 10px;
 }
 .content-asset{
   text-transform: none;
-  margin-left: 50px;
+  margin-right: 34px;
   color: #606060;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.content-lower > p{
+	clear:both;
+	text-align:justify;
+	
 }
 .check-inline-outside{
   padding-top: 20px;
   float: left;
-  padding-left: 30px;
 }
 .label-subscribe{
   width: 40%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 1.3rem;
-  margin-bottom: 40px;
-  margin-left: 20px;
   color: #606060;
+  margin-right:20px;
+  font-size: 16px;
 
 }
 .label-subscribe > input{
-  left: 0;
-  top: 3;
-  margin-right: 5px;
-  cursor: pointer;
+	margin-right: 6px;
   color: #454545;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  border-radius: 0;
 }
+
 .register-button{
   float: left;
   margin-top: 40px;
@@ -2450,208 +2459,32 @@ margin: 10px;
   background-color: #105a33;
   color: white;
 }
-
-/* footer */
-
-/*푸터 영역 가로1518px 세로230px*/
-
-footer {
-  width: 100%;
-  height: 230px;
-  display: block;
-  background-color:whitesmoke;
-}   
-
-
-.footer-reinsurance {
-
-  height: 100px;
-border: 1px solid #e5e5e5;
-list-style: none;
-text-align: center;
-
+.gender-content-inline {
+	width: 80%;
+	height: 20px;
 
 }
 
-.footer-reinsurance li{
-  margin-left: 70px;
-  margin-right: 70px;
+.register-password >  .password > input{
+  margin-left: 7px;
+  padding: 8px 10px;
+  width: 78%;
+  cursor: auto;
+  border: 1px solid #ededed;
+  color: #454545;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  border-radius: 0;
 }
 
-.footer-reinsurance a{
-  color: black;
+.register-password  > .password > label{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.3rem;
+  color: #292929;
+  line-height: 1.7;
+  float: left;
 }
 
-.footer-reinsurance a:hover{
-  color: gray;
-}
 
-
-.popup_bg1 {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.2);
-
-}
-.popup1_bg1:hover{
-
-  transition: 1s;
-}
-.popup1 {
-  position: fixed;
-  left: calc(50% - 200px);
-  top: calc(30% );
-  width: 400px;
-  max-height: auto;
-  background: #fff;
-  transition:  10s;
-  
-}
-
-.popup1 > p{
-  padding: 100px;
-  font-size: 12px;
-  transition:  10s;
-}
-
-.popup_bg2 {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.2);
-  
-  z-index: 250;
-  opacity: 1;
-}
-.popup2 {
-  position: fixed;
-  left: calc(50% - 200px);
-  top: calc(30%);
-  width: 400px;
-  height: 200px;
-  background: #fff;
-}
-
-.popup2 > p{
-  padding: 100px;
-  font-size: 12px;
-}
-.popup_bg3 {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.2);
-  transition: opacity 0.4s ease;
-}
-.popup3 {
-  position: fixed;
-  left: calc(50% - 200px);
-  top: calc(30%);
-  width: 400px;
-  height: 200px;
-  background: #fff;
-}
-
-.popup3 > p{
-  padding: 80px;
-  font-size: 12px;
-}
-.popup_bg4 {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.2);
-  transition: opacity 0.4s ease;
-}
-.popup4 {
-  position: fixed;
-  left: calc(50% - 200px);
-  top: calc(30%);
-  width: 400px;
-  height: 200px;
-  background: #fff;
-}
-
-.popup4 > p{
-  padding: 40px;
-  font-size: 12px;
-}
-
-.footer-reinsurance li {
-display: inline-block;
-padding: 20px;
-font-size: 14px;
-}
-
-.fas {
-color: gray;
-}
-     
-
-.footer1 {
-  width: 1200px;
-  height: 150px;
-  margin: 0 auto;
-
-}
-
-.footer2 {
-  display: inline-block;
-  font-size: 9px;
-  padding-top: 35px;
-}
-.footer3 {
-  float: right;
-  font-size: 9px;
-  padding-top: 35px;
-}
-
-.footer4 {
-  height: 50px;
-  text-align: center;
-}
-
-.footer4 li {
-display: inline-block;
-padding: 20px;
-font-size: 13px;
-}
-
-.footer4 > ul {
-  display: inline-block;
-  text-align: center;
-}
-
-.korea {
-  display: inline-block;
-  float: right;
-  padding: 15px;
-  margin: 6px;
-  }
-
-.korea > img {
-width: 25px;
-margin: 0 auto;
-}
-
-.korea a {
-float: left;
-text-decoration: underline;
-font-size: 13px;
-}
 
 /* 카트(장바구니)페이지 */
 .payment-center-header{
@@ -2872,7 +2705,7 @@ footer {
 
 .footer-reinsurance {
 
-  height: 100px;
+height: 100px;
 border: 1px solid #e5e5e5;
 list-style: none;
 text-align: center;
@@ -2921,6 +2754,7 @@ text-align: center;
 
 .popup1 > p{
   padding: 100px;
+  padding-left: 120px;
   font-size: 12px;
   transition:  10s;
 }
@@ -2948,6 +2782,7 @@ text-align: center;
 
 .popup2 > p{
   padding: 100px;
+  padding-left: 110px;
   font-size: 12px;
 }
 .popup_bg3 {
@@ -2970,7 +2805,8 @@ text-align: center;
 }
 
 .popup3 > p{
-  padding: 80px;
+  padding: 90px;
+  padding-left: 100px;
   font-size: 12px;
 }
 .popup_bg4 {
@@ -2994,6 +2830,7 @@ text-align: center;
 
 .popup4 > p{
   padding: 40px;
+  padding-left: 80px;
   font-size: 12px;
 }
 
@@ -3148,7 +2985,7 @@ body {
   height: 100%;
 }
 /* Tick */
-.page-section {
+/*.page-section {
   padding-top: 100px;
   padding: 8rem 0;
 }
@@ -3174,7 +3011,7 @@ body {
   margin-right: calc(-0.5 * var(--bs-gutter-x));
   margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
-
+*/
 /* Recommend-text */
 .page-section {
   padding-top: 100px;
@@ -3783,11 +3620,14 @@ margin: 10px;
   font-size: 13px;
   color: #000;
 }
-.rightdelivery:nth-child(1){
 
+.rightdelivery:nth-child(1){
   margin : 0;
   width: 90%;
-  height: 35%;
+  height: auto;/*****************시현 추가*************************/
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left:10px;/*******************여기까지 시현 추가****************************/
   list-style-type: none;
   margin :  10px;
   background-color: rgb(255, 255, 255);
@@ -3802,27 +3642,33 @@ margin: 10px;
   background-color: rgb(255, 255, 255);
 }
 .rightdelivery > div > li {
+  list-style: none; /****************시현 추가*********************/
   width: 100%;
   height: 20px;
  
 }
-.rightdelivery > div > li > span:nth-child(1){
+
+
+
+.rightdelivery > div > li > span:nth-child(1){ /****************시현 추가*********************/
   float: left;
   height: 20px;
   width: 40%;
   font-size: 18px;
-  margin :3px 18px 5px 20px;
+  margin :3px 20px 5px 20px;
   padding-top: 17px;
-  padding-left: 15px;
   color :rgb(20, 20, 20)
 }
+
+
+
 .rightdelivery > div > li > span:nth-child(2){
   float:right;
   text-align: right;
   height: 20px;
   width: 40%;
   font-size: 18px;
-  margin: 3px 20px 5px 0px;
+  margin: 3px 10px 5px 0px; /****************시현 추가*******************/
   padding-top: 17px;
   padding-right: 15px;
   color :rgb(20, 20, 20)
@@ -3842,13 +3688,15 @@ margin: 10px;
   border : 1px solid rgb(116, 116, 116);
   font-size: 15px;
   font-weight: bold;
+  cursor: pointer;	
 }
 .rightdelivery-naeyong{
+  padding-top: 15px;
   height: 70%;
 }
 .rightdelivery-BTN{
-  height: 30%;
 }
+
 .leftdelivery > a > strong {
   font-size: 16px ;
   font-weight: bold;
@@ -3872,3 +3720,69 @@ margin: 10px;
   text-align: left;
   font-size: 15px;
 }
+
+
+/*시현 20211128 뷰 페이지 페이징 가운데 정렬 처리, 수량박스 설정 추가, 푸터 로고 위치 설정*/
+#view .paging { 
+	text-align: center;
+}
+#view .info > .summary .org_price {
+	float: right;
+}
+#view .info > .summary .org_price > select {
+	font-size: 12px;
+	height:20px;
+}
+
+
+.footer-reinsurance a > i{
+  color: black;
+  margin-left:15px;
+}
+/*시현 여기까지*/
+/************************시현 추가 20211130********************************/
+.tick-page-section {
+  
+  padding: 50px;
+}
+.bg-primary {
+  --bs-bg-opacity: 1;
+  background-color: #ff7953;
+  /*rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;*/
+}
+.container-tick{
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.col-lg-8 {
+	padding: 20px;
+	margin-left: 250px;
+	display: inline-block;
+	border: 1px solid rgba(5,5,5,0.5);
+	color: dark-gray ;
+	
+}
+.tick-title{
+	font-size: 40px;
+	font-family: 고딕;
+}
+.tick-content > p {
+	font-size: 14px;
+	padding: 3px;
+	font-family: 고딕;
+	color: dark-gray;
+	
+}
+.tick-content > p:nth-child(4) {
+	float: right;
+	font-size: 14px;
+	font-family: 고딕;
+	color: dark-gray;
+}
+/*******************************************************************/
+
+

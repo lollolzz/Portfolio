@@ -43,16 +43,11 @@
                     alert('전자금융거래 이용약관에 동의 하셔야 합니다.');
                     return false;
                 }
-                
                 if(!isChecked3){
                     alert('개인정보 수집에 동의 하셔야 합니다.');
                     return false;
                 }
-                
-                if(!isChecked4 && type == 2){
-                    alert('전자세금 신고납부에 동의 하셔야 합니다.');
-                    return false;
-                }
+                $(location).attr("href", "/member/register")
             });
         });
     </script>
@@ -87,7 +82,7 @@
                         </div>
                     </div> 
                     <div>
-                        <a th:href="@{/member/register}"><input type="button" class="agree" value="동의하기" /></a>
+                  		<input type="button"  class="agree" value="동의하기" />
                     </div>
                 </div>
             </section>

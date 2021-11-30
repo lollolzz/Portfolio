@@ -247,7 +247,6 @@ strong {
     font-size: 12px;
     color: #555555;
     font-weight: bold;
-    text-decoration: line-through;
 }
 
 .product-listitem .price #tax-type {
@@ -302,7 +301,7 @@ strong {
     margin-top: 50px;
     margin-bottom: 50px;
     text-align: center;
-    font-family: Verdana, "돋움", Dotum, sans-serif;
+    font-family: Verdana, "�룍��", Dotum, sans-serif;
 }
 
 .paging > a {
@@ -317,6 +316,7 @@ strong {
 
 
 .paging img {
+		
     
 }
 
@@ -331,16 +331,17 @@ strong {
 .paging li {
     display: inline-block;
     margin: 0 0 0 -1px;
-    border: 1px solid #d7d5d5;
     font-size: 12px;
     color: #757575;
     vertical-align: top;
 }
 
 .paging li a {
+	float: left;
     display: block;
     width: 33px;
     padding: 9px 0;
+	border: 1px solid #d7d5d5;
     text-align: center;
     font-weight: bold;
     line-height: 14px;

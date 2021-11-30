@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />     
-    <title>CreativeAJAX-Veiw</title>
+    <title>CreativeAJAX-View</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/jsscript.js}"></script>
-    <script>
+    <script th:inline="javascript"> 
+    
+    
       $( document ).ready( function() {
         
 	        $( 'input[class=selectSize]' ).click( function() {
@@ -68,30 +70,378 @@
 	            } );  
 	        });
       } );
+      
+      
+      //시현 20211127 쇼핑백에 추가하기 버튼 클릭 20211128 수정완료
+      $(function(){
+      
+    	  var Count = 1;
+			$('select[name=count]').focusout(function(){
+	             Count =  $('select[name=count]').val() ;
+	    	    });
+    	  
+    	  var Size;
+    	  	$( 'input[name=selectSize3]' ).click( function() {
+	             Size = $( this ).val();
+	        });
+	
+             
+    	  		var uid 			=$('#view > input[name=uid]').val(); 
+    			var productCode		=$('#view > input[name=productCode]').val();
+    	  		var price			=$('#view > input[name=price]').val();
+    			var total 			=price;
+    			
+    			//쇼핑백에 추가하기 버튼 클릭하면
+    			$('.info #addCartBtn').click(function(){
+    				 
+						if(uid == null){//로그인 안했으면
+	    					var result = confirm('로그인을 하셔야 합니다.'); //확인,취소 버튼이 있는 상자 : confirm
+	    					if(result){
+	    					location.href = '/member/login?productCode='+productCode;
+	    					}
+    					}else{
+    						if(Size == null) {
+    							alert('사이즈를 선택해주세요.')
+    						}else{	
+	    						var jsonData = {
+	    								'uid': uid,	
+	    								'productCode': productCode,
+	    								'size': Size,
+	    								'price': price,	
+	    								'total': total,
+	    								'count': Count,
+	    						};		
+	    						
+	    						$.post('/product/cart', jsonData, function(data){
+	    							
+	    							if(data.result == 1){
+	    								var result = confirm('이미 장바구니에 상품이 담겨있습니다. 장바구니로 이동하시겠습니까?');
+	    								if(result){
+	    									location.href = '/product/cart?uid='+uid+'&productCode='+productCode;	
+	    								}
+	    							}else{
+	    								var result = confirm('장바구니에 상품을 담았습니다.\n장바구니 페이지로 이동하시겠습니까?');
+	    								if(result){ //result가 true면, 즉 확인버튼 누르면
+	    									location.href = '/product/cart?uid='+uid+'&productCode='+productCode;
+	    								}
+	    							}
+	    						}, "json");
+    						}
+    	    			}
+    			});
+      });
+      
+      
+     	// 하단 상품리뷰 페이지 관련
+		$(function(){
+			
+			// 페이지 처리관련 전역변수
+			var currentPageNum = 1;
+			var currentPageNumGroup = 1;
+			var productCode = [[${productCode}]];
+			var lastPageNum = [[${lastPageNum}]];
+			var lastPageNumGroup = lastPageNum / 5;			
+			
+			// 페이지 번호 이벤트						
+			$('.paging > .num > a').eq(0).addClass('on');
+						
+			$(document).on("click", '.paging > .num > a', function() {
+				
+				$('.paging > .num > a').removeClass('on');
+				$(this).addClass('on');
+				
+				var reviewPageNum = parseInt($(this).text());
+				var productCode = [[${productCode}]];
+				
+				var jsonData = {
+					"productCode": productCode,
+					"reviewPageNum": reviewPageNum
+				};
+				
+				console.log(jsonData);
+				
+				// 요청하기
+				$.ajax({
+					url:'/product/review',
+					type:'get',
+					data: jsonData,
+					dataType:'json',
+					success: function(data){
+						console.log(data);
+						
+						// 현재 전체 리뷰 삭제
+						$('.review > ul > .productReview').remove();
+						
+						// 요청한 리뷰 생성
+						$.each(data, function(i, review){
+							
+							var tags = "<li class='productReview'>";
+							    tags += "<div>";
+							if(review.rating == 1){         										   
+							    tags += "<h5 class='rating star1'>별하나</h5>";
+							}else if(review.rating == 2){
+								tags += "<h5 class='rating star2'>별하나</h5>";
+							}else if(review.rating == 3){
+								tags += "<h5 class='rating star3'>별하나</h5>";
+							}else if(review.rating == 4){
+								tags += "<h5 class='rating star4'>별하나</h5>";
+							}else if(review.rating == 5){
+								tags += "<h5 class='rating star5'>별하나</h5>";
+							}
+							    tags += "<span></span>";
+							    tags += "</div>";
+							    tags += "<h3>"+review.uid+"</h3>";
+							    tags += "<h3>"+review.rdate+"</h3>";
+							    tags += "<p>"+review.content+"</p>";
+							    tags += "</li>";
+							    
+							$('.review > ul').append(tags);
+						
+						});
+					}         								
+				});
+				
+				return false;
+			});
+			
+			// 이전 버튼 이벤트
+			$(document).on("click", '.paging > .prev > a', function() {
+				//alert('이전 클릭!!!');
+				var reviewPagePrev = parseInt($(this).parent().next().find('a:first-child').text()) - 1;
+				var jsonData = {
+						"productCode": productCode,
+						"reviewPageNum": reviewPagePrev
+					};
+					
+					console.log(jsonData);
+					
+					currentPageNumGroup--;
+					
+					// 요청하기
+					$.ajax({
+						url:'/product/review',
+						type:'get',
+						data: jsonData,
+						dataType:'json',
+						success: function(data){
+							console.log(data);
+							
+							// 현재 전체 리뷰 삭제
+							$('.review > ul > .productReview').remove();
+							
+							// 요청한 리뷰 생성
+							$.each(data, function(i, review){
+								
+								var tags = "<li class='productReview'>";
+								    tags += "<div>";
+								if(review.rating == 1){         										   
+								    tags += "<h5 class='rating star1'>별하나</h5>";
+								}else if(review.rating == 2){
+									tags += "<h5 class='rating star2'>별하나</h5>";
+								}else if(review.rating == 3){
+									tags += "<h5 class='rating star3'>별하나</h5>";
+								}else if(review.rating == 4){
+									tags += "<h5 class='rating star4'>별하나</h5>";
+								}else if(review.rating == 5){
+									tags += "<h5 class='rating star5'>별하나</h5>";
+								}
+								    tags += "<span></span>";
+								    tags += "</div>";
+								    tags += "<h3>"+review.uid+"</h3>";
+								    tags += "<h3>"+review.rdate+"</h3>";
+								    tags += "<p>"+review.content+"</p>";
+								    tags += "</li>";
+								    
+								$('.review > ul').append(tags);
+							});
+							
+							// 새로운 페이지번호 생성을 위해 기존 페이지 번호 제거(이전, 다음 포함)
+							$('.review > .paging > span').remove();
+							
+							// 이전 버튼 생성
+							if(currentPageNumGroup > 1){							
+								var preTag  = "<span class='prev'>";
+									preTag += "<a href='#'>이전</a>";
+									preTag += "</span>";
+								    
+								$('.review > .paging').append(preTag);
+							}
+							
+							// 새로운 페이지번호 생성
+							var nextLastPageNum = currentPageNumGroup * 5;
+							
+							console.log('nextLastPageNum : '+nextLastPageNum);
+							
+							reviewPagePrev -= 4							
+							for(var i=reviewPagePrev ; i<=nextLastPageNum ; i++){
+								
+								var tags  = "<span class='num'>";
+								
+								if(i == nextLastPageNum){
+								    tags += "<a href='#' class='on'>"+i+"</a>";
+								}else{
+									tags += "<a href='#'>"+i+"</a>";
+								}
+								    tags += "</span>";
+									    
+								$('.review > .paging').append(tags);
+							}
+							
+							// 다음버튼 생성
+							if(currentPageNumGroup >= 1){							
+								var preTag  = "<span class='next'>";
+									preTag += "<a href='#'>다음</a>";
+									preTag += "</span>";
+								    
+								$('.review > .paging').append(preTag);
+							}
+							
+							
+						} // ajax success end        								
+					});
+				
+				return false;
+			}); // prev.click end
+			
+			
+			// 다음 버튼 이벤트
+			$(document).on("click", '.paging > .next > a', function() {
+				
+				var reviewPageNext= parseInt($(this).parent().prev().find('a:last-child').text()) + 1;
+				var productCode = [[${productCode}]];
+				var lastPageNum = [[${lastPageNum}]];
+				
+				var jsonData = {
+					"productCode": productCode,
+					"reviewPageNum": reviewPageNext
+				};
+				
+				console.log(jsonData);
+				
+				currentPageNumGroup++;
+				
+				// 요청하기
+				$.ajax({
+					url:'/product/review',
+					type:'get',
+					data: jsonData,
+					dataType:'json',
+					success: function(data){
+						console.log(data);
+						
+						// 현재 전체 리뷰 삭제
+						$('.review > ul > .productReview').remove();
+						
+						// 요청한 리뷰 생성
+						$.each(data, function(i, review){
+							
+							var tags = "<li class='productReview'>";
+							    tags += "<div>";
+							if(review.rating == 1){         										   
+							    tags += "<h5 class='rating star1'>별하나</h5>";
+							}else if(review.rating == 2){
+								tags += "<h5 class='rating star2'>별하나</h5>";
+							}else if(review.rating == 3){
+								tags += "<h5 class='rating star3'>별하나</h5>";
+							}else if(review.rating == 4){
+								tags += "<h5 class='rating star4'>별하나</h5>";
+							}else if(review.rating == 5){
+								tags += "<h5 class='rating star5'>별하나</h5>";
+							}
+							    tags += "<span></span>";
+							    tags += "</div>";
+							    tags += "<h3>"+review.uid+"</h3>";
+							    tags += "<h3>"+review.rdate+"</h3>";
+							    tags += "<p>"+review.content+"</p>";
+							    tags += "</li>";
+							    
+							$('.review > ul').append(tags);
+						});
+						
+						// 새로운 페이지번호 생성을 위해 기존 페이지 번호 제거(이전, 다음 포함)
+						$('.review > .paging > span').remove();
+						
+						// 이전버튼 생성
+						if(currentPageNumGroup > 1){							
+							var preTag  = "<span class='prev'>";
+								preTag += "<a href='#'>이전</a>";
+								preTag += "</span>";
+							    
+							$('.review > .paging').append(preTag);
+						}
+						
+						// 새로운 페이지번호 생성
+						var nextLastPageNum = currentPageNumGroup * 5;
+						
+						console.log('nextLastPageNum : '+nextLastPageNum);
+						
+						for(var i=reviewPageNext ; i<=nextLastPageNum ; i++){
+							
+							var tags  = "<span class='num'>";
+								
+							if(i == reviewPageNext){
+							    tags += "<a href='#' class='on'>"+i+"</a>";
+							}else{
+								tags += "<a href='#'>"+i+"</a>";
+							}
+							    tags += "</span>";
+								    
+							$('.review > .paging').append(tags);
+						}
+						
+						console.log('currentPageNumGroup : '+currentPageNumGroup);
+						console.log('lastPageNumGroup : '+lastPageNumGroup);
+						
+						// 다음버튼 생성
+						if(currentPageNumGroup < lastPageNumGroup){
+							var preTag  = "<span class='next'>";
+								preTag += "<a href='#'>다음</a>";
+								preTag += "</span>";
+							    
+							$('.review > .paging').append(preTag);
+						}
+						
+						
+					} // ajax success end        								
+				});
+				
+				return false;
+				
+			}); // next.click end
+			
+		});
+	
+		
+		
+		
+      
+      
     </script>
 </head>
 <body>
     <div id="wrapper">
     	<th:block th:include="@{_header.html}"/>    
         <main>
-      
+                 
+            	
             <!-- 상품 상세페이지 -->
-            <section id="view">                
+            <section id="view">       
+         		<input type="hidden" name="uid" 		th:if="${session.sessMember != null}"  th:value="${session.sessMember.uid}"/>
+            	<input type="hidden" name="productCode" th:value="${product.productCode}"/>
+            	<input type="hidden" name="price" 		th:value="${product.price}"/>
+            	<input type="hidden" name="size" 		th:value="${product.size}"/>
+				
                 <nav>
                     <h1>
-                    <a href="#">홈</a><span>/</span>
-                    <a href="#">New</a><span>/</span>
-                    <a href="#">키즈</a><span>/</span>
-                    <a href="#">[LACOSTE X PEANUTS] 남아용 오가닉 코튼 스웻셔츠</a>
+                    <a th:href="@{/index}">Home</a><span>/</span>
+                    <a th:href="@{/product/list(cate1=${cate1})}">[[${product.tit1}]]</a><span>/</span>
+                    <a th:href="@{/product/list(cate1=${cate1},cate2=${cate2})}">[[${product.tit2}]]</a>
                     </h1>
-                       
-                        
-                  
                 </nav>
                 <section>
                     <article class="info">
                         <div class="image">
-                            <img src="../img/대표1_썸네일.jpg" alt="상품이미지"/>
+                            <img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1},cate2=${product.cate2},img=${product.thumb1})}" alt="상품이미지">
                         </div>
                         <div class="summary">
 
@@ -103,20 +453,19 @@
                                 
 
                                 <br>
-                                <input type= "button" class = "selectSize2" value="06A"/>
-                                <input type= "button" class = "selectSize2" value="08A"/>
-                                <input type= "button" class = "selectSize2" value="10A"/>
-                                <input type= "button" class = "selectSize2" value="12A"/>
+                                <input type= "button" class = "selectSize2" name="selectSize3" value="06A"/>
+                                <input type= "button" class = "selectSize2" name="selectSize3" value="08A"/>
+                                <input type= "button" class = "selectSize2" name="selectSize3" value="10A"/>
+                                <input type= "button" class = "selectSize2" name="selectSize3" value="12A"/>
                             </div>
                             <div class="sizeGuidePage">
 
                                 <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                                 <a href="#"><i class="fa fa-times" aria-hidden="true"  name="x2"></i></a>
 
-
                                 <a class="sizeGuide">사이즈 가이드</a>
-                                <p style="font-size: 13px; padding :20px;">고객님께 꼭 맞는 사이즈를 찾아보세요</p>
-                                <img src="../img/sizeGuide.png" style="width: 750px; height: 650px; padding: 50px;">
+                                <p style="font-size: 13px; padding-left :20px;">고객님께 꼭 맞는 사이즈를 찾아보세요</p>
+                                <img src="../img/sizeGuide.png" style="width: 750px; height: 407px; padding: 20px;">
                                 
                             </div>
                             <div class="cardhyeteckPage">
@@ -129,14 +478,15 @@
 
 
                            
-                            <p style="font-weight: bold;">[LACOSTE X PEANUTS] 남아용 오가닉 코튼 스웻셔츠</p>
+                            <p style="font-weight: bold;">[[${product.name}]]</p>
+                            <article>[[${product.descript}]]</article>
                             <nav>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star-o" aria-hidden="true"></i>
-                                <a href="#" style="color: #444">(1개의리뷰)</a>
+                                <a href="#" style="color: #444">([[${product.review}]]개의리뷰)</a>
                             </nav>
                             <nav>
                              
@@ -152,23 +502,37 @@
 
 
                             <div class="total">
-                                <span>180,000</span>
+                                <span>[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]</span>
                             </div>
+                            <!-- 
                             <div class="org_price">
-                                <del>200,000</del>
+                                <del>[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]</del>
                             </div>
-                           
-
+                             -->
+                            <div class="org_price" >수량을 선택하세요
+	                            <select name="count" id="quantity">
+	                               <option value="1">1</option>
+	                               <option value="2">2</option>
+	                               <option value="3">3</option>
+	                               <option value="4">4</option>
+	                               <option value="5">5</option>
+	                               <option value="6">6</option>
+	                               <option value="7">7</option>
+	                               <option value="8">8</option>
+	                               <option value="9">9</option>
+	                               <option value="10">10</option>
+	                            </select>
+							</div>
                             <div class = "button">
                                 <input type= "button" class = "selectSize" value="사이즈 선택하기 >"/>
-                                
                             </div >
+                            
                             <i class="fa fa-lightbulb-o" aria-hidden="true"></i><a href="#" class = "sizeGuide2">사이즈 가이드</a>
                                 
                             <br>
 
                             <div class="button">
-                                <input type="button" class="order" value="쇼핑백에 추가하기"/>
+                                <input type="button" id="addCartBtn" class="order" value="쇼핑백에 추가하기"/>
                             </div>
                             <nav>
                                 <span class="desc">당일배송은 서울지역, 월~금요일 오후 12시까지 선택가능(공휴일/주말 제외) 재고부족 시, 사이즈 선택이 가능하더라도 장바구니에 제품을 담을 수 없습니다</span>
@@ -183,12 +547,12 @@
                             <h1>상세히 보기</h1>
                             <br>
                             <br>
-                            <h6>제품코드. SH3613-51G</h6>
+                            <h6>제품코드-[[${product.productCode}]]</h6>
                         </nav>
                         <!-- 상품상세페이지 이미지 -->
-                        <img src="../img/대표1_썸네일.jpg" alt="">
-                        <img src="../img/대표1_썸네일2.jpg" alt="">
-                        <img src="../img/대표1_썸네일3.jpg" alt="">
+                            <img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1},cate2=${product.cate2},img=${product.thumb2})}" alt="상품이미지">
+                          <!-- <img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1},cate2=${product.cate2},img=${product.thumb3})}" alt="상품이미지">
+                            <img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1},cate2=${product.cate2},img=${product.detail})}" alt="상품이미지"> -->  
                     </article>
                 
 
@@ -200,82 +564,34 @@
                             <h1>상품리뷰</h1>
                         </nav>
                         <ul>
-                            <li>
+                        
+                            <li th:each="productReview:${productReviews}" class="productReview">
                                 <div>
-                                    <h5 class="rating star4">상품평</h5>
-                                    <span>seo******	2018-07-10</span>
+                                    <h5 th:if="${productReview.rating==1}" class="rating star1">별하나</h5>
+                                    <h5 th:if="${productReview.rating==2}" class="rating star2">별하나</h5>
+                                    <h5 th:if="${productReview.rating==3}" class="rating star3">별하나</h5>
+                                    <h5 th:if="${productReview.rating==4}" class="rating star4">별하나</h5>
+                                    <h5 th:if="${productReview.rating==5}" class="rating star5">별하나</h5>
+                                    <span></span>
                                 </div>
-                                <h3>상품명1/BLUE/L</h3>
-                                <p>
-                                    가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
-                                    아주 약간 루즈한정도...?그래도 이만한 옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
-                                    제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
-                                </p>
+                                <h3>[[${productReview.uid}]]</h3><h3>[[${productReview.rdate}]]</h3>
+                                <p>[[${productReview.content}]]</p>
                             </li>
-                            <li>
-                                <div>
-                                    <h5 class="rating star4">상품평</h5>
-                                    <span>seo******	2018-07-10</span>
-                                </div>
-                                <h3>상품명1/BLUE/L</h3>
-                                <p>
-                                    가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
-                                    아주 약간 루즈한정도...?그래도 이만한 옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
-                                    제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
-                                </p>
-                            </li>
-                            <li>
-                                <div>
-                                    <h5 class="rating star4">상품평</h5>
-                                    <span>seo******	2018-07-10</span>
-                                </div>
-                                <h3>상품명1/BLUE/L</h3>
-                                <p>
-                                    가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
-                                    아주 약간 루즈한정도...?그래도 이만한 옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
-                                    제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
-                                </p>
-                            </li>
-                            <li>
-                                <div>
-                                    <h5 class="rating star4">상품평</h5>
-                                    <span>seo******	2018-07-10</span>
-                                </div>
-                                <h3>상품명1/BLUE/L</h3>
-                                <p>
-                                    가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
-                                    아주 약간 루즈한정도...?그래도 이만한 옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
-                                    제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
-                                </p>
-                            </li>
-                            <li>
-                                <div>
-                                    <h5 class="rating star4">상품평</h5>
-                                    <span>seo******	2018-07-10</span>
-                                </div>
-                                <h3>상품명1/BLUE/L</h3>
-                                <p>
-                                    가격대비 정말 괜찮은 옷이라 생각되네요 핏은 음...제가 입기엔 어깨선이 맞고 루즈핏이라 하기도 좀 힘드네요.
-                                    아주 약간 루즈한정도...?그래도 이만한 옷은 없다고 봅니다 깨끗하고 포장도 괜찮고 다음에도 여기서 판매하는
-                                    제품들을 구매하고 싶네요 정말 만족하고 후기 남깁니다 많이 파시길 바래요 ~ ~ ~
-                                </p>
-                            </li>
+                           
                         </ul>
+         				
+                         
+                         <!-- 페이지 네비게이션 -->
                         <div class="paging">
-                            <span class="prev">
-                                <a href="#">&nbsp;이전</a>
+                            <span class="prev" th:if="${groups[0] > 1}">
+                                <a th:href="@{/product/view(productCode=${productCode},pg=${groups[0]-1})}" class="prev">이전</a>
                             </span>
-                            <span class="num">
-                                <a href="#" class="on">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                                <a href="#">6</a>
-                                <a href="#">7</a>
+                            
+                            <span class="num" th:each="num:${#numbers.sequence(groups[0], groups[1])}">
+                                <a href="#">[[${num}]]</a>                                
                             </span>
-                            <span class="next">
-                                <a href="#">다음&nbsp;></a>
+                            <span class="next" th:if="${groups[1] < lastPageNum}">
+                                <a href="#" class="next">다음</a>
                             </span>
                         </div>
 

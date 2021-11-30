@@ -7,36 +7,33 @@
     <meta name="author" content="" />   
     <title>CreativeAJAX-Cart</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="shortcut icon" href="@{/img/favicon.ico}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <script src="/js/jsscript.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/jsscript.js}"></script>
     <script>
     	////////////////////////////////////////////////////////
     	// 장바구니 전체 집계함수
     	function aggregation(){
     		
-    		var cartProduct = $('input[name=checkProduct]:checked').parent().parent();;
+    		var cartProduct = $('input[name=checkProduct]:checked').parent().parent();
     		
     		// 상품 수 집계
     		var totCount = 0;
     		
     		$.each(cartProduct, function(){
-    			
+    			    			    			
     			var value = $(this).find('input[name=count]').val();
+    			
     			var count = parseInt(value);
     			totCount += count;
     		});
-    		
-    		
+
     		$('.cart-table .count').text(totCount+'개');
     		
     		// 판매가 집계
@@ -45,30 +42,19 @@
     		$.each(cartProduct, function(){
     			
     			var value = $(this).find('input[name=price]').val();
-    			var price = parseInt(value);
-    			totPrice += price;
-    		});
-    		
-    		
-    		$('.cart-table .price').text(totPrice.toLocaleString()+'원');
-    		
-
-    		// 배송 비 집계
-    		var totDelivery = 0;
-    		
-    		
-    		$.each(cartProduct, function(){
+    			var count = $(this).find('input[name=count]').val();
     			
-    			var value = $(this).find('input[name=delivery]').val();
-    			var delivery = parseInt(value);
-    			totDelivery += delivery;
+    			var price = parseInt(value);
+    			var count = parseInt(count);
+    			
+    			totPrice += price * count;
     		});
-    		
-    		$('.cart-table .delivery').text(totDelivery.toLocaleString()+'원');
 
-    		
+    		$('.cart-table .price').text(totPrice.toLocaleString()+'원');
+
     		// 상품 총 가격
-    		var totTotal = totPrice + totDelivery;
+    		var totTotal = totPrice;
+
     		$('.cart-table .total').text(totTotal.toLocaleString()+'원');
 
     	}// aggregation end
@@ -166,17 +152,14 @@
     				'uid': uid,
     				'count': count,
     				'price': price,
-    				'delivery': delivery,
     				'total': total,
     				'productCodes': productCodes,
     				'productCounts': productCounts,
     				'cartIds': cartIds
     				};
-    			
-    			console.log(JSON.stringify(jsonData));
-    			
+		
     			$.ajax({
-    				url: '/product/payment',
+    				url: '/product/delivery',
     				type: 'post',
     				traditional: true, 
     				data: jsonData,
@@ -187,7 +170,7 @@
     					
     					// 주문 페이지로 이동
     					var orderId = data.orderId;
-    					location.href='/product/payment?orderId='+orderId;
+    					location.href='/product/delivery?orderId='+orderId;
     				}
     			});
     			
@@ -223,7 +206,6 @@
                     	</div>
                         <div th:each="product:${cartProducts}" class="cart-product">
                         	<input type="hidden" name="count" th:value="${product.count}"/>
-                        	<input type="hidden" name="delivery" th:value="${product.delivery}"/>
                         	<input type="hidden" name="price" th:value="${product.price}"/>
                             <div class="cart-checkProduct">
 	                        	<input type="checkbox" 
@@ -240,10 +222,10 @@
                             </div>
                             <div class="cart-product-right">
                             	<div class="name">[[${product.name}]]</div>
-                                <div class="count">상품 수 :[[${product.count}]]</div>
-                                <div class="delivery" th:if="${product.delivery == 0}">무료배송</div>
-                                <div class="delivery" th:if="${product.delivery != 0}">배송 비 :[[${#numbers.formatInteger(product.delivery, 3, 'COMMA')}]]</div>
-                                <div class="total">상품 가격 :[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]</div>
+                            	<div class="size">사이즈 :[[${product.size}]]</div>
+                                <div class="count">상품 수량 :[[${product.count}]]</div>
+                                <div class="total">상품 가격 :[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]원</div>
+                               <!-- view페이지로 옮김 - 시현 작업 
                                <select>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -256,6 +238,7 @@
                                     <option value="9">9</option>
                                     <option value="10">10</option>
                                 </select>
+                                -->
                             </div>
                         </div>
                         <div class="customer">
@@ -282,10 +265,6 @@
                                     <tr>
                                     <td>상품금액</td>
                                     <td class="price"></td>
-                                    </tr>
-                                    <tr>
-                                    <td>배송비</td>
-                                    <td class="delivery"></td>
                                     </tr>
                                     <tr>
                                     <td>총 상품금액</td>

@@ -1,5 +1,8 @@
 package kr.co.ajax.vo;
 
+import lombok.Data;
+
+@Data
 public class MemberVo {
 	
 	private String uid;
@@ -12,6 +15,10 @@ public class MemberVo {
 	private String leaveDate;
 	private String rdate;
 	private String pass;
+	
+	//시현 20211129 view->login->view 이동 위한 추가필드
+		private int productCode;
+	
 	public String getUid() {
 		return uid;
 	}

@@ -9,7 +9,7 @@ public class ProductOrderVo {
 	private int discount;
 	private int point;
 	private int usePoint;
-	private int delivery;
+	private String delivery;
 	private int total;
 	private String orderer;
 	private String hp;
@@ -31,7 +31,7 @@ public class ProductOrderVo {
 	private int pCount;
 	private int cate1;
 	private int cate2;
-	private String thumb1;
+	private String pThumb1;
 	private String pName;
 	private int pPrice;
 	private int pDiscount;
@@ -87,10 +87,10 @@ public class ProductOrderVo {
 	public void setUsePoint(int usePoint) {
 		this.usePoint = usePoint;
 	}
-	public int getDelivery() {
+	public String getDelivery() {
 		return delivery;
 	}
-	public void setDelivery(int delivery) {
+	public void setDelivery(String delivery) {
 		this.delivery = delivery;
 	}
 	public int getTotal() {
@@ -195,11 +195,12 @@ public class ProductOrderVo {
 	public void setCate2(int cate2) {
 		this.cate2 = cate2;
 	}
-	public String getThumb1() {
-		return thumb1;
+
+	public String getpThumb1() {
+		return pThumb1;
 	}
-	public void setThumb1(String thumb1) {
-		this.thumb1 = thumb1;
+	public void setpThumb1(String pThumb1) {
+		this.pThumb1 = pThumb1;
 	}
 	public String getpName() {
 		return pName;

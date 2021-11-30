@@ -42,6 +42,9 @@ public class ProductVo {
 	private String etc4;
 	private String etc5;
 	
+	// view페이지 추가필드 - 시현
+	private String size;
+	
 	//추가필드 I
 	private int salePrice;
 	private String tit1;

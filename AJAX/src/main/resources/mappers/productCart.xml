@@ -11,7 +11,8 @@
 			`price`=#{price},  
 			`delivery`=#{delivery}, 
 			`total`=#{total}, 
-			`rdate`=NOW();
+			`rdate`=NOW(),
+			`size`=#{size};<!-- size 추가 -->
 	</insert>
 	<select id="selectCart"></select>
 	<select id="selectCarts" resultType="kr.co.ajax.vo.ProductCartVo">
@@ -32,5 +33,8 @@
 		<foreach collection="array" item="cartId" open="(" close=")" separator=",">
 			#{cartId}
 		</foreach>
+	</delete>
+		<delete id="completeOrder">
+		DELETE FROM `aj_product_cart` WHERE `uid`= #{uid}
 	</delete>
 </mapper>

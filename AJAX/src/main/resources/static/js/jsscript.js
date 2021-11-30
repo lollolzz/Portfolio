@@ -10,6 +10,39 @@
     });
 });
 
+/* 메인 영역 */
+/*
+$(function(){
+    $(".menu > li > .teens").mouseenter(function(){
+        $('.header_sub1').css('background-color','grey');
+    });
+    $(".menu > li > .twenties").mouseenter(function(){
+        $('.header_sub2').css('background-color','grey');
+    });
+    $(".menu > li > .thirties").mouseenter(function(){
+        $('.header_sub3').css('background-color','grey');
+    });
+    
+
+    $(".menu > li > .teens").mouseleave(function(){
+        $('.header_sub1').css('background-color','white');
+    });
+    $(".menu > li > .twenties").mouseleave(function(){
+        $('.header_sub2').css('background-color','white');
+    });
+    $(".menu > li > .thirties").mouseleave(function(){
+        $('.header_sub3').css('background-color','white');
+    });
+    
+    twenties.click(function(){
+        $('.header_sub2').css('background-color','grey');
+    });
+
+    thirties.click(function(){
+        $('.header_sub3').css('background-color','grey');
+	});
+});
+*/
 /*푸터 영역*/
 $(function(){
 $(".flex1 > a").click(function(){

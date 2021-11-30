@@ -4,11 +4,66 @@
              <img th:src="@{/img/4.png}" alt="TemaLogo"/>
          </a>
 
-         <ul class="menu">
-             <li><a href="#">Teens</a></li>                
-             <li><a href="#">Twenties</a></li>
-             <li><a href="#">Thirties+</a></li>
-             <li><a th:href="@{about/aboutus}">About Us</a></li>
+<script>
+/*시현 20211130 헤더 js 수정*/
+$(function(){
+	
+	var menu = $('.menu > li > a');
+	var subMenu = $('.sub-menu > ol');
+	
+	menu.mouseenter(function(){
+		
+		var value = $(this).attr('class');
+		
+		if(value == 'teens'){
+			subMenu.removeClass('on').eq(0).addClass('on');
+		}else if(value == 'twenties'){
+			subMenu.removeClass('on').eq(1).addClass('on');
+		}else if(value == 'thirties'){
+			subMenu.removeClass('on').eq(2).addClass('on');
+		}
+	});	
+});	
+
+	/*예은 헤더 js
+    $(".menu > li > .teens").mouseenter(function(){
+        $('.header_sub1').css('background-color','grey');
+    });
+    $(".menu > li > .twenties").mouseenter(function(){
+        $('.header_sub2').css('background-color','grey');
+    });
+    $(".menu > li > .thirties").mouseenter(function(){
+        $('.header_sub3').css('background-color','grey');
+    });
+    
+
+    $(".menu > li > .teens").mouseleave(function(){
+        $('.header_sub1').css('background-color','white');
+    });
+    $(".menu > li > .twenties").mouseleave(function(){
+        $('.header_sub2').css('background-color','white');
+    });
+    $(".menu > li > .thirties").mouseleave(function(){
+        $('.header_sub3').css('background-color','white');
+    });
+    
+    twenties.click(function(){
+        $('.header_sub2').css('background-color','grey');
+    });
+
+    thirties.click(function(){
+        $('.header_sub3').css('background-color','grey');
+	});
+});*/
+</script>
+
+
+
+        <ul class="menu">
+             <li><a th:href="@{#}" class="teens">Teens</a></li>  
+             <li><a th:href="@{#}" class="twenties">Twenties</a></li>
+             <li><a th:href="@{#}" class="thirties">Thirties+</a></li>
+             <li><a th:href="@{#}">About Us</a></li>
          </ul>
 
          <ol class="menu-right">   
@@ -18,6 +73,7 @@
         	 	<li><a th:href="@{/member/login}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
        		 </th:block>
 			 <th:block th:if= "${session.sessMember} != null">
+			 	[[${session.sessMember.name}]]님 반갑습니다.|
         	 	<li><a th:href="@{/member/logout}"><i class="fa fa-sign-out" style="color: darkslategray"></i></a></li>
         	 	<li><a th:href="@{/product/cart}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
        		 </th:block> 
@@ -29,23 +85,23 @@
      </div>
      <nav>
          <div>
-             <div class="sub-menu">
-                 <ol>
-                     <li><a href="#">Outer</a></li>
-                     <li><a href="#">Top</a></li>
-                     <li><a href="#">Pants</a></li>
+              <div class="sub-menu">
+                 <ol class="header_sub1">
+                     <li><a th:href="@{/product/list(cate1=1,cate2=1)}">Outer/Cardigan</a></li>
+                     <li><a th:href="@{/product/list(cate1=1,cate2=2)}">T-shirts</a></li>
+                     <li><a th:href="@{/product/list(cate1=1,cate2=3)}">Pants/Skirts</a></li>
                  </ol>
 
-                 <ol>
-                     <li><a href="#">Shirt</a></li>
-                     <li><a href="#">Knit</a></li>
-                     <li><a href="#">Cardigan</a></li>
+                 <ol class="header_sub2" >
+                     <li><a th:href="@{/product/list(cate1=2,cate2=1)}">Shirts/Knits</a></li>
+                     <li><a th:href="@{/product/list(cate1=2,cate2=2)}">Pants/SKirts</a></li>
+                     <li><a th:href="@{/product/list(cate1=2,cate2=3)}">Ops</a></li>
                  </ol>
 
-                 <ol>
-                     <li><a href="#">Blouse</a></li>
-                     <li><a href="#">Ops</a></li>
-                     <li><a href="#">Skirt</a></li>
+                 <ol class="header_sub3" >
+                     <li><a th:href="@{/product/list(cate1=3,cate2=1)}">Blouse</a></li>
+                     <li><a th:href="@{/product/list(cate1=3,cate2=2)}">suit/Ops</a></li>
+                     <li><a th:href="@{/product/list(cate1=3,cate2=3)}">Heels</a></li>
                  </ol>
              </div>
          </div>

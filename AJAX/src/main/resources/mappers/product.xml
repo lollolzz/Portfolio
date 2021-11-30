@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.ajax.dao.ProductDao">
+
+	<insert id="insertProduct"></insert>
+	
+	<!-- 시현 20211125 -->
+	<select id="selectProduct" resultType="kr.co.ajax.vo.ProductVo">
+		SELECT 
+			a.*, 
+			b.title AS tit1,
+			c.title AS tit2
+		FROM `aj_product` AS a
+		JOIN `aj_product_cate1` AS b ON a.cate1=b.cate1
+		JOIN `aj_product_cate2` AS c ON a.cate1=c.cate1 AND a.cate2=c.cate2 
+		WHERE `productCode`=#{productCode};
+	</select>
+	
+	<select id="selectProductCountTotal" resultType="int">
+		SELECT COUNT(`productCode`) FROM `aj_product` WHERE `cate1`=#{cate1} AND `cate2`=#{cate2};
+	</select>
+	<!-- Primary Key 는 유일값이므로 정확한 상품의 총 개수를 구하기 위해 ProductCode를 사용 -->
+	<!-- cate1 & cate2로 나눠 총 개수를 가져와야 하므로 where 조건문으로 해당하는 category 가져옴. -->
+	<select id="selectProducts" resultType="kr.co.ajax.vo.ProductVo">
+		SELECT * FROM
+		`aj_product`
+		WHERE `cate1`=#{cate1} AND `cate2`=#{cate2}
+		LIMIT #{start}, 16;
+	</select>
+	<select id="selectCategoryTitle" resultType="kr.co.ajax.vo.CategoriesVo">
+		SELECT b.cate1, b.cate2, a.title as tit1, b.title as tit2
+		FROM `aj_product_cate1` AS a
+		JOIN `aj_product_cate2` AS b
+		ON a.cate1 =
+		b.cate1
+		WHERE b.cate1=#{cate1} AND b.cate2=#{cate2};
+	</select>
+	
+	<update id="updateProduct"></update>
+	<delete id="deleteProduct"></delete>
+</mapper>
