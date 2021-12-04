@@ -10,7 +10,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>    
     <script th:src="@{/js/slider.js}"></script>
-
+    <script th:inline="javascript">
+    	
+    	var success = [[${success}]];
+    	
+    	if(success == 104){
+    		alert('로그인 성공하셨습니다!!!');
+    	}
+    	
+    
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -79,7 +88,23 @@
 
             <div class="info">
                 <div>
-                    <img src="./img/main_sub2_cs_tit.png" class="tit" alt="고객센터 안내"/>
+                   <img src="./img/main_sub2_cs_tit.png" class="tit" alt="고객센터 안내"/>
+
+		            <div class="cs">
+		                <img src="./img/main_sub2_cs_img.png" alt="이미지"/>
+		                <img src="./img/main_sub2_cs_txt.png" alt="1666-777"/>
+		                <ul>
+		                    <li>평일: AM 09:00 ~ PM 06:00</li>
+		                    <li>점심: PM 12:00 ~ PM 01:00</li>
+		                    <li>토, 일요일, 공휴일 휴무</li>
+		                </ul>
+		            </div>
+		
+		            <div class="btns">
+		                <a href="#"><img src="./img/main_sub2_cs_bt1.png" alt="고객문의"></a>
+		                <a href="#"><img src="./img/main_sub2_cs_bt2.png" alt="자주묻는질문"></a>
+		                <a href="#"><img src="./img/main_sub2_cs_bt3.png" alt="배송조회"></a>
+		            </div>
 
                 </div>
                 <div>
