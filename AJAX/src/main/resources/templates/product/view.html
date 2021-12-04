@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -70,9 +71,6 @@
 	            } );  
 	        });
       } );
-      
-      
-      //시현 20211127 쇼핑백에 추가하기 버튼 클릭 20211128 수정완료
       $(function(){
       
     	  var Count = 1;
@@ -97,7 +95,7 @@
 						if(uid == null){//로그인 안했으면
 	    					var result = confirm('로그인을 하셔야 합니다.'); //확인,취소 버튼이 있는 상자 : confirm
 	    					if(result){
-	    					location.href = '/member/login?productCode='+productCode;
+	    					location.href = '/AJAX_1201/member/login?productCode='+productCode;
 	    					}
     					}else{
     						if(Size == null) {
@@ -112,17 +110,17 @@
 	    								'count': Count,
 	    						};		
 	    						
-	    						$.post('/product/cart', jsonData, function(data){
+	    						$.post('/AJAX_1201/product/cart', jsonData, function(data){
 	    							
 	    							if(data.result == 1){
 	    								var result = confirm('이미 장바구니에 상품이 담겨있습니다. 장바구니로 이동하시겠습니까?');
 	    								if(result){
-	    									location.href = '/product/cart?uid='+uid+'&productCode='+productCode;	
+	    									location.href = '/AJAX_1201/product/cart?uid='+uid+'&productCode='+productCode;	
 	    								}
 	    							}else{
 	    								var result = confirm('장바구니에 상품을 담았습니다.\n장바구니 페이지로 이동하시겠습니까?');
 	    								if(result){ //result가 true면, 즉 확인버튼 누르면
-	    									location.href = '/product/cart?uid='+uid+'&productCode='+productCode;
+	    									location.href = '/AJAX_1201/product/cart?uid='+uid+'&productCode='+productCode;
 	    								}
 	    							}
 	    						}, "json");
@@ -162,7 +160,7 @@
 				
 				// 요청하기
 				$.ajax({
-					url:'/product/review',
+					url:'/AJAX_1201/product/review',
 					type:'get',
 					data: jsonData,
 					dataType:'json',
@@ -219,7 +217,7 @@
 					
 					// 요청하기
 					$.ajax({
-						url:'/product/review',
+						url:'/AJAX_1201/product/review',
 						type:'get',
 						data: jsonData,
 						dataType:'json',
@@ -322,7 +320,7 @@
 				
 				// 요청하기
 				$.ajax({
-					url:'/product/review',
+					url:'/AJAX_1201/product/review',
 					type:'get',
 					data: jsonData,
 					dataType:'json',
@@ -504,11 +502,7 @@
                             <div class="total">
                                 <span>[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]</span>
                             </div>
-                            <!-- 
-                            <div class="org_price">
-                                <del>[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]</del>
-                            </div>
-                             -->
+    
                             <div class="org_price" >수량을 선택하세요
 	                            <select name="count" id="quantity">
 	                               <option value="1">1</option>

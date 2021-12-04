@@ -54,7 +54,6 @@ header > div > ul {
   display: inline-block;
   margin: -16px;
   margin-left: 80px;
-
 }    
 
 header > div > ul > li {
@@ -108,6 +107,7 @@ header > nav > div > div > ol {
 
 /**************시현 수정 20211130***************/
 header > nav > div > div > ol.on {
+	padding: 10px;
 	background-color: lightgrey;
 }
 
@@ -120,6 +120,7 @@ header > nav > div > div > ol > li {
   padding: 2px;
 }
 header .menu > li > a {
+	padding-right: 30px;
 	font-size: 15px;
 	font-family: '고딕';
 }
@@ -1790,19 +1791,12 @@ margin: 10px;
   height: 10%;
 
 }
-.payment-center-header{
-  margin: 0 auto;
-  display: block;
-  width: 18%;
-  height: 100px;
-  text-align: center;
-}
 .payment-center-header > li{
   text-align: center;
   float: left;
   list-style-type: none;
   width: 110px;
- 
+  margin: 0 auto;
   padding : 30px;
 }
 .payment-center-header > li>a{
@@ -1815,6 +1809,7 @@ margin: 10px;
   font-size: 15px;
   color: #000;
 }
+
 .payment-center {
   float :none;
   width: 100%;
@@ -2208,6 +2203,8 @@ margin: 10px;
   color: #292929;
   line-height: 1.7;
   float: left;
+  margin-left: -9px;
+  width: 100px;
 }
 .name > input{
   margin-left: 6px;
@@ -2220,12 +2217,7 @@ margin: 10px;
   border-radius: 0;
 }
 
-.register-email{
-  width: 90% ;
-  margin-left: 0;
-  margin-bottom: 20px;
-  float: left;
-}
+
 .email > label{
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1.3rem;
@@ -2399,7 +2391,6 @@ margin: 10px;
   float: right;
   width: 48%;
   margin-bottom: 40px;
-  padding-top: 12px;
   padding-left: 10px !important;
 }
 .preferences-title{
@@ -2434,8 +2425,8 @@ margin: 10px;
   font-size: 16px;
 
 }
-.label-subscribe > input{
-	margin-right: 6px;
+.checkbox{
+  margin-right: 6px;
   color: #454545;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -2494,6 +2485,8 @@ margin: 10px;
   height: 100px;
   text-align: center;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -2836,7 +2829,7 @@ text-align: center;
 
 .footer-reinsurance li {
 display: inline-block;
-padding: 20px;
+padding: 17px;
 font-size: 14px;
 }
 
@@ -3137,20 +3130,6 @@ body {
   opacity: 1;
 }
 
-/* Recommend-text */
-.container-re{
-  width: 100%;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 1.5rem !important;
-  padding-left: 1.5rem !important;
-  padding-right: 3rem !important;
-  padding-left: 3rem !important;
-  text-align: center !important;
-}
-
 
 /* About us */
 .page-section {
@@ -3175,13 +3154,14 @@ body {
   padding-left: 3rem !important;
   text-align: center !important;
 }
-.aboutustit {
-  margin-bottom: 1.5rem !important;
+.container-about > h2 {
+	font-size: 14px;
+    font-weight: 500;
 }
 .aboutus-click {
   padding: 1.25rem 2.25rem;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 500;
   text-transform: uppercase;
   border: none;
   border-radius: 10rem;
@@ -3428,6 +3408,9 @@ ul {
   padding-left: 3rem !important;
   text-align: center !important;
 }
+.container-re > h2{
+	font-size: 14px;
+	}
 
 
 /* About us */
@@ -3452,26 +3435,6 @@ ul {
   padding-right: 3rem !important;
   padding-left: 3rem !important;
   text-align: center !important;
-}
-.aboutustit {
-  margin-bottom: 1.5rem !important;
-}
-.aboutus-click {
-  padding: 1.25rem 2.25rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 10rem;
-  color: #000;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
-  line-height: 100px;
-}
-.aboutus-click {
-  color: #000;
-  background-color: #f9fafb;
-  border-color: #f9fafb;
 }
 
 .page-section-bg-primary{
@@ -3512,13 +3475,17 @@ margin: 10px;
   width: 18%;
   height: 100px;
   text-align: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  
 }
 .delivery-center-header > li{
   text-align: center;
   float: left;
   list-style-type: none;
   width: 110px;
- 
+  margin: 0 auto;
   padding : 30px;
 }
 .delivery-center-header > li>a{
@@ -3738,7 +3705,15 @@ margin: 10px;
 .footer-reinsurance a > i{
   color: black;
   margin-left:15px;
+
 }
+
+.footer-reinsurance a > p {
+	text-align:center;
+	line-height: 5;
+	margin-left: 5px;
+} 
+
 /*시현 여기까지*/
 /************************시현 추가 20211130********************************/
 .tick-page-section {
@@ -3757,10 +3732,14 @@ margin: 10px;
   margin-right: auto;
   margin-left: auto;
 }
+.index-row1{
+	width:100%;
+	justify-content: center;
+	display: flex;
+}
 
 .col-lg-8 {
 	padding: 20px;
-	margin-left: 250px;
 	display: inline-block;
 	border: 1px solid rgba(5,5,5,0.5);
 	color: dark-gray ;
@@ -3784,5 +3763,35 @@ margin: 10px;
 	color: dark-gray;
 }
 /*******************************************************************/
+.leftdelivery > div:nth-child(2)  > input {
+	width: 50%;
+	margin : 5px 20px 5px 5px;
+	 text-align: center;
+	 float : left;
+}
+.leftdelivery > div:nth-child(2)  > button {
+	width: 25%;
+	margin : 5px 20px 5px 5px;
+	 text-align: center;
+	 float : left;
+}
+.leftdelivery > div:nth-child(3)  > input {
+	width: 80%;
+	margin : 5px 20px 5px 5px;
+	 text-align: center;
+	 float : left;
+}
+.leftdelivery > div:nth-child(4)  > input {
+	width: 80%;
+	margin : 5px 20px 5px 5px;
+	 text-align: center;
+	 float : left;
+}
+
+.resultEmail{
+	float:left;
+	 margin: 10px 30px 10px 40px;
+
+}
 
 

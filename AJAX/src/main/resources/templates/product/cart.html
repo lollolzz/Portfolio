@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -86,14 +87,14 @@
     			
     			// 삭제 요청하기
     			$.ajax({
-    				url: '/product/cartDelete',
+    				url: '/AJAX_1201/product/cartDelete',
     				type: 'get',
     				traditional: true, /* 배열값 전송을 위한 옵션 */
     				data: jsonData,
     				dataType: 'json',
     				success: function(data){
     					// 다시 장바구니 페이지 요청
-    					location.href='/product/cart';
+    					location.href='/AJAX_1201/product/cart';
     				}
     			});
     			
@@ -123,18 +124,23 @@
     		
     		// 주문하기
     		$('input[name=cart-order]').click(function(){
+    			var count2 = $('td[class=count]').text();
+    			if (count2 == "0개"){
+    				alert("장바구니가 비었습니다.");	
+    				return false;
+    			}
+    			
     			
 				var checkedProduct = $('input[name=checkProduct]:checked');
 				var cartIds = [];
     			var productCodes  = [];
     			var productCounts = [];
-    			// 배열로 선언한 이유는 ? 만약의 두개의 상품을 함께 주문한다면
-				// 한 번의 주문 으로 취급되어 하나의 list화 되어 DB에 들어가기 때문에
-				// 배열로 한다 
     			
     			$.each(checkedProduct, function(){
+    				
     				var cartId = $(this).val();
     				var productCode  = $(this).data('product-code');
+    		
     				var productCount = $(this).data('product-count');
     				
     				cartIds.push(cartId);
@@ -159,7 +165,7 @@
     				};
 		
     			$.ajax({
-    				url: '/product/delivery',
+    				url: '/AJAX_1201/product/delivery',
     				type: 'post',
     				traditional: true, 
     				data: jsonData,
@@ -170,11 +176,13 @@
     					
     					// 주문 페이지로 이동
     					var orderId = data.orderId;
-    					location.href='/product/delivery?orderId='+orderId;
+    					location.href='/AJAX_1201/product/delivery?orderId='+orderId;
     				}
     			});
     			
     		});
+    	 
+    	
     	});
     		
 </script>	
@@ -190,11 +198,11 @@
 	                    <span>쇼핑백</span> 
                     </li>
                     <li>
-	                    <a th:href="@{/product/delivery}"><i class="fa fa-square" aria-hidden="true"></i></a>
+	                    <a ><i class="fa fa-square" aria-hidden="true"></i></a>
 	                    <span> 배송</span>
                     </li>
                     <li>
-	                    <a th:href="@{/product/payment}"><i class="fa fa-square" aria-hidden="true"></i></a>
+	                    <a ><i class="fa fa-square" aria-hidden="true"></i></a>
 	                    <span> 결제</span>
                     </li>                    
                 </div>
@@ -225,20 +233,6 @@
                             	<div class="size">사이즈 :[[${product.size}]]</div>
                                 <div class="count">상품 수량 :[[${product.count}]]</div>
                                 <div class="total">상품 가격 :[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]원</div>
-                               <!-- view페이지로 옮김 - 시현 작업 
-                               <select>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                                -->
                             </div>
                         </div>
                         <div class="customer">

@@ -27,7 +27,6 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 
-	/////////////시현 20211129 view에서 login갔다가 다시 view로 이동 위한 작업/////////////
 	@GetMapping("/member/login")
 	public String login(String productCode, String success, Model model) {
 		
@@ -36,7 +35,6 @@ public class MemberController {
 		
 		return "/member/login";
 	}
-	////////변진하 로그인 2021/11/25 ////////////
 	@PostMapping("/member/login")
 	public String login(HttpSession sess, MemberVo vo) {
 		
@@ -59,7 +57,6 @@ public class MemberController {
 		  }
 	  	}
 	
-	/////////////////////////////////////
 	@GetMapping("/member/register")
 	public String register() {
 		return "/member/register";
@@ -83,8 +80,6 @@ public class MemberController {
 		return "/member/terms";
 	}
 	
-	////////////변진하 2021 11 25 이메일 벨리데이션///////////////
-	
 	@ResponseBody
 	@GetMapping("/member/checkEmail")
 	public String checkEmail(String email) {
@@ -94,8 +89,7 @@ public class MemberController {
 		json.addProperty("result", result);
 		return new Gson().toJson(json);
 	}
-	////////////////////////////////
-//////////////////변진하 2021 11 27 이메일 ajax //////////////////////
+
 	@PostMapping("/member/loginkakao")
 	public String loginkakao(HttpSession sess, HttpServletRequest req, MemberVo vo) {
 
@@ -107,13 +101,13 @@ public class MemberController {
 		vo.setIp(regip);
 	  MemberVo vo2 = service.selectMember2(email);
 	  if(vo2 == null) {
-			service.insertMember(vo);
+			service.insertMember2(vo);
 			service.selectMember2(email);
 			sess.setAttribute("sessMember", vo);
 			return "redirect:/index"; 
 	  }else {
 		  // 회원이 맞을경우
-		  sess.setAttribute("sessMember", vo);
+		  sess.setAttribute("sessMember", vo2);
 		  return "redirect:/index"; 
 	  }
 		  
@@ -124,5 +118,5 @@ public class MemberController {
 		sess.invalidate();
 		return "redirect:/member/login?success=101";
 	}
-	
 }
+	

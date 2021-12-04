@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -75,7 +76,7 @@
                 }
                 	
                 	$.ajax({
-        				url: '/product/completeOrder',
+        				url: '/AJAX_1201/product/completeOrder',
         				type: 'post',
         				traditional: true, 
         				data: jsonData,
@@ -86,7 +87,7 @@
 
                          	   $(function() {
                          	      	alert("정상적으로 주문되었습니다.")
-                     			  $(location).attr('href',"/index");
+                     			  $(location).attr('href',"/AJAX_1201/index");
                               });
                           }  
         			});
@@ -107,15 +108,15 @@
                 <div class = "payment-center-header">
                 <input type=hidden name = uid th:value = "${session.sessMember.uid}">
                     <li>
-                    <a th:href="@{product/cart}"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+                    <a><i class="fa fa-check-square" aria-hidden="true"></i></a>
                     <span>쇼핑백</span> 
                     </li>
                     <li>
-                    <a href="@{product/delivery}"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+                    <a ><i class="fa fa-check-square" aria-hidden="true"></i></a>
                     <span> 배송</span>
                     </li>
                     <li>
-                    <a href="@{product/payment}"><i class="fa fa-square" aria-hidden="true"></i></a>
+                    <a ><i class="fa fa-check-square" aria-hidden="true"></i></a>
                     <span> 결제</span>
                     <div>
                     </li>
@@ -160,8 +161,8 @@
                     <div class = "rightcol">
            
                         <div class = "rightpayment"> 
-                            <div>
-                                <li><span style="font-weight: bold;">[[${productOrderVo.count}]] 상품</span>    <span  style="font-weight: bold;">[[${#numbers.formatInteger(productOrderVo.price, 3, 'COMMA')}]] 원</span></li>
+                               <div>
+                                <li><span style="font-weight: bold;">[[${productOrderVo.count}]]개 상품</span>    <span  style="font-weight: bold;">[[${#numbers.formatInteger(productOrderVo.price, 3, 'COMMA')}]] 원</span></li>
                                 <li><span>배송비</span>    <span>[[${productOrderVo.delivery}]]</span></li>
                                 <li><span>총 결제금액</span>    <span>[[${#numbers.formatInteger(productOrderVo.total, 3, 'COMMA')}]] 원</span></li>
                             </div>
@@ -179,6 +180,10 @@
                                 </p>
                                 <p class = payment-address-redetail>
                                    [[${productOrderVo.addr1}]]
+                                </p>
+                              	</p>
+                                     <p class = payment-address-redetail>
+                                   [[${productOrderVo.addr2}]]
                                 </p>
                             </div>
                         </div>

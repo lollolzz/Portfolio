@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -11,7 +12,9 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/jsscript.js}"></script>
-    <script >
+    <script th:src="@{/js/zipcode.js}"></script>
+     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script th:inline="javascript">
     $(function(){
     	var total_money3 = 0;
     	$("input[name='delivery-method1']").click(function(){
@@ -46,23 +49,30 @@
 			var uid      = $('input[name=uid]').val();
 			var count    = $('.summary-products input[name=count]').val();
 			var  delivery =  $('span[name="delivery-money"]').text();
-			var addr1 = $("input[name=deliveryaddress]").val();
+			var addr1 = $("input[name=addr1]").val();
+			var addr2 = $("input[name=addr2]").val();
 		  	 var price    =parseInt(total_money.replace(/(,|개)/g, ''));
 			var total    = parseInt(total_money2.replace(/(,|개)/g, ''));
-
+			
+			
+			if (addr1==""){
+				alert("주소를 입력하세요.")
+				return false;
+			}	
 			var jsonData = {
 				'uid' : uid,
 				'total': total,
 				'count': count,
 				'orderId': orderId,
 				'addr1': addr1,
+				'addr2': addr2,
 				'productCode': productCode,
 				'productCount': productCount,
 				'delivery' : delivery,
 				'price' : price
 			};
 			$.ajax({
-				url: '/product/payment',
+				url: '/AJAX_1201/product/payment',
 				type: 'post',
 				traditional: true, 
 				data: jsonData,
@@ -71,7 +81,7 @@
 					 
 					// 주문 페이지로 이동
 					var orderId = data.orderId;
-					location.href='/product/payment?orderId='+orderId;
+					location.href='/AJAX_1201/product/payment?orderId='+orderId;
 				}
 			});
 
@@ -88,15 +98,15 @@
             <section class="delivery-center" style="background-color: rgb(236, 239, 241);">                
                 <div class = "delivery-center-header">
                     <li>
-                    <a th:href="@{/product/cart}"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+                    <a ><i class="fa fa-check-square" aria-hidden="true"></i></a>
                     <span>쇼핑백</span> 
                     </li>
                     <li>
-                    <a th:href="@{/product/delivery}"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+                    <a ><i class="fa fa-check-square" aria-hidden="true"></i></a>
                     <span> 배송</span>
                     </li>
                     <li>
-                    <a th:href="@{/product/payment}"><i class="fa fa-square" aria-hidden="true"></i></a>
+                    <a ><i class="fa fa-square" aria-hidden="true"></i></a>
                     <span> 결제</span>
                     <div>
                     </li>
@@ -115,11 +125,18 @@
                           
                         </div>
                         <div class = "leftdelivery" name = "delivery-pojangservice"> <h3 > 배송지<br></h3>
-                            <input type="textarea" class = "deliveryaddress" name="deliveryaddress" placeholder="&nbsp배송지를 입력해주세요">
-	                        <!--<div class = "deliveryaddress">
-	                                <p>김게이</p>
-	                                <p>부산광역시 사하구 하단동 낙동대로 519번길 1 304호</p>
-                            </div>-->
+                                <td>
+		                    <div>
+		                        <input type="text" id="zip" name="zip" placeholder="우편번호" readonly/>
+		                        <button class="btnZip" type="button" onclick="zipcode()">주소검색</button>
+		                    </div>                            
+		                    <div>
+		                        <input type="text" id="addr1" name="addr1" placeholder="주소를 검색하세요."readonly/>
+		                    </div>
+		                    <div>
+		                        <input type="text" id="addr2" name="addr2" placeholder="상세주소를 입력하세요."/>
+		                    </div>
+		                </td>
                         </div>
                         <div class = "leftdelivery" name = "delivery-pojangservice"> <h3> 라코스테 선물 포장서비스<br> </h3> 
                             <p>

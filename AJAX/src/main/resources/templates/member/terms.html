@@ -25,7 +25,7 @@
     
         $(function(){
         	
-            var btnNext = $ ('.terms > div > a'); // 나중에 회원가입페이지에서 수신하는 변수 이름으로 바꾸자
+            var btnNext = $ ('.terms > div > a');
             
             $('.agree').click(function(){
                 
@@ -36,7 +36,7 @@
                 
                 if(!isChecked1){
                     alert('이용약관에 동의 하셔야 합니다.');
-                    return false;// 리턴하지않으면 계속 밑으로 내려가면서 뜬다. 하나만 안되도 리턴해버린다.
+                    return false;
                 }
                 
                 if(!isChecked2){
@@ -47,7 +47,7 @@
                     alert('개인정보 수집에 동의 하셔야 합니다.');
                     return false;
                 }
-                $(location).attr("href", "/member/register")
+                $(location).attr("href", "/AJAX_1201/member/register")
             });
         });
     </script>
@@ -62,7 +62,7 @@
                     <h1>약관동의</h1>
                     <div class="terms-terms">
                         <div class="terms-left">
-                            <h3><span class="essential">(필수)</span>케이마켓 이용약관</h3>
+                            <h3><span class="essential">(필수)</span>Ajax 이용약관</h3>
                             <textarea class="terms" readonly>[[${vo.terms}]]</textarea>
                             <label><input type="checkbox" name="agree1" />동의합니다.</label>
         

@@ -7,14 +7,12 @@ import org.springframework.stereotype.Service;
 
 import kr.co.ajax.dao.ProductCartDao;
 import kr.co.ajax.vo.ProductCartVo;
-import kr.co.ajax.vo.ProductVo;
 
 
 
 @Service
 public class ProductCartService {
 
-//  2021.11.24 능한 ProductCartService
 	@Autowired
 	private ProductCartDao dao;
 	

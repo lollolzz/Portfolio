@@ -8,12 +8,10 @@ import org.springframework.stereotype.Service;
 import kr.co.ajax.dao.ProductDao;
 import kr.co.ajax.dao.ProductReviewDao;
 import kr.co.ajax.vo.ProductReviewVo;
-import kr.co.ajax.vo.ProductVo;
 
 @Service
 public class ProductReviewService {
 	
-	//시현 20211125
 	@Autowired
 	private ProductDao dao;
 	

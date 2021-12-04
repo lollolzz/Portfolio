@@ -14,4 +14,6 @@ public class CategoriesVo {
 	private List<ProductCate2Vo> cate2List;
 	
 	
+	
+	
 }

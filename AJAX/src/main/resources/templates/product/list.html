@@ -1,18 +1,22 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<title>CreativeAJAX-Delivery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-	<link rel="stylesheet" th:href="@{/css/style.css}">
-	<link rel="stylesheet" th:href="@{/css/style예은.css}">
-	<script th:src="@{/js/jsscript.js}"></script>
-	<title>AJAX</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="stylesheet" th:href="@{/css/styleList.css}">
+    <script th:src="@{/js/jsscript.js}"></script>
+    <script th:src="@{/js/zipcode.js}"></script>
+     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<th:block th:include="@{_header.html}"></th:block>
@@ -75,7 +79,7 @@
 										:
 									</strong>
 									<span class="numbers">
-										[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]
+										[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]원
 									</span>
 									<span id="tax-type"></span>
 								</li>
@@ -101,8 +105,7 @@
 				<ol class="list-paging-ol">
 					<li class="records">
 						<th:block th:each="num:${#numbers.sequence(groups[0], groups[1])}">
-                			<a th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, pg=${num})}" th:class="${num==currentPage?'on':''}">[[${num}]]</a>
-                		</th:block>					
+						<a th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, pg=${num})}" th:style="${num == currentPage?'color: black':'color: #cccdcf'}">[[${num}]]</a>                		</th:block>					
                 	</li>
 				</ol>
 			

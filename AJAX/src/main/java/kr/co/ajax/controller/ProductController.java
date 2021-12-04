@@ -32,17 +32,16 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 	
-	// 2021.11.27 권능한 작업 수정
+
 	@Autowired
 	private ProductCartService cartService;
 	
 	@Autowired
 	private ProductOrderService orderService;
 	
-	//시현 20211126
-		@Autowired
-		private ProductReviewService reviewService;
-	//시현 여기까지
+	@Autowired
+	private ProductReviewService reviewService;
+
 	
 
 	@GetMapping("/product/cart")
@@ -106,12 +105,6 @@ public class ProductController {
 			int pageStartNum = service.getPageStartNum(total, start);
 			int lastPageNum = service.getLastPageNum(total);
 			int groups[] = service.getPageGroup(currentPage, lastPageNum);
-			
-			
-//			System.out.println("start : "+start);
-//			System.out.println("total : "+total);
-//			System.out.println("groups[0] : "+groups[0]);
-//			System.out.println("groups[1] : "+groups[1]);
 
 			vo.setStart(start);
 
@@ -120,10 +113,9 @@ public class ProductController {
 
 			
 			model.addAttribute("products",products);
-			//view로 연결 - 시현 추가 작업
 			model.addAttribute("productCode", vo.getProductCode());
 			
-			model.addAttribute("totalCount", products.size()); // 각 카테고리의아이템 갯수를 나타내기 위해 List의 size를 활
+			model.addAttribute("totalCount", products.size());
 			model.addAttribute("cateVo", cateVo);
 			model.addAttribute("order",vo.getOrder());
 			
@@ -180,8 +172,6 @@ public class ProductController {
 	@ResponseBody
 	@PostMapping("/product/delivery")
 	public String order(ProductOrderVo vo) {
-//		// 장바구니 주문한 상품 삭제
-//		cartService.deleteCart(vo.getCartIds());
 		
 	    // 장바구니 상품 주문 테이블 저장
 		orderService.insertOrder(vo);
@@ -189,28 +179,16 @@ public class ProductController {
 		// 주문 테이블 Insert 후 주문번호 가져오기
 		int orderId = vo.getOrderId();
 		
-//		// 주문번호 상품코드 입력하기
-//		int i = 0;
-//		int[] productCounts = vo.getProductCounts();
-//		
-//		for(int productCode : vo.getProductCodes()) {
-//			orderService.insertOrderDetail(orderId, productCode, productCounts[i]);
-//			i++;
-//		}
-		
 		JsonObject json = new JsonObject();
 		json.addProperty("orderId", orderId);
 		
 		return new Gson().toJson(json);
 	}
 	
-	// 2021.11.27 권능한 작업 수정 
-	
-	
-		
-	// 시현 20211125 view페이지 관련
 		@GetMapping("/product/view")
 		public String view(int productCode, Model model, String pg) {
+			
+			System.out.println("productCode : "+productCode);
 			
 			//뷰 페이지에 출력할 해당 상품정보 DB에서 가져오기
 			ProductVo product = service.selectProduct(productCode);
@@ -218,7 +196,7 @@ public class ProductController {
 			//페이지 처리
 			int currentPage = reviewService.getCurrentPage(pg); 
 			int start = reviewService.getLimitStart(currentPage);
-			int total = reviewService.selectCountTotal(productCode); //전체 게시물 개수니까 쿼리문 날려야 함 -- 쿼리문작업하고돌아와
+			int total = reviewService.selectCountTotal(productCode); 
 			int lastPageNum = reviewService.getLastPageNum(total);
 			int groups[] = reviewService.getPageGroup(currentPage, lastPageNum);
 			
@@ -238,7 +216,6 @@ public class ProductController {
 			return "/product/view";
 		}
 		
-		//시현 20211126 상품리뷰 관련
 		@ResponseBody
 		@GetMapping("/product/review")
 		public List<ProductReviewVo> view(int productCode, int reviewPageNum) {
@@ -246,17 +223,13 @@ public class ProductController {
 			int start = (reviewPageNum - 1) * 5;
 			List<ProductReviewVo> reviews = reviewService.selectReviews(productCode, start);
 			return reviews;
-		}//시현 여기까지
+		}
 	
 		@PostMapping("/product/completeOrder")
 		public String completeOrder(HttpSession sess) {
-			System.out.println("1");
 			MemberVo vo = (MemberVo) sess.getAttribute("sessMember");
-			System.out.println("2");
 			String uid = vo.getUid();
-			System.out.println("3");
 			cartService.completeOrder(uid);	
-			System.out.println("4");
 			return "/index";
 		}
 	

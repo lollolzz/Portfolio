@@ -10,6 +10,7 @@
 		`price`=#{price},
 		`delivery`=#{delivery},
 		`addr1`=#{addr1},
+		`addr2`=#{addr2},
 		`total`=#{total},
 		`rdate`=NOW();
 	</insert>
@@ -28,14 +29,6 @@
 		JOIN `aj_product` AS c
 		ON (b.productCode = c.productCode)
 		WHERE a.`orderId`=#{orderId};
-		<!-- SELECT 
-			a.*,
-			b.*,
-			b.name as `pName`,
-			sum(count) as sumcount
-		FROM `aj_product_cart` AS a
-		JOIN `aj_product` AS b
-		ON a.proDuctcode = b.proDuctcode; -->
 	</select>
 	<update id="updateOrder"></update>
 	<delete id="deleteOrder"></delete>

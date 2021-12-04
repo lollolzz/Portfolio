@@ -15,6 +15,15 @@
 			`pass`=PASSWORD(#{pass}),
 			`rdate`=NOW();
 	</insert>
+		<insert id="insertMember2">
+		INSERT INTO `aj_member` SET
+			`uid`=#{email},
+			`name`=#{name},
+			`email`=#{email},
+			`pass`=PASSWORD("1"),
+			`gender`=#{gender};
+			
+	</insert>
 	<select id="selectMember" resultType="kr.co.ajax.vo.MemberVo">
 		SELECT * FROM `aj_member` WHERE `uid`=#{uid} AND `pass`=PASSWORD(#{pass});
 	</select>
