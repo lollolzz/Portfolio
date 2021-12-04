@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" /> 
+    <title>CreativeAJAX - Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
+    <script th:src="@{/js/jsscript.js}"></script>
+	<script th:src="@{/js/checkUser.js}"></script>
+	  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  	<script th:src="@{/js/checkUser.js}"></script>\
+	<script>
+      $(document).ready(function(){
+      if ($(location).attr('href').slice(-3)=='100'){
+      alert( '아이디, 비밀번호가 일치하지 않습니다.' );
+      }
+      });
+    </script>
+</head>
+<body>
+    <div id="login-wrapper">
+    	<th:block th:include="@{_header.html}"/>
+        <main id = "login">
+            <section id="center-v" style="background-color: rgb(248, 250, 252);"   >      
+             <form th:action="@{/member/login}" method="post"> 
+            	<input type="hidden" name="productCode" th:if="${productCode}" th:value="${productCode}"/> <!-- 카트에 담은 후 로그인페이지로 넘어올때 productCode파라미터를 들고 로그인페이지로 오니까 얘가 생기는거지 -->
+                <div class = "login-header">
+                    <h1 class="login-h1">로그인</h1>
+                </div>
+                <div class = "login-body">
+                    <section class="gizone">
+                        <h3>기존고객</h3>
+                        <br>
+                        <input type="text" name="uid" placeholder="이메일/아이디:">
+                        <input type="password" name="pass" placeholder="비밀번호:">
+                        <div class ="forgetIdPw"> 
+                            <a href="#">아이디/비밀번호를 잊으셨나요?</a>
+                        </div>
+                       	<div><input type="submit"  class="LoginBtn" value="로그인" /></div> <!-- 변진하 input tag 변환 2021/11/25 -->
+				    
+                       
+                    </section>
+                    <section class="singyu">
+                        <h3>신규고객</h3>
+                        <input type="text" name="email" placeholder="이메일:">
+                               <span class = "resultEmail"></span>
+                        <a th:href="@{/member/terms}"class="RegiBtn" > 계정만들기</a>
+                    </section>
+                    
+                </div>
+                <div class = "login-footer">
+                    <p>소셜 로그인/가입</p>
+                    <div class="logos">
+    
+                   	<a id="naver_id_login"><img src="../img/네이버회원가입.png"></a>
+                   	<script type="text/javascript">
+					  	var naver_id_login = new naver_id_login("xfMpJq13Kvc6pQ4b2Rqt", "http://13.209.9.24:8080/AJAX_1201/member/login");
+					  	var state = naver_id_login.getUniqState();
+					  	naver_id_login.setButton("white", 2,40);
+					  	naver_id_login.setDomain("http://13.209.9.24:8080/AJAX_1201");
+					  	naver_id_login.setState(state);
+					  	naver_id_login.init_naver_id_login();
+					    naver_id_login.get_naver_userprofile("naverSignInCallback()");
+					    function naverSignInCallback() {
+					        var jsonData = {
+			                         'email': naver_id_login.getProfileData('email'),
+			                         'name': naver_id_login.getProfileData('name'),
+			                      };
+					        $("input[name='email']").val(naver_id_login.getProfileData('email'));
+					        $("input[name='nickname']").val(naver_id_login.getProfileData('nickname'));
+					        $("input[name='name']").val(naver_id_login.getProfileData('name'));
+					        $("input[name='gender3']").val(naver_id_login.getProfileData('gender'));
+					        $.ajax({
+                                url: '/AJAX_1201/member/loginkakao',
+                                type: 'post',
+                                data: jsonData,   
+                                dataType: 'json', 
+                                success: function(data){
+                                },
+                                complete : function() {
+
+                               	   $(function() {
+                           			  $(location).attr('href',"/AJAX_1201/index");
+                                    });
+                                }  
+                             });
+					      }
+					  </script>
+     
+                           <a href="javascript:kakaoLogin();"><img src="../img/카카오회원가입.png"></a>
+                        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+                        <script>
+                            window.Kakao.init("2d1f2f1e5ae21604ec8fd6d463e812f6");
+                            function kakaoLogin(){
+                                window.Kakao.Auth.login({
+                            
+                                    scope:'profile_nickname, account_email, gender',
+                                    success: function(authObj) {
+                                        console.log(authObj);
+                                        window.Kakao.API.request({
+                                        	
+                                            url:'/v2/user/me',
+                                            success: res=> {
+                                                const kakao_account = res.kakao_account;
+                                                console.log(kakao_account);
+                                                             
+                                                var jsonData = {
+							                         'email': kakao_account.email,
+							                         'name': kakao_account.profile.nickname
+							                         
+							                      };
+                                            //	$("input[name='email']").val( kakao_account.email);
+                                                $.ajax({
+                                                
+                                                    url: '/AJAX_1201/member/loginkakao',
+                                                    type: 'post',
+                                                    data: jsonData,   
+                                                    dataType: 'json', 
+                                                    success: function(data){
+                                             
+                                                    },
+                                    		   
+                                                    complete : function() {
+
+                                                   	   $(function() {
+                                               			   $(location).attr('href',"/AJAX_1201/index");
+                                                        });
+                                                    }  
+                                                 });
+                                            }
+                                        });   
+                                    }  
+                                });
+                            }         
+                        </script>
+                    </div>
+                </div>
+             </form>   
+
+            </section>
+        </main>
+        <th:block th:include="@{_footer.html}"/>
+    </div>    
+</body>
+</html>

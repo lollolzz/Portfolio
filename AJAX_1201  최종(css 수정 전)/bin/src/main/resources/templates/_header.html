@@ -1,0 +1,53 @@
+<header>
+     <div>  
+         <a th:href="@{/index}" class="logo">
+             <img th:src="@{/img/4.png}" alt="TemaLogo"/>
+         </a>
+
+         <ul class="menu">
+             <li><a href="#">Teens</a></li>                
+             <li><a href="#">Twenties</a></li>
+             <li><a href="#">Thirties+</a></li>
+             <li><a th:href="@{about/aboutus}">About Us</a></li>
+         </ul>
+
+         <ol class="menu-right">   
+             <li><a href="#"><i class="fas fa-search fa-lg" style="color: darkslategray" ></i></a></li>  
+             <th:block th:if= "${session.sessMember} == null">
+        	 	<li><a th:href="@{/member/login}"><i class="far fa-id-badge fa-lg" aria-hidden="true" style="color: darkslategray"></i></a></li>
+        	 	<li><a th:href="@{/member/login}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
+       		 </th:block>
+			 <th:block th:if= "${session.sessMember} != null">
+        	 	<li><a th:href="@{/member/logout}"><i class="fa fa-sign-out" style="color: darkslategray"></i></a></li>
+        	 	<li><a th:href="@{/product/cart}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
+       		 </th:block> 
+ 		     <!-- <th:block th:if= "${session.sessMember} != null">
+        	 	
+       		 </th:block>  -->
+       	
+         </ol>
+     </div>
+     <nav>
+         <div>
+             <div class="sub-menu">
+                 <ol>
+                     <li><a href="#">Outer</a></li>
+                     <li><a href="#">Top</a></li>
+                     <li><a href="#">Pants</a></li>
+                 </ol>
+
+                 <ol>
+                     <li><a href="#">Shirt</a></li>
+                     <li><a href="#">Knit</a></li>
+                     <li><a href="#">Cardigan</a></li>
+                 </ol>
+
+                 <ol>
+                     <li><a href="#">Blouse</a></li>
+                     <li><a href="#">Ops</a></li>
+                     <li><a href="#">Skirt</a></li>
+                 </ol>
+             </div>
+         </div>
+     </nav>
+ </header>

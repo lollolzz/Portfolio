@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />    
+    <title>CreativeAJAX - Register</title>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
+    <script th:src="@{/js/jsscript.js}"></script>
+</head>
+<body>
+<div id="login-wrapper">
+	<th:block th:include="@{_header.html}"/>
+    <main id= "register">
+        <section id= "register-center-v" style="background-color: rgb(248, 250, 252);" >
+            <div id="register-title">
+                <h1> AJAX 계정 생성</h1>
+                <form th:action="@{/member/register}" method="POST">
+				<input type="hidden" name="type" value="1"/>
+                <div class="register-register">
+                    <div class="register-all"></div>
+                        <div class="register-left">
+                            <section class="register-left-in">
+                                <div class="register-gender">
+                                    <label class="gender-inline">
+                                        <span class="step"> step 1</span>
+                                        성별 :
+                                    </label>
+                                    <div class="gender-content-inline">
+                                        <label>
+                                            <input name="salutation" type="radio" value="1" checked="checked">
+                                            남성 
+                                        </label>
+                                        <label>
+                                            <input name="salutation" type="radio" value="2" checked="checked">
+                                            여성
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="register-name-email">
+                                    <div class="register-name">
+                                        <label>
+                                            <span class="step"> step 2</span>
+                                            이름 :
+                                        </label>
+                                        <input type="text" name="lastname" value="이름을 입력하세요" maxlength="32">
+                                    </div>
+                                    <div class="register-email">
+                                        <label>
+                                            <span class="step"> step 3</span>
+                                            이메일 주소 :
+                                        </label>
+                                        <div class="clerafix"></div>
+                                        <span class="email-input">
+                                            <input type="text" name="emailFirst" class="emailFirst" value="이메일을 입력하세요">
+                                        </span>
+                                        <span class="a-txt">@</span>
+                                        <span class="input-select">
+                                            <select name="emailLast" class="emailLast">
+                                                <option value="naver.com">naver.com</option>
+                                                <option value="gmail.com">gmail.com</option>
+                                                <option value="kakao.com">kakao.com</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <input type="hidden" name="emailFirst" value="ID">
+                                    <input type="hidden" name="emailLast" value=".COM">
+                                    <input type="hidden" name="emailLastOther" value="null.com">
+                                </div>
+                                <div class="register-mobile">
+                                    <label>
+                                        <span class="step"> step 4</span>
+                                        휴대폰번호 :
+                                    </label>
+                                    <div class="clearfix"></div>
+                                    <input type="tel" name="moblie1" class="mobile" value maxlength="3">
+                                    <input type="tel" name="moblie2" class="mobile" value maxlength="4">
+                                    <input type="tel" name="moblie3" class="mobile" value maxlength="4">
+                                </div>
+                                <div class="register-birthday">
+                                    <label>
+                                        <span class="step"> step 5</span>
+                                        생일 :
+                                    </label>
+                                    <span class="select year">
+                                        <select name="birthday_year" class="birthday-year">
+                                            <option value="1981">1981</option>
+                                            <option value="1982">1982</option>
+                                            <option value="1983">1983</option>
+                                            <option value="1984">1984</option>
+                                            <option value="1985">1985</option>
+                                            <option value="1986">1986</option>
+                                            <option value="1987">1987</option>
+                                            <option value="1988">1988</option>
+                                            <option value="1989">1989</option>
+                                            <option value="1990">1990</option>
+                                            <option value="1991">1991</option>
+                                            <option value="1992">1992</option>
+                                            <option value="1993">1993</option>
+                                            <option value="1994">1994</option>
+                                            <option value="1995">1995</option>
+                                            <option value="1996">1996</option>
+                                            <option value="1997">1997</option>
+                                            <option value="1998">1998</option>
+                                            <option value="1999">1999</option>
+                                            <option value="2000">2000</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2011">2011</option>
+                                        </select>
+                                    </span>
+                                    <span class="select month">
+                                        <select name="birthday_month" class="birthday-month">
+                                            <option value="0">1</option>
+                                            <option value="1">2</option>
+                                            <option value="2">3</option>
+                                            <option value="3">4</option>
+                                            <option value="4">5</option>
+                                            <option value="5">6</option>
+                                            <option value="6">7</option>
+                                            <option value="7">8</option>
+                                            <option value="8">9</option>
+                                            <option value="9">10</option>
+                                            <option value="10">11</option>
+                                            <option value="11">12</option>
+                                           
+                                        </select>
+                                    </span>
+                                    <span class="select day">
+                                        <select name="birthday_day" class="birthday-day">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option value="20">20</option>
+                                            <option value="21">21</option>
+                                            <option value="22">22</option>
+                                            <option value="23">23</option>
+                                            <option value="24">24</option>
+                                            <option value="25">25</option>
+                                            <option value="26">26</option>
+                                            <option value="27">27</option>
+                                            <option value="28">28</option>
+                                            <option value="29">29</option>
+                                            <option value="30">30</option>
+                                            <option value="31">31</option>
+                                           
+                                        </select>
+                                    </span>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="register-right">
+                            <div class="register-preferences">
+                                <h3 class="preferences-title">
+                                    <span class="step"> step 6</span>
+                                    선호하는 발송 수단을 선택해 주세요.
+                                </h3>
+                                <div>
+                                    <div class="content-asset">
+                                        <span class="content-lower">
+                                            <br><br>AJAX는 회원님의 개인정보를 신중히 취급하며 주문을 처리하는데 필요한 정보만 입력하도록 요청합니다. 
+                                            귀하의 데이터는 요청하지 않은 발송에 사용되지않으며 주문처리를 제외하고 제 3자에게전달되지않습니다.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="check-inline-outside">
+                                    <label class="label-subscribe">
+                                        <input type="checkbox" class="register-sms" name="sms">
+                                        sms
+                                    </label>
+                                    <label class="label-subscribe">
+                                        <input type="checkbox" class="register-email" name="email">
+                                        EMAIL
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="register-button">
+                                <input type="submit" class="btn-make" value="내 계정 만들기"/>
+                            </div>
+                        </div>
+                    <div>    
+                </div>
+            </div>                
+            
+        </section>
+    </main>
+    <th:block th:include="@{_footer.html}"/>
+</div>    
+</body>
+</html>

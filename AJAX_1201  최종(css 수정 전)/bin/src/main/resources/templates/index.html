@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>CreativeAJAX-Index</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/jsscript.js}"></script>
+    <script>
+    
+    $('.MainBanner>ul>li').hide(); 
+    $('.MainBanner>ul>li:first-child').show(); 
+
+    setInterval(function(){ 
+        $('.MainBanner>ul>li:first-child').fadeOut()
+        .next().fadeIn().end(1000)
+        .appendTo('.MainBanner>ul');
+    },3000);
+    
+    
+    </script>
+</head>
+ <body>
+ 	<div id="wrapper">
+	    <th:block th:include="@{_header.html}"/>
+		<main>
+		      <section class="MainTop">
+		         <div class="MainBanner">
+		             <ul>
+		                 <li><img class="bannerimg" src="./img/bannerimg1.JPG" alt="배너이미지2"></li>
+		                 <li><img class="bannerimg" src="./img/bannerimg2.JPG" alt="배너이미지2"></li>
+		                 <li><img class="bannerimg" src="./img/bannerimg3.JPG" alt="배너이미지2"></li>
+		             </ul>
+		         </div>
+		     </section>
+		     <!-- Tick -->
+		     <section class="page-section bg-primary" id="about">
+		         <div class="container-tick">
+		             <div class="row1">
+		                 <div class="col-lg-8">
+		                     <h2 class="tick-h2">새로 고쳐야 한다!// 색깔 바꾸자</h2>
+		                     <p> 이력서 한 줄도 못 썻다 ㅠㅠ </p>
+		                     <h2> 머리 아프다 약먹어야지 </h2>
+		                 </div>
+		             </div>
+		         </div>
+		     </section>
+		
+		     <!-- Recommend-text/// 컨셉의류 링크 -->
+		     <section class="page-section" id="services">
+		         <div class="container-re">
+		             <h2 class="recommend-choice">당신의 선택</h2>
+		             <hr class="recommend-hr"/>
+		             <div class="row">
+		                 <div class="col-lg-3 col-md-6">
+		                     <div class="recommend-text">
+		                         <div class="recommend-div"><i class="recommend-i"></i></div>
+		                         <h3 class="recommend-name">겨울 아우터</h3>
+		                         <p class="recommend-de">All dependencies are kept current to keep things fresh.</p>
+		                     </div>
+		                 </div>
+		                 <div class="col-lg-3 col-md-6">
+		                     <div class="recommend-text">
+		                         <div class="recommend-div"><i class="recommend-i"></i></div>
+		                         <h3 class="recommend-name">겨울 신발</h3>
+		                         <p class="recommend-de">All dependencies are kept current to keep things fresh.</p>
+		                     </div>
+		                 </div>
+		                 <div class="col-lg-3 col-md-6">
+		                     <div class="recommend-text">
+		                         <div class="recommend-div"><i class="recommend-i"></i></div>
+		                         <h3 class="recommend-name">겨울 추워</h3>
+		                         <p class="recommend-de">All dependencies are kept current to keep things fresh.</p>
+		                     </div>
+		                 </div>
+		                 <div class="col-lg-3 col-md-6">
+		                     <div class="recommend-text">
+		                         <div class="recommend-div"><i class="recommend-i"></i></div>
+		                         <h3 class="recommend-name">발 시려</h3>
+		                         <p class="recommend-de">All dependencies are kept current to keep things fresh.</p>
+		                     </div>
+		                 </div>
+		             </div>
+		         </div>
+		     </section>
+		
+		     <!-- Recommend-img // 추천 의류 링크-->
+		     <div id="Recommend">
+		         <div class="container-fluid">
+		             <div class="row">
+		                 <div class="col-lg-4 col-sm-6">
+		                     <a class="container-box" href="#" title="Project Name">
+		                         <img class="img-cate" src="./img/recommendimg1.jpg" alt="..." />
+		                         <div class="container-box-caption">
+		                             <div class="container-category text-white-50">Category</div>
+		                             <div class="container-name">겨울니트</div>
+		                         </div>
+		                     </a>
+		                 </div>
+		                 <div class="col-lg-4 col-sm-6">
+		                     <a class="container-box" href="#" title="Project Name">
+		                         <img class="img-cate" src="./img/recommendimg2.jpg" alt="..." />
+		                         <div class="container-box-caption">
+		                             <div class="container-category text-white-50">Category</div>
+		                             <div class="container-name">세인트제임스</div>
+		                         </div>
+		                     </a>
+		                 </div>
+		                 <div class="col-lg-4 col-sm-6">
+		                     <a class="container-box" href="#" title="Project Name">
+		                         <img class="img-cate" src="./img/recommendimg1.jpg" alt="..." />
+		                         <div class="container-box-caption">
+		                             <div class="container-category text-white-50">Category</div>
+		                             <div class="container-name">미정</div>
+		                         </div>
+		                     </a>
+		                 </div>
+		                 <div class="col-lg-4 col-sm-6">
+		                     <a class="container-box" href="#" title="Project Name">
+		                         <img class="img-cate" src="./img/recommendimg2.jpg" alt="..." />
+		                         <div class="container-box-caption">
+		                             <div class="container-category text-white-50">Category</div>
+		                             <div class="container-name">미정</div>
+		                         </div>
+		                     </a>
+		                 </div>
+		                 <div class="col-lg-4 col-sm-6">
+		                     <a class="container-box" href="#" title="Project Name">
+		                         <img class="img-cate" src="./img/recommendimg1.jpg" alt="..." />
+		                         <div class="container-box-caption">
+		                             <div class="container-category text-white-50">Category</div>
+		                             <div class="container-name">우와와와</div>
+		                         </div>
+		                     </a>
+		                 </div>
+		                 <div class="col-lg-4 col-sm-6">
+		                     <a class="container-box" href="#" title="Project Name">
+		                         <img class="img-cate" src="./img/recommendimg2.jpg" alt="..." />
+		                         <div class="container-box-caption p-3">
+		                             <div class="container-category text-white-50">Category</div>
+		                             <div class="container-name">덤더러덤더러</div>
+		                         </div>
+		                     </a>
+		                 </div>
+		             </div>
+		         </div>
+		     </div>
+		     <!-- About us -->
+		     <section class="page-section aboutus">
+		         <div class="container-about">
+		             <h2 class="abouttit">Inside Ajax</h2>
+		             <a class="btn aboutus-click" th:href="@{about/aboutus}">About us</a>
+		         </div>
+		     </section>
+		 </main>
+		 <th:block th:include="@{_footer.html}"/>
+ </body>
+</html>

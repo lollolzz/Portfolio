@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.ajax.dao.ProductOrderDao">
+	<insert id="insertOrder" useGeneratedKeys="true" keyProperty="orderId">
+		INSERT INTO `aj_product_order` SET
+		`uid`=#{uid},
+		`count`=#{count},
+		`price`=#{price},
+		`delivery`=#{delivery},
+		`addr1`=#{addr1},
+		`addr2`=#{addr2},
+		`total`=#{total},
+		`rdate`=NOW();
+	</insert>
+	<select id="selectOrder"></select>
+	<select id="selectOrders" resultType="kr.co.ajax.vo.ProductOrderVo">
+		SELECT 
+			a.*,
+			b.*,
+			c.*,
+			c.price AS pPrice,
+			c.thumb1 AS pThumb1,
+			c.name AS pName
+		FROM `aj_product_order` AS a
+		JOIN `aj_product_cart` AS b
+		ON (a.uid = b.uid)
+		JOIN `aj_product` AS c
+		ON (b.productCode = c.productCode)
+		WHERE a.`orderId`=#{orderId};
+		<!-- SELECT 
+			a.*,
+			b.*,
+			b.name as `pName`,
+			sum(count) as sumcount
+		FROM `aj_product_cart` AS a
+		JOIN `aj_product` AS b
+		ON a.proDuctcode = b.proDuctcode; -->
+	</select>
+	<update id="updateOrder"></update>
+	<delete id="deleteOrder"></delete>
+	
+</mapper>
+
+
+
+
+
+

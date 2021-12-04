@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.ajax.dao.MemberDao">
+	<insert id="insertMember">
+		INSERT INTO `aj_member` SET
+			`uid`=#{email},
+			`name`=#{name},
+			`email`=#{email},
+			`gender`=#{gender},
+			`bDay`=#{bDay},
+			`hp` = #{hp},
+			`ip`=#{ip},	
+			`pass`=PASSWORD(#{pass}),
+			`rdate`=NOW();
+	</insert>
+		<insert id="insertMember2">
+		INSERT INTO `aj_member` SET
+			`uid`=#{email},
+			`name`=#{name},
+			`email`=#{email},
+			`pass`=PASSWORD("1"),
+			`gender`=#{gender};
+			
+	</insert>
+	<select id="selectMember" resultType="kr.co.ajax.vo.MemberVo">
+		SELECT * FROM `aj_member` WHERE `uid`=#{uid} AND `pass`=PASSWORD(#{pass});
+	</select>
+	<select id="selectMember2" resultType="kr.co.ajax.vo.MemberVo">
+		SELECT * FROM `aj_member` WHERE `uid`=#{email};
+	</select>
+	<select id="selectMembers"></select>
+	<select id="selectTerms" resultType="kr.co.ajax.vo.TermsVo">
+		SELECT * FROM `aj_member_terms`;
+	</select>
+	<update id="updateMember"></update>
+	<delete id="deleteMember"></delete>
+	
+	<!-- 이메일유효성 20211125 변진하 -->
+	<select id="selectCountEmail" resultType="int">
+		SELECT COUNT(`email`) FROM `aj_member` WHERE `email`=#{email};
+	</select>
+	
+	
+</mapper>

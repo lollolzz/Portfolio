@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" /> 
+    <title>CreativeAJAX - Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
+    <script th:src="@{/js/jsscript.js}"></script>\
+
+	<script>
+      $(document).ready(function(){
+      if ($(location).attr('href').slice(-3)=='100'){
+      alert( '아이디, 비밀번호가 일치하지 않습니다.' );
+      }
+   });
+    </script>
+    
+
+
+
+</head>
+<body>11
+    <div id="login-wrapper">
+    	<th:block th:include="@{_header.html}"/>
+        <main id = "login">
+            <section id="center-v" style="background-color: rgb(248, 250, 252);"   >      
+             <form th:action="@{/member/login}" method="post">      
+                <div class = "login-header">
+                    <h1>로그인</h1>
+                </div>
+                <div class = "login-body">
+                    <section class="gizone">
+                        <h3>기존고객</h3>
+                        <br>
+                        <input type="text" name="uid" placeholder="이메일/아이디:">
+                        <input type="password" name="pass" placeholder="비밀번호:">
+                        <div class ="forgetIdPw"> 
+                            <a href="#">아이디/비밀번호를 잊으셨나요?</a>
+                        </div>
+                       	<div><input type="submit"  class="LoginBtn" value="로그인" /></div> <!-- 변진하 input tag 변환 2021/11/25 -->
+				</form>    
+                       
+                    </section>
+                    <section class="singyu">
+                        <h3>신규고객</h3>
+                        <input type="text" placeholder="이메일:">
+                        <a th:href="@{/member/terms}"><button class="RegiBtn">계정만들기</button></a>
+                    </section>
+                </div>
+                <div class = "login-footer">
+                    <p>소셜 로그인/가입</p>
+                    <div class="logos">
+            
+                        <a href="#"><img src="../img/네이버회원가입.png"></a>
+                        <a href="#"><img src="../img/페이스북회원가입.png"></a>
+                        <a href="#"><img src="../img/카카오회원가입.png"></a>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+        <th:block th:include="@{_footer.html}"/>
+    </div>    
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />   
+    <title>CreativeAJAX-Cart</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="@{/img/favicon.ico}">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script src="/js/jsscript.js"></script>
+    <script>
+    	////////////////////////////////////////////////////////
+    	// 장바구니 전체 집계함수
+    	function aggregation(){
+    		
+    		var cartProduct = $('input[name=checkProduct]:checked').parent().parent();;
+    		
+    		// 상품 수 집계
+    		var totCount = 0;
+    		
+    		$.each(cartProduct, function(){
+    			
+    			var value = $(this).find('input[name=count]').val();
+    			var count = parseInt(value);
+    			totCount += count;
+    		});
+    		
+    		
+    		$('.cart-table .count').text(totCount+'개');
+    		
+    		// 판매가 집계
+    		var totPrice = 0;
+    		
+    		$.each(cartProduct, function(){
+    			
+    			var value = $(this).find('input[name=price]').val();
+    			var price = parseInt(value);
+    			totPrice += price;
+    		});
+    		
+    		
+    		$('.cart-table .price').text(totPrice.toLocaleString()+'원');
+    		
+
+    		// 배송 비 집계
+    		var totDelivery = 0;
+    		
+    		
+    		$.each(cartProduct, function(){
+    			
+    			var value = $(this).find('input[name=delivery]').val();
+    			var delivery = parseInt(value);
+    			totDelivery += delivery;
+    		});
+    		
+    		$('.cart-table .delivery').text(totDelivery.toLocaleString()+'원');
+
+    		
+    		// 상품 총 가격
+    		var totTotal = totPrice + totDelivery;
+    		$('.cart-table .total').text(totTotal.toLocaleString()+'원');
+
+    	}// aggregation end
+    	
+    	$(function(){
+    		// 최초 전체 장바구니 상품 집계
+    		aggregation();
+    		
+    		// 삭제버튼
+    		$('input[name=cart-del]').click(function(){
+    			
+    			var checkedProduct = $('input[name=checkProduct]:checked');
+    			
+    			if(checkedProduct.length == 0){
+    				alert('삭제하고자 하는 상품을 선택하세요.');
+    				return;
+    			}
+    			
+    			var cartIds = [];
+    			
+    			$.each(checkedProduct, function(){
+    				var cartId = $(this).val();
+    				cartIds.push(cartId);	
+    			});
+    			    			
+    			var jsonData = {'cartIds': cartIds};
+    			
+    			console.log(jsonData);
+    			
+    			// 삭제 요청하기
+    			$.ajax({
+    				url: '/product/cartDelete',
+    				type: 'get',
+    				traditional: true, /* 배열값 전송을 위한 옵션 */
+    				data: jsonData,
+    				dataType: 'json',
+    				success: function(data){
+    					// 다시 장바구니 페이지 요청
+    					location.href='/product/cart';
+    				}
+    			});
+    			
+    		});
+    		
+    		// 전체 체크박스 체크/해지
+    		$('input[name=all-Check]').change(function(){
+    			
+    			if($(this).is(':checked')){
+    				// 전체 상품 체크박스 체크
+    				$('input[name=checkProduct]').prop('checked', true);
+    			}else{
+    				// 전체 상품 체크박스 해지
+    				$('input[name=checkProduct]').prop('checked', false);
+    			}
+    			
+    			// 집계 재조정
+    			aggregation();
+    		});
+    		
+    		// 개별 체크박스 체크/해제
+    		$('input[name=checkProduct]').change(function(){
+    			// 집계 재조정
+    			aggregation();   			
+    		});
+    		
+    		
+    		// 주문하기
+    		$('input[name=cart-order]').click(function(){
+    			
+				var checkedProduct = $('input[name=checkProduct]:checked');
+				var cartIds = [];
+    			var productCodes  = [];
+    			var productCounts = [];
+    			// 배열로 선언한 이유는 ? 만약의 두개의 상품을 함께 주문한다면
+				// 한 번의 주문 으로 취급되어 하나의 list화 되어 DB에 들어가기 때문에
+				// 배열로 한다 
+    			
+    			$.each(checkedProduct, function(){
+    				var cartId = $(this).val();
+    				var productCode  = $(this).data('product-code');
+    				var productCount = $(this).data('product-count');
+    				
+    				cartIds.push(cartId);
+    				productCodes.push(productCode);
+    				productCounts.push(productCount);
+    			});
+    			
+    			var uid      = $('.cart-table input[name=uid]').val();
+    			var count    = $('.cart-table .count').text().replace(/(,|개)/g, '');
+    			var price    = $('.cart-table .price').text().replace(/(,|원)/g, '');
+    			var delivery = $('.cart-table .delivery').text().replace(/(,|원)/g, '');
+    			var total    = $('.cart-table .total').text().replace(/(,|원)/g, '');
+    			
+    			var jsonData = {
+    				'uid': uid,
+    				'count': count,
+    				'price': price,
+    				'delivery': delivery,
+    				'total': total,
+    				'productCodes': productCodes,
+    				'productCounts': productCounts,
+    				'cartIds': cartIds
+    				};
+    			
+    			console.log(JSON.stringify(jsonData));
+    			
+    			$.ajax({
+    				url: '/product/payment',
+    				type: 'post',
+    				traditional: true, 
+    				data: jsonData,
+    				dataType:'json',
+    				success: function(data){
+    					
+    					//alert(data.orderId);
+    					
+    					// 주문 페이지로 이동
+    					var orderId = data.orderId;
+    					location.href='/product/payment?orderId='+orderId;
+    				}
+    			});
+    			
+    		});
+    	});
+    		
+</script>	
+</head>
+<body>
+    <div id="payment-wrapper">
+    	<th:block th:include="@{_header.html}"/>
+        <main class = "payment">
+            <section class="cart-center1" style="background-color: rgb(236, 239, 241);">        
+                <div class = "payment-center-header">
+                    <li>
+	                    <a th:href="@{/product/cart}"><i class="fa fa-check-square" aria-hidden="true"></i></a>
+	                    <span>쇼핑백</span> 
+                    </li>
+                    <li>
+	                    <a th:href="@{/product/delivery}"><i class="fa fa-square" aria-hidden="true"></i></a>
+	                    <span> 배송</span>
+                    </li>
+                    <li>
+	                    <a th:href="@{/product/payment}"><i class="fa fa-square" aria-hidden="true"></i></a>
+	                    <span> 결제</span>
+                    </li>                    
+                </div>
+                <div class="cart-center">
+                    <div class="cart-center-left">
+                    	<div class="cart-allCheck">
+                    		<input type="checkbox" name="all-Check" class="in-cart-allCheck" checked/><label for="allCheck">모두 선택</label>
+                    		<input type="button" name="cart-del" class="in-cart-del" value="선택삭제">  
+                    	</div>
+                        <div th:each="product:${cartProducts}" class="cart-product">
+                        	<input type="hidden" name="count" th:value="${product.count}"/>
+                        	<input type="hidden" name="delivery" th:value="${product.delivery}"/>
+                        	<input type="hidden" name="price" th:value="${product.price}"/>
+                            <div class="cart-checkProduct">
+	                        	<input type="checkbox" 
+	                        		   name="checkProduct" 
+	                        		   th:value="${product.cartId}" 
+	                        		   th:data-product-code="${product.productCode}"
+	                        		   th:data-product-count="${product.count}"
+	                        		   checked/>
+	                       	</div>
+                            <div class="cart-product-left">
+                                <a href="#">
+                                    <img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1}, cate2=${product.cate2}, img=${product.thumb1})}" alt="상품 이미지"/>
+                                </a>
+                            </div>
+                            <div class="cart-product-right">
+                            	<div class="name">[[${product.name}]]</div>
+                                <div class="count">상품 수 :[[${product.count}]]</div>
+                                <div class="delivery" th:if="${product.delivery == 0}">무료배송</div>
+                                <div class="delivery" th:if="${product.delivery != 0}">배송 비 :[[${#numbers.formatInteger(product.delivery, 3, 'COMMA')}]]</div>
+                                <div class="total">상품 가격 :[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]</div>
+                               <select>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="customer">
+                            <div class="customer-message">
+                                <span>도움이 필요하세요?</span>
+                                <br>
+                                <br>
+                                <span>고객센터가 도와드리겠습니다.</span>
+                                <br>
+                                <br>
+                                <span>1588-****</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-center-right">
+                        <div class="cart-payment">
+                            <table class="cart-table">
+                            <input type="hidden" name="uid" th:value="${session.sessMember.uid}"/>
+                                <tbody>
+                                    <tr>
+                                    <td>상품수</td>
+                                    <td class="count"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>상품금액</td>
+                                    <td class="price"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>배송비</td>
+                                    <td class="delivery"></td>
+                                    </tr>
+                                    <tr>
+                                    <td>총 상품금액</td>
+                                    <td class="total"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>        
+                            <input type="button" name="cart-order" style="background-color:darkseagreen; border-color:white;" value="주문하기">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <th:block th:include="@{_footer.html}"/>
+    </div>    
+</body>
+</html>

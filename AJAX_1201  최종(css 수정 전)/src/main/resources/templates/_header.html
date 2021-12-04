@@ -1,0 +1,110 @@
+<header>
+     <div>  
+         <a th:href="@{/index}" class="logo">
+             <img th:src="@{/img/4.png}" alt="TemaLogo"/>
+         </a>
+
+<script>
+/*시현 20211130 헤더 js 수정*/
+$(function(){
+	
+	var menu = $('.menu > li > a');
+	var subMenu = $('.sub-menu > ol');
+	
+	menu.mouseenter(function(){
+		
+		var value = $(this).attr('class');
+		
+		if(value == 'teens'){
+			subMenu.removeClass('on').eq(0).addClass('on');
+		}else if(value == 'twenties'){
+			subMenu.removeClass('on').eq(1).addClass('on');
+		}else if(value == 'thirties'){
+			subMenu.removeClass('on').eq(2).addClass('on');
+		}
+	});	
+});	
+
+	/*예은 헤더 js
+    $(".menu > li > .teens").mouseenter(function(){
+        $('.header_sub1').css('background-color','grey');
+    });
+    $(".menu > li > .twenties").mouseenter(function(){
+        $('.header_sub2').css('background-color','grey');
+    });
+    $(".menu > li > .thirties").mouseenter(function(){
+        $('.header_sub3').css('background-color','grey');
+    });
+    
+
+    $(".menu > li > .teens").mouseleave(function(){
+        $('.header_sub1').css('background-color','white');
+    });
+    $(".menu > li > .twenties").mouseleave(function(){
+        $('.header_sub2').css('background-color','white');
+    });
+    $(".menu > li > .thirties").mouseleave(function(){
+        $('.header_sub3').css('background-color','white');
+    });
+    
+    twenties.click(function(){
+        $('.header_sub2').css('background-color','grey');
+    });
+
+    thirties.click(function(){
+        $('.header_sub3').css('background-color','grey');
+	});
+});*/
+</script>
+
+
+
+        <ul class="menu">
+             <li><a th:href="@{#}" class="teens">Teens</a></li>  
+             <li><a th:href="@{#}" class="twenties">Twenties</a></li>
+             <li><a th:href="@{#}" class="thirties">Thirties+</a></li>
+             
+         </ul>
+
+         <ol class="menu-right">   
+         	 <li><a th:href="@{/about/aboutus}">About Us</a></li>
+             <li><a href="#"><i class="fas fa-search fa-lg" style="color: darkslategray" ></i></a></li>  
+             <th:block th:if= "${session.sessMember} == null">
+        	 	<li><a th:href="@{/member/login}"><i class="far fa-id-badge fa-lg" aria-hidden="true" style="color: darkslategray"></i></a></li>
+        	 	<li><a th:href="@{/member/login}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
+       		 </th:block>
+			 <th:block th:if= "${session.sessMember} != null">
+			 	[[${session.sessMember.name}]]님 반갑습니다.|
+        	 	<li><a th:href="@{/member/logout}"><i class="fa fa-sign-out" style="color: darkslategray"></i></a></li>
+        	 	<li><a th:href="@{/product/cart}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
+       		 </th:block> 
+ 		     <!-- <th:block th:if= "${session.sessMember} != null">
+        	 	
+       		 </th:block>  -->
+       	
+         </ol>
+     </div>
+     <nav>
+         <div>
+              <div class="sub-menu">
+                 <ol class="header_sub1">
+                     <li><a th:href="@{/product/list(cate1=1,cate2=1, pg=1)}">Outer/Cardigan</a></li>
+                     <li><a th:href="@{/product/list(cate1=1,cate2=2, pg=1)}">T-shirts</a></li>
+                     <li><a th:href="@{/product/list(cate1=1,cate2=3, pg=1)}">Pants/Skirts</a></li>
+                 </ol>
+
+                 <ol class="header_sub2" >
+                     <li><a th:href="@{/product/list(cate1=2,cate2=1, pg=1)}">Shirts/Knits</a></li>
+                     <li><a th:href="@{/product/list(cate1=2,cate2=2, pg=1)}">Pants/SKirts</a></li>
+                     <li><a th:href="@{/product/list(cate1=2,cate2=3, pg=1)}">Ops</a></li>
+                 </ol>
+
+                 <ol class="header_sub3" >
+                     <li><a th:href="@{/product/list(cate1=3,cate2=1, pg=1)}">Blouse</a></li>
+                     <li><a th:href="@{/product/list(cate1=3,cate2=2, pg=1)}">Suits/Ops</a></li>
+                     <li><a th:href="@{/product/list(cate1=3,cate2=3, pg=1)}">Heels</a></li>
+                 </ol>    
+             </div>
+         </div>
+     </nav>
+ </header>
