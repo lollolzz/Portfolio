@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>케이마켓::약관</title>    
+    <link rel="stylesheet" th:href="@{/css/member.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:inline="javascript">
+    	$(function(){
+    		
+    		// 일반회원:1, 판매자회원:2
+    		var type = "[[${type}]]";
+    		
+    		$('.agree').click(function(){
+    			
+    			var isChecked1 = $('input[name=agree1]').is(':checked');
+    			var isChecked2 = $('input[name=agree2]').is(':checked');
+    			var isChecked3 = $('input[name=agree3]').is(':checked');
+    			var isChecked4 = $('input[name=agree4]').is(':checked');
+				
+    			if(!isChecked1){
+    				alert('이용약관에 동의 하셔야 합니다.');
+    				return;
+    			}
+    			
+    			if(!isChecked2){
+    				alert('전자금융거래 이용약관에 동의 하셔야 합니다.');
+    				return;
+    			}
+    			
+    			if(!isChecked3){
+    				alert('개인정보 수집에 동의 하셔야 합니다.');
+    				return;
+    			}
+    			
+    			if(!isChecked4 && type == 2){
+    				alert('전자세금 신고납부에 동의 하셔야 합니다.');
+    				return;
+    			}
+    			
+    			if(type == 1){
+    				// 자바스크립트 이동속성(히스토리 기록)
+    				//location.href = '/member/register';
+    				
+    				// 자바스크립트 이동함수(히스토리 기록안됨)
+    				location.replace('/Kmarket/member/register');
+    			}else{    				
+    				//location.href = '/member/register-seller';
+    				location.replace('/Kmarket/member/register-seller');
+    			}
+    		});
+    	});
+    </script>
+    
+</head>
+<body>
+    <div id="member-wrapper">
+        <th:block th:include="@{member/_header.html}"/>
+        <main>
+            <div id="member-signup">
+				<h1>약관동의</h1>
+				<section>
+					<h3><span class="essential">(필수)</span>케이마켓 이용약관</h3>
+					<textarea class="terms" readonly>[[${memberTermsVo.terms}]]</textarea>
+					<label><input type="checkbox" name="agree1" />동의합니다.</label>
+
+					<h3><span class="essential">(필수)</span>전자금융거래 이용약관</h3>
+					<textarea class="financial" readonly>[[${memberTermsVo.finance}]]</textarea>
+					<label><input type="checkbox" name="agree2" />동의합니다.</label>
+
+					<h3><span class="essential">(필수)</span>개인정보 수집동의</h3>
+					<textarea class="privacy" readonly>[[${memberTermsVo.privacy}]]</textarea>
+					<label><input type="checkbox" name="agree3" />동의합니다.</label>
+				</section>
+				
+				<section th:if="${type==2}">
+					<h3><span class="essential">(필수)</span>전자세금 신고납부 이용약관</h3>
+					<textarea class="location" readonly>[[${memberTermsVo.tax}]]</textarea>
+					<label><input type="checkbox" name="agree4" />동의합니다.</label>
+				</section>
+
+				<section>
+					<h3><span class="optional">(선택)</span>위치정보 이용약관</h3>
+					<textarea class="location" readonly>[[${memberTermsVo.location}]]</textarea>
+					<label><input type="checkbox" name="agree5" />동의합니다.</label>
+				</section>
+				
+				<div>
+					<input type="button" class="agree" value="동의하기" />
+				</div>
+            </div>
+        </main>
+        <th:block th:include="@{member/_footer.html}"/>
+    </div>
+</body>
+</html>
