@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">    
-    <title>CreativeAJAX-Delivery</title>
+    <meta charset="UTF-8">  
+    <title>AJAX-Delivery</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
@@ -15,6 +15,7 @@
     <script th:src="@{/js/zipcode.js}"></script>
      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script th:inline="javascript">
+    
     $(function(){
     	var total_money3 = 0;
     	$("input[name='delivery-method1']").click(function(){
@@ -72,7 +73,7 @@
 				'price' : price
 			};
 			$.ajax({
-				url: '/AJAX_1201/product/payment',
+				url: '/AJAX/product/payment',
 				type: 'post',
 				traditional: true, 
 				data: jsonData,
@@ -81,7 +82,7 @@
 					 
 					// 주문 페이지로 이동
 					var orderId = data.orderId;
-					location.href='/AJAX_1201/product/payment?orderId='+orderId;
+					location.href='/AJAX/product/payment?orderId='+orderId;
 				}
 			});
 
@@ -138,10 +139,10 @@
 		                    </div>
 		                </td>
                         </div>
-                        <div class = "leftdelivery" name = "delivery-pojangservice"> <h3> 라코스테 선물 포장서비스<br> </h3> 
+                        <div class = "leftdelivery" name = "delivery-pojangservice"> <h3> AJAX 선물 포장서비스<br> </h3> 
                             <p>
                             무료로 선물포장 서비스를 제공하고 있습니다.
-                            선물포장은 라코스테 쇼핑백과 리본 포장이 되어 발송되며
+                            선물포장은 AJAX 쇼핑백과 리본 포장이 되어 발송되며
                             주문하신 제품의 종류나 크기 그리고 수량에 따라
                             포장 방법이 다를 수 있습니다.
                             

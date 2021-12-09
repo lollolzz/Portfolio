@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />     
-    <title>CreativeAJAX - Terms</title>
+    <meta charset="utf-8" /> 
+    <title>AJAX - Terms</title>
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -17,9 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" th:href="@{/css/style.css}"><link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
     <script th:src="@{/js/jsscript.js}"></script>
     <script>
     
@@ -47,7 +42,7 @@
                     alert('개인정보 수집에 동의 하셔야 합니다.');
                     return false;
                 }
-                $(location).attr("href", "/AJAX_1201/member/register")
+                $(location).attr("href", "/AJAX/member/register")
             });
         });
     </script>

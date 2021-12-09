@@ -4,6 +4,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
+
+
+
+
 @Data
 public class ProductVo {
 	private int productCode;

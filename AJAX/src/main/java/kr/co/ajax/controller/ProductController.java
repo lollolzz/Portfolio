@@ -187,9 +187,7 @@ public class ProductController {
 	
 		@GetMapping("/product/view")
 		public String view(int productCode, Model model, String pg) {
-			
-			System.out.println("productCode : "+productCode);
-			
+
 			//뷰 페이지에 출력할 해당 상품정보 DB에서 가져오기
 			ProductVo product = service.selectProduct(productCode);
 					

@@ -2,10 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" /> 
-    <title>CreativeAJAX - Login</title>
+    <title>AJAX-Login</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -13,14 +10,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="shortcut icon" th:href="@{/img/favicon.ico}">
     <script th:src="@{/js/jsscript.js}"></script>
 	<script th:src="@{/js/checkUser.js}"></script>
-	  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   	<script th:src="@{/js/checkUser.js}"></script>\
 	<script>
       $(document).ready(function(){
@@ -57,7 +51,7 @@
                         <h3>신규고객</h3>
                         <input type="text" name="email" placeholder="이메일:">
                                <span class = "resultEmail"></span>
-                        <a th:href="@{/member/terms}"class="RegiBtn" > 계정만들기</a>
+                        <a th:href="@{/member/terms}"class="RegiBtn"> 계정만들기</a>
                     </section>
                     
                 </div>
@@ -67,10 +61,10 @@
     
                    	<a id="naver_id_login"><img src="../img/네이버회원가입.png"></a>
                    	<script type="text/javascript">
-					  	var naver_id_login = new naver_id_login("xfMpJq13Kvc6pQ4b2Rqt", "http://13.209.9.24:8080/AJAX_1201/member/login");
+					  	var naver_id_login = new naver_id_login("xfMpJq13Kvc6pQ4b2Rqt", "http://13.209.9.24:8080/AJAX/member/login");
 					  	var state = naver_id_login.getUniqState();
 					  	naver_id_login.setButton("white", 2,40);
-					  	naver_id_login.setDomain("http://13.209.9.24:8080/AJAX_1201");
+					  	naver_id_login.setDomain("http://13.209.9.24:8080/AJAX");
 					  	naver_id_login.setState(state);
 					  	naver_id_login.init_naver_id_login();
 					    naver_id_login.get_naver_userprofile("naverSignInCallback()");
@@ -84,7 +78,7 @@
 					        $("input[name='name']").val(naver_id_login.getProfileData('name'));
 					        $("input[name='gender3']").val(naver_id_login.getProfileData('gender'));
 					        $.ajax({
-                                url: '/AJAX_1201/member/loginkakao',
+                                url: '/AJAX/member/loginkakao',
                                 type: 'post',
                                 data: jsonData,   
                                 dataType: 'json', 
@@ -93,14 +87,14 @@
                                 complete : function() {
 
                                	   $(function() {
-                           			  $(location).attr('href',"/AJAX_1201/index");
+                           			  $(location).attr('href',"/AJAX/index");
                                     });
                                 }  
                              });
 					      }
 					  </script>
      
-                           <a href="javascript:kakaoLogin();"><img src="../img/카카오회원가입.png"></a>
+                        <a href="javascript:kakaoLogin();"><img src="../img/카카오회원가입.png"></a>
                         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
                         <script>
                             window.Kakao.init("2d1f2f1e5ae21604ec8fd6d463e812f6");
@@ -125,7 +119,7 @@
                                             //	$("input[name='email']").val( kakao_account.email);
                                                 $.ajax({
                                                 
-                                                    url: '/AJAX_1201/member/loginkakao',
+                                                    url: '/AJAX/member/loginkakao',
                                                     type: 'post',
                                                     data: jsonData,   
                                                     dataType: 'json', 
@@ -136,7 +130,7 @@
                                                     complete : function() {
 
                                                    	   $(function() {
-                                               			   $(location).attr('href',"/AJAX_1201/index");
+                                               			   $(location).attr('href',"/AJAX/index");
                                                         });
                                                     }  
                                                  });

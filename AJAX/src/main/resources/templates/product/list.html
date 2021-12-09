@@ -3,9 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CreativeAJAX-Delivery</title>
+	<title>AJAX-Delivery</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
@@ -13,10 +11,10 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" th:href="@{/css/style.css}">
-        <link rel="stylesheet" th:href="@{/css/styleList.css}">
+    <link rel="stylesheet" th:href="@{/css/styleList.css}">
     <script th:src="@{/js/jsscript.js}"></script>
     <script th:src="@{/js/zipcode.js}"></script>
-     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<th:block th:include="@{_header.html}"></th:block>
@@ -94,28 +92,21 @@
 
 				</ul>
 			</div>
-			<div class="paging" th:if="${groups[1] != 0}">
-				<a href="#" class="first">
-					<img th:src="@{/img/btn_page_first.gif}" alt="첫 페이지">
-				</a>
-		
-				<a th:if="${groups[0] > 1}" th:href="@{/product/list(pg=${groups[0]-1})}" class="prev">
-					<img th:src="@{/img/btn_page_prev.gif}" alt="이전 페이지">
-				</a>
-				<ol class="list-paging-ol">
-					<li class="records">
-						<th:block th:each="num:${#numbers.sequence(groups[0], groups[1])}">
-						<a th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, pg=${num})}" th:style="${num == currentPage?'color: black':'color: #cccdcf'}">[[${num}]]</a>                		</th:block>					
-                	</li>
-				</ol>
-			
-				<a th:if="${groups[0]<lastPageNum}" th:href="@{/product/list(pg=${groups[1]+1})}" class="next">
-					<img th:src="@{/img/btn_page_next.gif}" alt="다음 페이지">
-				</a>
-				<a href="#" class="last">
-					<img th:src="@{/img/btn_page_last.gif}" alt="마지막 페이지">
-				</a>
-	
+			<div class="paging">
+				<span class="prev">
+                	<a th:if="${groups[0] > 1}" th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, pg=${groups[0]-1})}" class="prev">이전</a>
+                </span>
+                <span class="num">
+                  	<th:block th:each="num:${#numbers.sequence(groups[0], groups[1])}">
+                		<a th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, pg=${num})}" th:class="${num==currentPage?'on':''}">[[${num}]]</a>
+                	</th:block>
+                </span>
+                <span class="next">
+					<a th:if="${groups[1] < lastPageNum}" th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, pg=${groups[1]+1})}" class="next">다음</a>
+                </span>
+				
+				
+
 			</div>
 		</section>
 	</main>

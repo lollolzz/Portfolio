@@ -27,7 +27,7 @@ ul, ol {list-style : none;}    /* unorderlist , orderlist list-style (속성) �
 a {text-decoration: none; color: #111;}  /* text-decoration CSS 단축 속성은 글씨의 장식(선) 색을 지정  none 대신 green wavy underline underline overline #FF3028 등을 넣을 수 있음  */
 
 #wrapper {        /* #( id선택자   , .은 클래스선택자임 )  wrapper  */   
-    width: 100%;  /*  넓이 100% */
+    width: 100%;
 }
 
 /*헤더 영역*/
@@ -105,7 +105,7 @@ header > nav > div > div > ol {
   margin-right: 27px;
 }
 
-/**************시현 수정 20211130***************/
+
 header > nav > div > div > ol.on {
 	padding: 10px;
 	background-color: lightgrey;
@@ -193,6 +193,9 @@ header .menu > li > a {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+.index-main{
+	overflow-x: hidden;
+}
 
 /* MainBanner */
 .MainTop {
@@ -200,6 +203,10 @@ header .menu > li > a {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 @media (max-width: 992px) {
@@ -306,13 +313,6 @@ header .menu > li > a {
   margin-bottom: 0 !important;
 }
 
-
-
-/* �명꽣�곸뿭 */
-
-
-
-/* �ㅻⅨ履� �섎떒 �곷떒 �대룞踰꾪듉 */
 #top {
     position: fixed;
     left: 50%;
@@ -328,7 +328,7 @@ header .menu > li > a {
 }
 
 
-/* shop 怨듯넻 */
+/* shop */
 main > section > nav {
     width: 100%;
     height: 36px;
@@ -392,7 +392,6 @@ h5.rating.star5 {background-position: 0 -200px;}
 }
 
 
-/* list�섏씠吏� */
 #list {
   padding: 16px;
   box-sizing: border-box;
@@ -540,7 +539,7 @@ h5.rating.star5 {background-position: 0 -200px;}
     font-weight: bold;
 }
 
-/* view : �쒗뭹二쇰Ц�곸꽭�섏씠吏� */
+/* view */
 #view {
     margin: 0 auto;
     padding: 16px;
@@ -664,11 +663,14 @@ h5.rating.star5 {background-position: 0 -200px;}
     position :fixed; 
 }
 #view .info > .summary .cardhyeteckPage > img {
-  width: 589px; height: 487px; padding-left: 225px; padding-top: 30px;
+  width: 589px; 
+  height: 609px; 
+  padding-left: 267px; 
+  padding-top: 30px;
 }
 #view .info > .summary > .cardhyeteckPage > .hyeteckCheck {
     margin: 20px;
-    margin-left: 250px;
+    margin-left: 233px;
     border: 1px solid #dbdbdb;
     color : #f1f1f1;
     background: rgb(68, 67, 67);
@@ -1950,7 +1952,7 @@ margin: 10px;
   text-align: left;
   color :rgb(20, 20, 20);
 }
-.summary-products{/******************시현 추가************************/
+.summary-products{
     margin: 10px;
     width: 288px;
     height: 40px;
@@ -1961,11 +1963,14 @@ margin: 10px;
   height: 30px;
 }
 .summary-products > p {
-  float: left;
-  padding: 5px;
-  font-size: 12px;
-  color: #000;
-  font-weight: bold;
+    padding: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 12px;
+    color: #000;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: left;
 }
 .summary-products > span{
   float: right;
@@ -2498,7 +2503,6 @@ margin: 10px;
   border-bottom: 1px solid rgb(236, 239, 241);
 
 }
-
 .cart-checkProduct{
 	text-align: left;
 }
@@ -2737,17 +2741,16 @@ text-align: center;
 .popup1 {
   position: fixed;
   left: calc(50% - 200px);
-  top: calc(30% );
+  top: calc(30%);
   width: 400px;
-  max-height: auto;
+  height: 200px;
   background: #fff;
-  transition:  10s;
   
 }
 
 .popup1 > p{
   padding: 100px;
-  padding-left: 120px;
+  text-align: center;
   font-size: 12px;
   transition:  10s;
 }
@@ -2775,7 +2778,7 @@ text-align: center;
 
 .popup2 > p{
   padding: 100px;
-  padding-left: 110px;
+  text-align: center;
   font-size: 12px;
 }
 .popup_bg3 {
@@ -2798,8 +2801,8 @@ text-align: center;
 }
 
 .popup3 > p{
-  padding: 90px;
-  padding-left: 100px;
+  padding: 85px;
+  text-align: center;
   font-size: 12px;
 }
 .popup_bg4 {
@@ -2822,8 +2825,8 @@ text-align: center;
 }
 
 .popup4 > p{
-  padding: 40px;
-  padding-left: 80px;
+  padding: 44px;
+  text-align: center;
   font-size: 12px;
 }
 
@@ -2847,7 +2850,7 @@ color: gray;
 
 .footer1 {
   width: 1200px;
-  height: 150px;
+  height: 115px;
   margin: 0 auto;
 
 }
@@ -2856,11 +2859,13 @@ color: gray;
   display: inline-block;
   font-size: 9px;
   padding-top: 35px;
+  padding-bottom:35px;
 }
 .footer3 {
   float: right;
   font-size: 9px;
   padding-top: 35px;
+  padding-bottom:35px;
 }
 
 .footer4 {
@@ -2896,9 +2901,6 @@ float: left;
 text-decoration: underline;
 font-size: 13px;
 }
-
-/* 능한 */
-
 
 body {
   margin: 0;
@@ -2953,30 +2955,6 @@ body {
   height: 100%;
 }
 
-/* MainBanner */
-.MainTop {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-}
-@media (max-width: 992px) {
-  .MainTop {
-    height: 100vh;
-    width: auto;
-    min-height: 40rem;
-    padding-top: 4.5rem;
-    padding-bottom: 0;
-  }
-}
-.MainBanner > ul{
-  list-style: none;
-  padding-left: 0;
-}
-.bannerimg{
-  width: 100%;
-  height: 100%;
-}
 /* Tick */
 /*.page-section {
   padding-top: 100px;
@@ -3495,7 +3473,7 @@ margin: 10px;
 
 .delivery-center-header > li>span{
   width: 500px;
-  font-size: 15px;
+  font-size: 14px;
   color: #000;
 }
 .delivery-center {
@@ -3591,10 +3569,10 @@ margin: 10px;
 .rightdelivery:nth-child(1){
   margin : 0;
   width: 90%;
-  height: auto;/*****************시현 추가*************************/
+  height: auto;
   padding-top: 15px;
   padding-bottom: 15px;
-  padding-left:10px;/*******************여기까지 시현 추가****************************/
+  padding-left:10px;
   list-style-type: none;
   margin :  10px;
   background-color: rgb(255, 255, 255);
@@ -3609,15 +3587,13 @@ margin: 10px;
   background-color: rgb(255, 255, 255);
 }
 .rightdelivery > div > li {
-  list-style: none; /****************시현 추가*********************/
+  list-style: none; 
   width: 100%;
   height: 20px;
  
 }
 
-
-
-.rightdelivery > div > li > span:nth-child(1){ /****************시현 추가*********************/
+.rightdelivery > div > li > span:nth-child(1){
   float: left;
   height: 20px;
   width: 40%;
@@ -3627,15 +3603,13 @@ margin: 10px;
   color :rgb(20, 20, 20)
 }
 
-
-
 .rightdelivery > div > li > span:nth-child(2){
   float:right;
   text-align: right;
   height: 20px;
   width: 40%;
   font-size: 18px;
-  margin: 3px 10px 5px 0px; /****************시현 추가*******************/
+  margin: 3px 10px 5px 0px;
   padding-top: 17px;
   padding-right: 15px;
   color :rgb(20, 20, 20)
@@ -3688,8 +3662,6 @@ margin: 10px;
   font-size: 15px;
 }
 
-
-/*시현 20211128 뷰 페이지 페이징 가운데 정렬 처리, 수량박스 설정 추가, 푸터 로고 위치 설정*/
 #view .paging { 
 	text-align: center;
 }
@@ -3764,28 +3736,28 @@ margin: 10px;
 }
 /*******************************************************************/
 .leftdelivery > div:nth-child(2)  > input {
-	width: 50%;
-	margin : 5px 20px 5px 5px;
-	 text-align: center;
-	 float : left;
+	width: 20%;
+    margin: 5px 20px 5px 20px;
+    text-align: center;
+    float: left;
 }
 .leftdelivery > div:nth-child(2)  > button {
-	width: 25%;
+	width: 12%;
 	margin : 5px 20px 5px 5px;
 	 text-align: center;
 	 float : left;
 }
 .leftdelivery > div:nth-child(3)  > input {
-	width: 80%;
-	margin : 5px 20px 5px 5px;
-	 text-align: center;
-	 float : left;
+	width: 65%;
+    margin: 5px 20px 5px 20px;
+    text-align: center;
+    float: left;
 }
 .leftdelivery > div:nth-child(4)  > input {
-	width: 80%;
-	margin : 5px 20px 5px 5px;
-	 text-align: center;
-	 float : left;
+	width: 65%;
+    margin: 5px 20px 5px 20px;
+    text-align: center;
+    float: left;
 }
 
 .resultEmail{

@@ -2,9 +2,13 @@ package kr.co.ajax.vo;
 
 import java.util.List;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+
+@Getter
+@Setter
 public class CategoriesVo {
 	
 	private int cate1;
@@ -12,6 +16,8 @@ public class CategoriesVo {
 	private String tit1;
 	private String tit2;
 	private List<ProductCate2Vo> cate2List;
+	
+	
 	
 	
 	

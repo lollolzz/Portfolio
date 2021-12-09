@@ -5,7 +5,7 @@ $(function(){
 		var email = $('input[name=email]').val();
 		var jsonData = {'email':email};		
 		$.ajax({
-			url: '/AJAX_1201/member/checkEmail',
+			url: '/AJAX/member/checkEmail',
 			type: 'GET',
 			data: jsonData,
 			dataType: 'json',

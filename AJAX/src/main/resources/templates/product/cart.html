@@ -2,11 +2,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />   
-    <title>CreativeAJAX-Cart</title>
+    <meta charset="utf-8" /> 
+    <title>AJAX-Cart</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
@@ -87,14 +84,14 @@
     			
     			// 삭제 요청하기
     			$.ajax({
-    				url: '/AJAX_1201/product/cartDelete',
+    				url: '/AJAX/product/cartDelete',
     				type: 'get',
     				traditional: true, /* 배열값 전송을 위한 옵션 */
     				data: jsonData,
     				dataType: 'json',
     				success: function(data){
     					// 다시 장바구니 페이지 요청
-    					location.href='/AJAX_1201/product/cart';
+    					location.href='/AJAX/product/cart';
     				}
     			});
     			
@@ -165,7 +162,7 @@
     				};
 		
     			$.ajax({
-    				url: '/AJAX_1201/product/delivery',
+    				url: '/AJAX/product/delivery',
     				type: 'post',
     				traditional: true, 
     				data: jsonData,
@@ -176,7 +173,7 @@
     					
     					// 주문 페이지로 이동
     					var orderId = data.orderId;
-    					location.href='/AJAX_1201/product/delivery?orderId='+orderId;
+    					location.href='/AJAX/product/delivery?orderId='+orderId;
     				}
     			});
     			

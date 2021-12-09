@@ -2,12 +2,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />     
-    <title>CreativeAJAX-Payment</title>
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="utf-8" /> 
+    <title>AJAX-Payment</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -76,7 +73,7 @@
                 }
                 	
                 	$.ajax({
-        				url: '/AJAX_1201/product/completeOrder',
+        				url: '/AJAX/product/completeOrder',
         				type: 'post',
         				traditional: true, 
         				data: jsonData,
@@ -87,7 +84,7 @@
 
                          	   $(function() {
                          	      	alert("정상적으로 주문되었습니다.")
-                     			  $(location).attr('href',"/AJAX_1201/index");
+                     			  $(location).attr('href',"/AJAX/index");
                               });
                           }  
         			});
