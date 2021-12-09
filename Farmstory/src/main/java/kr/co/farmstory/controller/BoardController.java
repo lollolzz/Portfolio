@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,13 +52,17 @@ public class BoardController {
    }
    
    @GetMapping("/board/write")
-   public String write(String group, String cate, Model model) {
-      
-      model.addAttribute("group", group);
-      model.addAttribute("cate",cate);
-      
-      return "/board/write";
-   }
+	public String write(String group, String cate, Model model,HttpSession sess) {
+		
+		model.addAttribute("group", group);
+		model.addAttribute("cate", cate);
+		if(sess.getAttribute("sessMember") != null) {
+			return "/board/write";
+		}
+		else {
+			return "redirect:/member/login?success=103";
+		}
+	}
    
    @PostMapping("/board/write")
    public String write(HttpServletRequest req, ArticleVo vo, String group, String cate, Model model) {
@@ -103,19 +108,23 @@ public class BoardController {
    }
 
    @GetMapping("/board/view")
-   public String view(Model model, String group, String cate, int seq) {
-
-      ArticleVo vo = service.selectArticle(seq);
-      List<ArticleVo> comments = service.selectComments(seq);
-      
-         
-      model.addAttribute(vo);
-      model.addAttribute("comments", comments);
-      model.addAttribute("group", group);
-      model.addAttribute("cate", cate);
-
-      return "/board/view";
-   }
+	public String view(HttpSession sess, Model model, String group, String cate, int seq) {
+		
+		ArticleVo vo = service.selectArticle(seq);
+		List<ArticleVo> comments = service.selectComments(seq);
+		
+		model.addAttribute(vo);
+		model.addAttribute("comments",comments);
+		model.addAttribute("group", group);
+		model.addAttribute("cate", cate);
+		
+		if(sess.getAttribute("sessMember") != null) {
+			return "/board/view";
+		}
+		else {
+			return "redirect:/member/login?success=104";
+		}
+	}
    
    @GetMapping("/board/modify")
    public String modify(Model model, String group, String cate, int seq) {

@@ -30,6 +30,7 @@ public interface BoardDao {
 	
 	public void updateArticle(ArticleVo vo);
 	
+	
 	public void updateFileDownload(int fseq);
 	
 	public void updateComment(int seq);

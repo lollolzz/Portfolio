@@ -24,24 +24,28 @@ public class MemberController {
 	private MemberService service;
 		
 	@GetMapping("/member/login")
-	public String login() {
-
+	public String login(Model model, String success) {
+		
+		model.addAttribute("success", success);
+		
 		return "/member/login";
 	}
 	
 	@PostMapping("/member/login")
 	public String login(HttpSession sess, String uid, String pass) {
-	  
-	  MemberVo vo = service.selectMember(uid, pass); // if문에서 사용 할거이기 때문에 MemberVo에 담아준다
-
-	  if(vo == null) {
-		  // 회원이 아닐경우
-		  return "redirect:/member/login?success=100";
-	  }else {
-		  // 회원이 맞을경우
-		  sess.setAttribute("sessMember", vo);
-		  return "redirect:/index"; 
-	  }
+		
+		MemberVo vo = service.selectMember(uid, pass);
+		
+		if(vo == null) {//회원이 아닐경우
+			
+			return "redirect:/member/login?success=100";
+			
+		}else {//회원이 맞으면
+			
+			sess.setAttribute("sessMember", vo);
+			
+			return "redirect:/index?success=104";
+		}
 	}
 	
 	@GetMapping("/member/logout")

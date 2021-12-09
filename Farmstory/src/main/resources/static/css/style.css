@@ -97,7 +97,7 @@ footer > p {
     font-size: 11px;
     color: #585858;
     margin-top: 26px;
-    margin-right: 16px;
+    margin-right: 4px;
     line-height: 16px;
 }
 footer > p > em {
@@ -251,7 +251,20 @@ main > .info > div > .account {
     line-height: 18px;
     color: #666;
 }
-
+.cs > img:nth-child(1){
+	height: 50px;
+}
+.cs > img:nth-child(2){
+	height: 43px;
+}
+.cs > ul {
+	float: right;
+	margin-top: 5px;
+	margin-right: 10px;
+}
+.btns{
+	margin-top: 18px;
+}
 #tabs ul {}
 #tabs ul > li {
     border-bottom: 1px solid #d1d1d1;
@@ -752,3 +765,7 @@ main > .info > div > .account {
     margin-top: 10px;
     text-align: right;
 }
+
+
+
+

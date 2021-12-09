@@ -18,7 +18,7 @@ public class MainController {
 	
 	
 	@GetMapping(value = {"/","/index"})
-	public String index(Model model) {
+	public String index(Model model, String success) {
 		
 		List<ArticleVo> latest1 = service.selectLatest("grow");
 		List<ArticleVo> latest2 = service.selectLatest("school");
@@ -27,6 +27,7 @@ public class MainController {
 		model.addAttribute("latest1", latest1);
 		model.addAttribute("latest2", latest2);
 		model.addAttribute("latest3", latest3);
+		model.addAttribute("success", success);
 
 		return "/index";
 	}

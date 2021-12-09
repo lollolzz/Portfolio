@@ -10,7 +10,7 @@
         	[[${session.sessMember.nick}]]님 반갑습니다 |
         	<a th:href="@{/member/logout}" class="logout">로그아웃 |</a>
         </th:block>
-        <a href="#">고객센터</a>
+        <a th:href="@{/board/list(group=Community,cate=qna)}">고객센터</a>
     </p>
     <img th:src="@{/img/head_txt_img.png}" alt="3만원 이상 무료배송"/>
     

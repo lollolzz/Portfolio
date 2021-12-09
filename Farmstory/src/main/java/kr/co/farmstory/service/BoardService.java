@@ -27,6 +27,7 @@ public class BoardService {
 	
 	@Value("${file.upload-dir}")
     private String uploadFileDir;
+	
 	// dao 구현 메서드 
 	public int insertArticle(ArticleVo vo) {
 		dao.insertArticle(vo);
