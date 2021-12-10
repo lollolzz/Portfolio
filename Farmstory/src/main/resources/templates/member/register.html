@@ -40,7 +40,7 @@
 			type이 post일땐 $.post()를 사용한다
 			-> /member/checkUid?uid=abcd 의 형식으로 전달이 될것이다.*/
 			
-			$.get('/Famrstory/member/checkUid', jsonData, function(data){
+			$.get('/Farmstory/member/checkUid', jsonData, function(data){
 					
 		 			if(data.result == 1){
 						$('.resultId').css('color', 'red').text('이미 사용중인 아이디 입니다.');
@@ -100,7 +100,7 @@
 			var nick = $(this).val();
 			var jsonData = {'nick':nick};
 			
-			$.get('/Famrstory/member/checkNick', jsonData, function(data){
+			$.get('/Farmstory/member/checkNick', jsonData, function(data){
 				
 				if(data.result == 1){
 					$('.resultNick').css('color', 'red').text('이미 사용중인 닉네임 입니다.');
@@ -138,7 +138,7 @@
 		    	var hp = $(this).val();
 		    	var jsonData = {'hp':hp}; // js 객체 생성 (json은 JS문법이므로)
 		    	
-		    	$.get('/Famrstory/member/checkHp',jsonData, function(data){
+		    	$.get('/Farmstory/member/checkHp',jsonData, function(data){
 		    		if(hp==''){
 		    			$('.resultHp').css('color','red').text('유효하지 않은 전화번호입니다. 번호를 다시 입력해주세요.');
 		    		}else if(data.result == 1) {
