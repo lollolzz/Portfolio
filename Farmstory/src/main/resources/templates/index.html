@@ -9,9 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>   
-    <script th:src="@{/js/slider.js}"></script> 
+    <script th:src="@{/js/slider.js}"></script>
+     
     <script th:inline="javascript">
-    	
+    	// 타임리프를 활용하여 사용해보기 위하여 작성한 것 
     	var success = [[${success}]]
     	
     	if(success == 104){
@@ -53,12 +54,16 @@
                     <a th:href="@{/board/list(group=Croptalk,cate=grow)}"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
                     <img src="./img/main_latest1_img.jpg" alt="이미지"/>
                     <table border="0">
+                    	<!-- MainController에서 model로 latest1(ArticleVo를 담고 있음)을 전송해주었기 때문에, 
+                    	아래에서 송신하여 vo라는 임의의 변수에 lastest1를 담아주어 title, rdate를 출력 할 수 있게 되었다. -->
                         <tr th:each="vo:${latest1}">
                             <td>></td>
                             <td><a th:href="@{/board/view(group=Croptalk,cate=grow,seq=${vo.seq})}">[[${vo.title}]]</a></td> 
                             <!-- group과 cate를 parameter로 받지않고 정확하게 받아오는 이유는 메인 페이지에서 최신글을 눌렀을때 그 해당 글로바로 가야하기 때문이며 정확하게 그 번호의 글을 불러 와야하기 때문이다,,
                             그리고 MainController에서도 정확하게 cate이름을 명칭 해주었기 때문이다 -->
+                            
                             <td>[[${vo.rdate.substring(2,10)}]]</td>
+                            <!-- substring은 ()의 범위 만큼 뒤에 글자 자르는 기능 -->
                         </tr>
                     </table>
                 </div>

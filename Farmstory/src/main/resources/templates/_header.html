@@ -2,10 +2,13 @@
     <a th:href="@{/}" class="logo"><img th:src="@{/img/logo.png}" alt="로고"/></a>
     <p>
         <a th:href="@{/}">HOME |</a>
+        <!-- session은 내장객체이므로 로그인 하면 따로 controller로 값을 설정해 주지 않아도 session의 정보가 넘어온다. 
+        아래는 session정보가 없을 경우 로그인 혹은 계정이 없다면 회원가입을 권유하기 위하여 마크업해둔 것이다. -->
         <th:block th:if= "${session.sessMember} == null">
-        <a th:href="@{/member/login}">로그인 |</a>
-        <a th:href="@{/member/terms}">회원가입 |</a>
+	        <a th:href="@{/member/login}">로그인 |</a>
+	        <a th:href="@{/member/terms}">회원가입 |</a>
         </th:block>
+        <!-- session값이 존재할 경우 가입당시 입력했던 nick을 불러와 로그인한 유저의 존재를 밝혀 줌  -->
         <th:block th:if= "${session.sessMember} != null">
         	[[${session.sessMember.nick}]]님 반갑습니다 |
         	<a th:href="@{/member/logout}" class="logout">로그아웃 |</a>
