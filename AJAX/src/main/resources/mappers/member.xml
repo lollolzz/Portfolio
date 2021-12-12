@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.ajax.dao.MemberDao">
+
 	<insert id="insertMember">
 		INSERT INTO `aj_member` SET
 			`uid`=#{email},
@@ -36,8 +37,7 @@
 	</select>
 	<update id="updateMember"></update>
 	<delete id="deleteMember"></delete>
-	
-	<!-- 이메일유효성 20211125 변진하 -->
+
 	<select id="selectCountEmail" resultType="int">
 		SELECT COUNT(`email`) FROM `aj_member` WHERE `email`=#{email};
 	</select>

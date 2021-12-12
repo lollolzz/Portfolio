@@ -16,64 +16,81 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/jsscript.js}"></script>
     <script>
-	// 정규표현식(Regular Expression)
-	var reUid  = /^[a-z]+[a-z0-9]{3,10}$/;
-	var rePass = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,}$/;
-	var reName = /^[가-힣]{2,10}$/;
-	var reNick = /^[a-z가-힣0-9]{2,10}$/;
-
-
-	// 최종 유효성 검사에 사용될 상태변수
-	var isUidOk  = false;
-	var isPassOk = false;
-	var isNameOk = false;
-	var isNickOk = false;
+		// 정규표현식(Regular Expression)
+		var reUid  = /^[a-z]+[a-z0-9]{3,10}$/;
+		var rePass = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,}$/;
+		var reName = /^[가-힣]{2,10}$/;
+		var reNick = /^[a-z가-힣0-9]{2,10}$/;
 	
 	
-	$(document).ready(function(){
-	    		
-		
-		// 비밀번호 유효성 검사
-		$('input[name=pass2]').focusout(function(){
+		// 최종 유효성 검사에 사용될 상태변수
+		var isUidOk  = false;
+		var isPassOk = false;
+		var isNameOk = false;
+		var isNickOk = false;
+	
+	
+		$(document).ready(function(){
+		    		
 			
-			var pass1 = $('input[name=pass1]').val();
-			var pass2 = $('input[name=pass2]').val();
-			
-			if(pass1 == pass2){
+			// 비밀번호 유효성 검사
+			$('input[name=pass2]').focusout(function(){
 				
-				if(rePass.test(pass2)){
-					$('.resultPass').css('color', 'green').text('비밀번호가 일치 합니다.');
-					isPassOk = true;
-				}else{				
-					$('.resultPass').css('color', 'red').text('비밀번호는 영문,숫자 조합 최소 4이상 이어야 합니다.');
+				var pass1 = $('input[name=pass1]').val();
+				var pass2 = $('input[name=pass2]').val();
+				
+				if(pass1 == pass2){
+					
+					if(rePass.test(pass2)){
+						$('.resultPass').css('color', 'green').text('비밀번호가 일치 합니다.');
+						isPassOk = true;
+					}else{				
+						$('.resultPass').css('color', 'red').text('비밀번호는 영문,숫자 조합 최소 4이상 이어야 합니다.');
+						isPassOk = false;
+					}
+					
+				}else{
+					$('.resultPass').css('color', 'red').text('비밀번호가 일치 하지 않습니다.');
 					isPassOk = false;
 				}
 				
-			}else{
-				$('.resultPass').css('color', 'red').text('비밀번호가 일치 하지 않습니다.');
-				isPassOk = false;
-			}
+			});
 			
-		});
+			// 이름 유효성 검사
+			$('input[name=name]').focusout(function(){
+				
+				var name = $(this).val();
+				 var jsonData = {'name':name};
 		
-		// 이름 유효성 검사
-		$('input[name=name]').focusout(function(){
+				if(reName.test(name)){
+					isNameOk = true;
+				}else{
+					$('.resultName').css('color', 'red').text('이름이 유효하지 않습니다.');
+					isNameOk = false;
+				}	
+			});
 			
-			var name = $(this).val();
-			 var jsonData = {'name':name};
-	
-			if(reName.test(name)){
-				isNameOk = true;
-			}else{
-				$('.resultName').css('color', 'red').text('이름이 유효하지 않습니다.');
-				isNameOk = false;
-			}	
-		});
-		
-		// 이메일 중복 체크
-		$('select[name=emailLast]').focusout(function(){
+			// 이메일 중복 체크
+			$('select[name=emailLast]').focusout(function(){
+			    	var email =  $('input[name=emailFirst]').val() +"@"+$('select[name=emailLast]').val();
+			    	var uid =  $('input[name=emailFirst]').val() +"@"+$('select[name=emailLast]').val();
+			    	var jsonData = {'email':email}; // js 객체 생성 (json은 JS문법이므로)
+			    	
+			    	$('input[name=email]').val(email);
+			    	$('input[name=uid]').val(email);
+			    	$.get('/AJAX/member/checkEmail',jsonData, function(data){
+			    		if(email==''){
+			    			$('.resultEmail').css('color','red').text('유효하지 않은 이메일입니다. 이메일을 다시 입력해주세요.');
+			    		}else if(data.result == 1) {
+			    			$('.resultEmail').css('color','red').text('이미 사용중인 이메일입니다.');
+			    		}else {
+			    			$('.resultEmail').css('color','green').text('사용가능한 이메일입니다.');
+			    		}
+			    	},'json'); 
+			    	
+		    	});
+			$('input[name=emailFirst]').focusout(function(){
 		    	var email =  $('input[name=emailFirst]').val() +"@"+$('select[name=emailLast]').val();
-		    	var uid =  $('input[name=emailFirst]').val() +"@"+$('select[name=emailLast]').val();
 		    	var jsonData = {'email':email}; // js 객체 생성 (json은 JS문법이므로)
 		    	
 		    	$('input[name=email]').val(email);
@@ -89,132 +106,115 @@
 		    	},'json'); 
 		    	
 	    	});
-		$('input[name=emailFirst]').focusout(function(){
-	    	var email =  $('input[name=emailFirst]').val() +"@"+$('select[name=emailLast]').val();
-	    	var jsonData = {'email':email}; // js 객체 생성 (json은 JS문법이므로)
-	    	
-	    	$('input[name=email]').val(email);
-	    	$('input[name=uid]').val(email);
-	    	$.get('/AJAX/member/checkEmail',jsonData, function(data){
-	    		if(email==''){
-	    			$('.resultEmail').css('color','red').text('유효하지 않은 이메일입니다. 이메일을 다시 입력해주세요.');
-	    		}else if(data.result == 1) {
-	    			$('.resultEmail').css('color','red').text('이미 사용중인 이메일입니다.');
-	    		}else {
-	    			$('.resultEmail').css('color','green').text('사용가능한 이메일입니다.');
-	    		}
-	    	},'json'); 
-	    	
-    	});
-		// 휴대폰 중복 체크
-			$('input[name=mobile1]').focusout(function(){
-		    	var hp = $('input[name=mobile1]').val()+"-"+$('input[name=mobile2]').val()+"-"+$('input[name=mobile3]').val();
-		    	var jsonData = {'hp':hp}; // js 객체 생성 (json은 JS문법이므로)
-		    	$('input[name=hp]').val(hp);
-		    	
-		    	$.get('/AJAX/member/checkHp',jsonData, function(data){
-		    		if(hp==''){
-		    			$('.resultHp').css('color','red').text('유효하지 않은 전화번호입니다. 번호를 다시 입력해주세요.');
-		    		}else if(data.result == 1) {
-		    			$('.resultHp').css('color','red').text('이미 사용중인 전화번호입니다.');
-		    		}else {
-		    			$('.resultHp').css('color','green').text('사용가능한 전화번호입니다.');
-		    		}
-		    	},'json'); 
-		    	
-	    	});
-			$('input[name=mobile2]').focusout(function(){
-		    	var hp = $('input[name=mobile1]').val()+"-"+$('input[name=mobile2]').val()+"-"+$('input[name=mobile3]').val();
-		    	var jsonData = {'hp':hp}; // js 객체 생성 (json은 JS문법이므로)
-		    	$('input[name=hp]').val(hp);
-		    	
-		    	$.get('/AJAX/member/checkHp',jsonData, function(data){
-		    		if(hp==''){
-		    			$('.resultHp').css('color','red').text('유효하지 않은 전화번호입니다. 번호를 다시 입력해주세요.');
-		    		}else if(data.result == 1) {
-		    			$('.resultHp').css('color','red').text('이미 사용중인 전화번호입니다.');
-		    		}else {
-		    			$('.resultHp').css('color','green').text('사용가능한 전화번호입니다.');
-		    		}
-		    	},'json'); 
-		    	
-	    	});
-			$('input[name=mobile3]').focusout(function(){
-		    	var hp = $('input[name=mobile1]').val()+"-"+$('input[name=mobile2]').val()+"-"+$('input[name=mobile3]').val();
-		    	var jsonData = {'hp':hp}; // js 객체 생성 (json은 JS문법이므로)
-		    	$('input[name=hp]').val(hp);
-		    	
-		    	$.get('/AJAX/member/checkHp',jsonData, function(data){
-		    		if(hp==''){
-		    			$('.resultHp').css('color','red').text('유효하지 않은 전화번호입니다. 번호를 다시 입력해주세요.');
-		    		}else if(data.result == 1) {
-		    			$('.resultHp').css('color','red').text('이미 사용중인 전화번호입니다.');
-		    		}else {
-		    			$('.resultHp').css('color','green').text('사용가능한 전화번호입니다.');
-		    		}
-		    	},'json'); 
-		    	
-	    	});
-			
-	//////////////////생일 ////////////////////////
-			$('select[name=birthday_year]').focusout(function(){
-		    	var bDay =  $('select[name=birthday_year]').val() +"-"+$('select[name=birthday_month]').val()+1+"-"+$('select[name=birthday_day]').val()    ;
-		    
-		    	var jsonData = {'bDay':bDay}; // js 객체 생성 (json은 JS문법이므로)
-		    	
-		    	$('input[name=bDay]').val(bDay);
-		    	$('input[name=uid]').val(email);
-		    	$.get('/AJAX/member/checkEmail',jsonData, function(data){
-		    		if(email==''){
-		    			$('.resultEmail').css('color','red').text('유효하지 않은 이메일입니다. 이메일을 다시 입력해주세요.');
-		    		}else if(data.result == 1) {
-		    			$('.resultEmail').css('color','red').text('이미 사용중인 이메일입니다.');
-		    		}else {
-		    			$('.resultEmail').css('color','green').text('사용가능한 이메일입니다.');
-		    		}
-		    	},'json'); 
-		    	
-	    	});
-			$('select[name=birthday_month]').focusout(function(){
-
-		    	var bDay =  $('select[name=birthday_year]').val() +"-"+$('select[name=birthday_month]').val()+"-"+$('select[name=birthday_day]').val()    ;
-		    
-		    	var jsonData = {'bDay':bDay}; // js 객체 생성 (json은 JS문법이므로)
-		    	
-		    	$('input[name=bDay]').val(bDay);
-		    	$('input[name=uid]').val(email);
-		    	$.get('/AJAX/member/checkEmail',jsonData, function(data){
-		    		if(email==''){
-		    			$('.resultEmail').css('color','red').text('유효하지 않은 이메일입니다. 이메일을 다시 입력해주세요.');
-		    		}else if(data.result == 1) {
-		    			$('.resultEmail').css('color','red').text('이미 사용중인 이메일입니다.');
-		    		}else {
-		    			$('.resultEmail').css('color','green').text('사용가능한 이메일입니다.');
-		    		}
-		    	},'json'); 
-		    	
-	    	});
-			$('select[name=birthday_day]').focusout(function(){
-
-		    	var bDay =  $('select[name=birthday_year]').val() +"-"+$('select[name=birthday_month]').val()+"-"+$('select[name=birthday_day]').val()    ;
-		    
-		    	var jsonData = {'bDay':bDay}; // js 객체 생성 (json은 JS문법이므로)
-		    	
-		    	$('input[name=bDay]').val(bDay);
-		    	$('input[name=uid]').val(email);
-		    	$.get('/AJAX/member/checkEmail',jsonData, function(data){
-		    		if(email==''){
-		    			$('.resultEmail').css('color','red').text('유효하지 않은 이메일입니다. 이메일을 다시 입력해주세요.');
-		    		}else if(data.result == 1) {
-		    			$('.resultEmail').css('color','red').text('이미 사용중인 이메일입니다.');
-		    		}else {
-		    			$('.resultEmail').css('color','green').text('사용가능한 이메일입니다.');
-		    		}
-		    	},'json'); 
-		    	
-	    	});
+			// 휴대폰 중복 체크
+				$('input[name=mobile1]').focusout(function(){
+			    	var hp = $('input[name=mobile1]').val()+"-"+$('input[name=mobile2]').val()+"-"+$('input[name=mobile3]').val();
+			    	var jsonData = {'hp':hp}; // js 객체 생성 (json은 JS문법이므로)
+			    	$('input[name=hp]').val(hp);
+			    	
+			    	$.get('/AJAX/member/checkHp',jsonData, function(data){
+			    		if(hp==''){
+			    			$('.resultHp').css('color','red').text('유효하지 않은 전화번호입니다. 번호를 다시 입력해주세요.');
+			    		}else if(data.result == 1) {
+			    			$('.resultHp').css('color','red').text('이미 사용중인 전화번호입니다.');
+			    		}else {
+			    			$('.resultHp').css('color','green').text('사용가능한 전화번호입니다.');
+			    		}
+			    	},'json'); 
+			    	
+		    	});
+				$('input[name=mobile2]').focusout(function(){
+			    	var hp = $('input[name=mobile1]').val()+"-"+$('input[name=mobile2]').val()+"-"+$('input[name=mobile3]').val();
+			    	var jsonData = {'hp':hp}; // js 객체 생성 (json은 JS문법이므로)
+			    	$('input[name=hp]').val(hp);
+			    	
+			    	$.get('/AJAX/member/checkHp',jsonData, function(data){
+			    		if(hp==''){
+			    			$('.resultHp').css('color','red').text('유효하지 않은 전화번호입니다. 번호를 다시 입력해주세요.');
+			    		}else if(data.result == 1) {
+			    			$('.resultHp').css('color','red').text('이미 사용중인 전화번호입니다.');
+			    		}else {
+			    			$('.resultHp').css('color','green').text('사용가능한 전화번호입니다.');
+			    		}
+			    	},'json'); 
+			    	
+		    	});
+				$('input[name=mobile3]').focusout(function(){
+			    	var hp = $('input[name=mobile1]').val()+"-"+$('input[name=mobile2]').val()+"-"+$('input[name=mobile3]').val();
+			    	var jsonData = {'hp':hp}; // js 객체 생성 (json은 JS문법이므로)
+			    	$('input[name=hp]').val(hp);
+			    	
+			    	$.get('/AJAX/member/checkHp',jsonData, function(data){
+			    		if(hp==''){
+			    			$('.resultHp').css('color','red').text('유효하지 않은 전화번호입니다. 번호를 다시 입력해주세요.');
+			    		}else if(data.result == 1) {
+			    			$('.resultHp').css('color','red').text('이미 사용중인 전화번호입니다.');
+			    		}else {
+			    			$('.resultHp').css('color','green').text('사용가능한 전화번호입니다.');
+			    		}
+			    	},'json'); 
+			    	
+		    	});
+				
+		//////////////////생일 ////////////////////////
+				$('select[name=birthday_year]').focusout(function(){
+			    	var bDay =  $('select[name=birthday_year]').val() +"-"+$('select[name=birthday_month]').val()+1+"-"+$('select[name=birthday_day]').val()    ;
+			    
+			    	var jsonData = {'bDay':bDay}; // js 객체 생성 (json은 JS문법이므로)
+			    	
+			    	$('input[name=bDay]').val(bDay);
+			    	$('input[name=uid]').val(email);
+			    	$.get('/AJAX/member/checkEmail',jsonData, function(data){
+			    		if(email==''){
+			    			$('.resultEmail').css('color','red').text('유효하지 않은 이메일입니다. 이메일을 다시 입력해주세요.');
+			    		}else if(data.result == 1) {
+			    			$('.resultEmail').css('color','red').text('이미 사용중인 이메일입니다.');
+			    		}else {
+			    			$('.resultEmail').css('color','green').text('사용가능한 이메일입니다.');
+			    		}
+			    	},'json'); 
+			    	
+		    	});
+				$('select[name=birthday_month]').focusout(function(){
 	
-	});   
+			    	var bDay =  $('select[name=birthday_year]').val() +"-"+$('select[name=birthday_month]').val()+"-"+$('select[name=birthday_day]').val()    ;
+			    
+			    	var jsonData = {'bDay':bDay}; // js 객체 생성 (json은 JS문법이므로)
+			    	
+			    	$('input[name=bDay]').val(bDay);
+			    	$('input[name=uid]').val(email);
+			    	$.get('/AJAX/member/checkEmail',jsonData, function(data){
+			    		if(email==''){
+			    			$('.resultEmail').css('color','red').text('유효하지 않은 이메일입니다. 이메일을 다시 입력해주세요.');
+			    		}else if(data.result == 1) {
+			    			$('.resultEmail').css('color','red').text('이미 사용중인 이메일입니다.');
+			    		}else {
+			    			$('.resultEmail').css('color','green').text('사용가능한 이메일입니다.');
+			    		}
+			    	},'json'); 
+			    	
+		    	});
+				$('select[name=birthday_day]').focusout(function(){
+	
+			    	var bDay =  $('select[name=birthday_year]').val() +"-"+$('select[name=birthday_month]').val()+"-"+$('select[name=birthday_day]').val()    ;
+			    
+			    	var jsonData = {'bDay':bDay}; // js 객체 생성 (json은 JS문법이므로)
+			    	
+			    	$('input[name=bDay]').val(bDay);
+			    	$('input[name=uid]').val(email);
+			    	$.get('/AJAX/member/checkEmail',jsonData, function(data){
+			    		if(email==''){
+			    			$('.resultEmail').css('color','red').text('유효하지 않은 이메일입니다. 이메일을 다시 입력해주세요.');
+			    		}else if(data.result == 1) {
+			    			$('.resultEmail').css('color','red').text('이미 사용중인 이메일입니다.');
+			    		}else {
+			    			$('.resultEmail').css('color','green').text('사용가능한 이메일입니다.');
+			    		}
+			    	},'json'); 
+			    	
+		    	});
+		
+		});   
     </script>
 </head>
 <body>
@@ -431,7 +431,6 @@
                     <div>    
                 </div>
             </div>                
-            
         </section>
     </main>
     <th:block th:include="@{_footer.html}"/>

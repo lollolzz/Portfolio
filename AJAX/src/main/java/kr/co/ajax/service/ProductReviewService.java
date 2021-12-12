@@ -12,6 +12,7 @@ import kr.co.ajax.vo.ProductReviewVo;
 @Service
 public class ProductReviewService {
 	
+	// 시현 2021.11.25 상품상세 페이지 리뷰 불러오기 및 페이징 
 	@Autowired
 	private ProductDao dao;
 	
@@ -35,7 +36,7 @@ public class ProductReviewService {
 	public void deleteReview(){}
 	
 	
-//////페이지 처리를 위한 메서드 
+	//////페이지 처리를 위한 메서드 
 	
 	//페이지 리스트 시작번호 
 	public int getPageStartNum(int total, int start) {

@@ -26,7 +26,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
-
+	
+	// 시현 2021.11.25 view에서 login갔다가 다시 view로 이동 위한 작업
 	@GetMapping("/member/login")
 	public String login(String productCode, String success, Model model) {
 		
@@ -35,6 +36,9 @@ public class MemberController {
 		
 		return "/member/login";
 	}
+	// 시현 2021.11.25
+	
+	// 진하 2021.11.19 로그인 기능구현
 	@PostMapping("/member/login")
 	public String login(HttpSession sess, MemberVo vo) {
 		
@@ -56,6 +60,8 @@ public class MemberController {
 					return "redirect:/member/login?success=100";
 		  }
 	  	}
+	// 진하 2021.11.19
+	
 	
 	@GetMapping("/member/register")
 	public String register() {
@@ -70,7 +76,7 @@ public class MemberController {
 		return "redirect:/member/login";
 	}
 	
-	
+	// 능한 2021.11.19 약관페이지 기능구현 
 	@GetMapping("/member/terms")
 	public String terms(Model model) {
 		
@@ -79,7 +85,9 @@ public class MemberController {
 		
 		return "/member/terms";
 	}
+	// 능한 2021.11.19
 	
+	// 진하 2021.11.22 유효성검사 기능 추가
 	@ResponseBody
 	@GetMapping("/member/checkEmail")
 	public String checkEmail(String email) {
@@ -89,7 +97,9 @@ public class MemberController {
 		json.addProperty("result", result);
 		return new Gson().toJson(json);
 	}
-
+	// 진하 2021.11.22 
+	
+	// 진하 2021.11.23 소셜로그인 기능 구현 
 	@PostMapping("/member/loginkakao")
 	public String loginkakao(HttpSession sess, HttpServletRequest req, MemberVo vo) {
 
@@ -112,6 +122,7 @@ public class MemberController {
 	  }
 		  
 	}
+	// 진하 2021.11.23
 	
 	@GetMapping("/member/logout")
 	public String logout(HttpSession sess) {

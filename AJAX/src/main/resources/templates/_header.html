@@ -1,31 +1,31 @@
 <header>
-     <div>  
-         <a th:href="@{/index}" class="logo">
-             <img th:src="@{/img/4.png}" alt="TemaLogo"/>
-         </a>
+	 <div>  
+	     <a th:href="@{/index}" class="logo">
+	         <img th:src="@{/img/4.png}" alt="TemaLogo"/>
+	     </a>
 
-<script>
-
-$(function(){
-	
-	var menu = $('.menu > li > a');
-	var subMenu = $('.sub-menu > ol');
-	
-	menu.mouseenter(function(){
+		<script>
 		
-		var value = $(this).attr('class');
+		$(function(){
+			
+			var menu = $('.menu > li > a');
+			var subMenu = $('.sub-menu > ol');
+			
+			menu.mouseenter(function(){
+				
+				var value = $(this).attr('class');
+				
+				if(value == 'teens'){
+					subMenu.removeClass('on').eq(0).addClass('on');
+				}else if(value == 'twenties'){
+					subMenu.removeClass('on').eq(1).addClass('on');
+				}else if(value == 'thirties'){
+					subMenu.removeClass('on').eq(2).addClass('on');
+				}
+			});	
+		});	
 		
-		if(value == 'teens'){
-			subMenu.removeClass('on').eq(0).addClass('on');
-		}else if(value == 'twenties'){
-			subMenu.removeClass('on').eq(1).addClass('on');
-		}else if(value == 'thirties'){
-			subMenu.removeClass('on').eq(2).addClass('on');
-		}
-	});	
-});	
-
-</script>
+		</script>
         <ul class="menu">
              <li><a th:href="@{#}" class="teens">Teens</a></li>  
              <li><a th:href="@{#}" class="twenties">Twenties</a></li>

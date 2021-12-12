@@ -17,11 +17,15 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   	<script th:src="@{/js/checkUser.js}"></script>\
 	<script>
-      $(document).ready(function(){
-      if ($(location).attr('href').slice(-3)=='100'){
-      alert( '아이디, 비밀번호가 일치하지 않습니다.' );
-      }
-      });
+	
+	      $(document).ready(function(){
+		
+		      if ($(location).attr('href').slice(-3)=='100'){
+			
+		      	alert( '아이디, 비밀번호가 일치하지 않습니다.' );
+		      }
+	      
+	      });
     </script>
 </head>
 <body>
@@ -29,121 +33,120 @@
     	<th:block th:include="@{_header.html}"/>
         <main id = "login">
             <section id="center-v" style="background-color: rgb(248, 250, 252);"   >      
-             <form th:action="@{/member/login}" method="post"> 
-            	<input type="hidden" name="productCode" th:if="${productCode}" th:value="${productCode}"/>
-                <div class = "login-header">
-                    <h1 class="login-h1">로그인</h1>
-                </div>
-                <div class = "login-body">
-                    <section class="gizone">
-                        <h3>기존고객</h3>
-                        <br>
-                        <input type="text" name="uid" placeholder="이메일/아이디:">
-                        <input type="password" name="pass" placeholder="비밀번호:">
-                        <div class ="forgetIdPw"> 
-                            <a href="#">아이디/비밀번호를 잊으셨나요?</a>
-                        </div>
-                       	<div><input type="submit"  class="LoginBtn" value="로그인" /></div> 
-				    
-                       
-                    </section>
-                    <section class="singyu">
-                        <h3>신규고객</h3>
-                        <input type="text" name="email" placeholder="이메일:">
-                               <span class = "resultEmail"></span>
-                        <a th:href="@{/member/terms}"class="RegiBtn"> 계정만들기</a>
-                    </section>
-                    
-                </div>
-                <div class = "login-footer">
-                    <p>소셜 로그인/가입</p>
-                    <div class="logos">
-    
-                   	<a id="naver_id_login"><img src="../img/네이버회원가입.png"></a>
-                   	<script type="text/javascript">
-					  	var naver_id_login = new naver_id_login("xfMpJq13Kvc6pQ4b2Rqt", "http://13.209.9.24:8080/AJAX/member/login");
-					  	var state = naver_id_login.getUniqState();
-					  	naver_id_login.setButton("white", 2,40);
-					  	naver_id_login.setDomain("http://13.209.9.24:8080/AJAX");
-					  	naver_id_login.setState(state);
-					  	naver_id_login.init_naver_id_login();
-					    naver_id_login.get_naver_userprofile("naverSignInCallback()");
-					    function naverSignInCallback() {
-					        var jsonData = {
-			                         'email': naver_id_login.getProfileData('email'),
-			                         'name': naver_id_login.getProfileData('name'),
-			                      };
-					        $("input[name='email']").val(naver_id_login.getProfileData('email'));
-					        $("input[name='nickname']").val(naver_id_login.getProfileData('nickname'));
-					        $("input[name='name']").val(naver_id_login.getProfileData('name'));
-					        $("input[name='gender3']").val(naver_id_login.getProfileData('gender'));
-					        $.ajax({
-                                url: '/AJAX/member/loginkakao',
-                                type: 'post',
-                                data: jsonData,   
-                                dataType: 'json', 
-                                success: function(data){
-                                },
-                                complete : function() {
-
-                               	   $(function() {
-                           			  $(location).attr('href',"/AJAX/index");
-                                    });
-                                }  
-                             });
-					      }
-					  </script>
-     
-                        <a href="javascript:kakaoLogin();"><img src="../img/카카오회원가입.png"></a>
-                        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-                        <script>
-                            window.Kakao.init("2d1f2f1e5ae21604ec8fd6d463e812f6");
-                            function kakaoLogin(){
-                                window.Kakao.Auth.login({
-                            
-                                    scope:'profile_nickname, account_email, gender',
-                                    success: function(authObj) {
-                                        console.log(authObj);
-                                        window.Kakao.API.request({
-                                        	
-                                            url:'/v2/user/me',
-                                            success: res=> {
-                                                const kakao_account = res.kakao_account;
-                                                console.log(kakao_account);
-                                                             
-                                                var jsonData = {
-							                         'email': kakao_account.email,
-							                         'name': kakao_account.profile.nickname
-							                         
-							                      };
-                                            //	$("input[name='email']").val( kakao_account.email);
-                                                $.ajax({
-                                                
-                                                    url: '/AJAX/member/loginkakao',
-                                                    type: 'post',
-                                                    data: jsonData,   
-                                                    dataType: 'json', 
-                                                    success: function(data){
-                                             
-                                                    },
-                                    		   
-                                                    complete : function() {
-
-                                                   	   $(function() {
-                                               			   $(location).attr('href',"/AJAX/index");
-                                                        });
-                                                    }  
-                                                 });
-                                            }
-                                        });   
-                                    }  
-                                });
-                            }         
-                        </script>
-                    </div>
-                </div>
-             </form>   
-
+	             <form th:action="@{/member/login}" method="post"> 
+	            	<input type="hidden" name="productCode" th:if="${productCode}" th:value="${productCode}"/>
+	                <div class = "login-header">
+	                    <h1 class="login-h1">로그인</h1>
+	                </div>
+	                <div class = "login-body">
+	                    <section class="gizone">
+	                        <h3>기존고객</h3>
+	                        <br>
+	                        <input type="text" name="uid" placeholder="이메일/아이디:">
+	                        <input type="password" name="pass" placeholder="비밀번호:">
+	                        <div class ="forgetIdPw"> 
+	                            <a href="#">아이디/비밀번호를 잊으셨나요?</a>
+	                        </div>
+	                       	<div><input type="submit"  class="LoginBtn" value="로그인" /></div> 
+					    
+	                       
+	                    </section>
+	                    <section class="singyu">
+	                        <h3>신규고객</h3>
+	                        <input type="text" name="email" placeholder="이메일:">
+	                               <span class = "resultEmail"></span>
+	                        <a th:href="@{/member/terms}"class="RegiBtn"> 계정만들기</a>
+	                    </section>
+	                    
+	                </div>
+	                <div class = "login-footer">
+	                    <p>소셜 로그인/가입</p>
+	                    <div class="logos">
+	    
+	                   	<a id="naver_id_login"><img src="../img/네이버회원가입.png"></a>
+	                   	<script type="text/javascript">
+						  	var naver_id_login = new naver_id_login("xfMpJq13Kvc6pQ4b2Rqt", "http://13.209.9.24:8080/AJAX/member/login");
+						  	var state = naver_id_login.getUniqState();
+						  	naver_id_login.setButton("white", 2,40);
+						  	naver_id_login.setDomain("http://13.209.9.24:8080/AJAX");
+						  	naver_id_login.setState(state);
+						  	naver_id_login.init_naver_id_login();
+						    naver_id_login.get_naver_userprofile("naverSignInCallback()");
+						    function naverSignInCallback() {
+						        var jsonData = {
+				                         'email': naver_id_login.getProfileData('email'),
+				                         'name': naver_id_login.getProfileData('name'),
+				                      };
+						        $("input[name='email']").val(naver_id_login.getProfileData('email'));
+						        $("input[name='nickname']").val(naver_id_login.getProfileData('nickname'));
+						        $("input[name='name']").val(naver_id_login.getProfileData('name'));
+						        $("input[name='gender3']").val(naver_id_login.getProfileData('gender'));
+						        $.ajax({
+	                                url: '/AJAX/member/loginkakao',
+	                                type: 'post',
+	                                data: jsonData,   
+	                                dataType: 'json', 
+	                                success: function(data){
+	                                },
+	                                complete : function() {
+	
+	                               	   $(function() {
+	                           			  $(location).attr('href',"/AJAX/index");
+	                                    });
+	                                }  
+	                             });
+						      }
+						  </script>
+	     
+	                        <a href="javascript:kakaoLogin();"><img src="../img/카카오회원가입.png"></a>
+	                        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	                        <script>
+	                            window.Kakao.init("2d1f2f1e5ae21604ec8fd6d463e812f6");
+	                            function kakaoLogin(){
+	                                window.Kakao.Auth.login({
+	                            
+	                                    scope:'profile_nickname, account_email, gender',
+	                                    success: function(authObj) {
+	                                        console.log(authObj);
+	                                        window.Kakao.API.request({
+	                                        	
+	                                            url:'/v2/user/me',
+	                                            success: res=> {
+	                                                const kakao_account = res.kakao_account;
+	                                                console.log(kakao_account);
+	                                                             
+	                                                var jsonData = {
+								                         'email': kakao_account.email,
+								                         'name': kakao_account.profile.nickname
+								                         
+								                      };
+	                                            //	$("input[name='email']").val( kakao_account.email);
+	                                                $.ajax({
+	                                                
+	                                                    url: '/AJAX/member/loginkakao',
+	                                                    type: 'post',
+	                                                    data: jsonData,   
+	                                                    dataType: 'json', 
+	                                                    success: function(data){
+	                                             
+	                                                    },
+	                                    		   
+	                                                    complete : function() {
+	
+	                                                   	   $(function() {
+	                                               			   $(location).attr('href',"/AJAX/index");
+	                                                        });
+	                                                    }  
+	                                                 });
+	                                            }
+	                                        });   
+	                                    }  
+	                                });
+	                            }         
+	                        </script>
+	                    </div>
+	                </div>
+	             </form>
             </section>
         </main>
         <th:block th:include="@{_footer.html}"/>

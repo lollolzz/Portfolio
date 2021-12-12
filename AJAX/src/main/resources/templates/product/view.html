@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -411,9 +410,7 @@
 <body>
     <div id="wrapper">
     	<th:block th:include="@{_header.html}"/>    
-        <main>
-                 
-            	
+        <main>  	
             <!-- 상품 상세페이지 -->
             <section id="view">       
          		<input type="hidden" name="uid" 		th:if="${session.sessMember != null}"  th:value="${session.sessMember.uid}"/>
