@@ -27,29 +27,36 @@
     			totCount += count;
     		});
     		
-    		$('.info .count').text(totCount+'개');    		    		
+    		$('.info .count').text(totCount+'개');   
+    		 		    		
     		
     		// 판매가 집계
+    		var countTds = cartProduct.find('.count');
     		var priceTds = cartProduct.find('.price');
     		var totPrice = 0;
     		
     		$.each(priceTds, function(){
+				
+				var count = parseInt($(this).prev().text());
     			var price = parseInt($(this).text().replace(/,/g, ''));
-    			totPrice += price;
+    			totPrice += price*count;
     		});
     		
     		$('.info .price').text(totPrice.toLocaleString()+'원');
     		
-    		// 할인금액 집계
+    		
+    		//할인금액 집계
     		var discountTds = cartProduct.find('.discount');
-    		var totDiscount = 0;
+    		var totDiscount= 0;
     		
     		$.each(discountTds, function(){
     			
-    			var price =  parseInt($(this).prev().text().replace(/,/g, ''));
-    			var discount = parseInt($(this).text().replace(/,/g, ''));
+    			var count = parseInt($(this).prev().prev().text());
+    			var price 		= parseInt($(this).prev().text().replace(/,/g, ''));
+				var discount 	= parseInt($(this).text().replace(/,/g, ''));
+				
+				totDiscount += price * count * discount * 0.01; 
     			
-    			totDiscount += (price * discount / 100);
     		});
     		
     		totDiscount = Math.round(totDiscount);
@@ -81,14 +88,16 @@
     		
     		$('.info .point').text(totPoint.toLocaleString()+'원');
     		
-    		// 전체 주문금액 집계
+    		/*// 전체 주문금액 집계
     		var totalTds = cartProduct.find('.total');
     		var totTotal = 0;
     		
     		$.each(totalTds, function(){
     			var total = parseInt($(this).text().replace(/,/g, ''));
-    			totTotal += total;
-    		});
+    			totTotal += total+totDelivery;
+    		});*/
+    		
+    		var totTotal = totPrice-totDiscount+totDelivery;
     		
     		$('.info .total').text(totTotal.toLocaleString()+'원');
     		
@@ -192,10 +201,8 @@
     				'productCounts': productCounts,
     				'cartIds': cartIds
     				};
-    			
-    			console.log(JSON.stringify(jsonData));
-    			
-    			$.ajax({
+
+    			  $.ajax({
     				url: '/Kmarket/product/order',
     				type: 'post',
     				traditional: true, 

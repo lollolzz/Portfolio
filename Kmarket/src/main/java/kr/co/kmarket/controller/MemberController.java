@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.kmarket.service.MemberService;
 import kr.co.kmarket.vo.MemberTermsVo;
@@ -28,8 +27,10 @@ public class MemberController {
 	
 	@GetMapping("/member/login")
 	public String login(String productCode, String success, Model model) {
+		
 		model.addAttribute("productCode", productCode);
 		model.addAttribute("success", success);
+		
 		return "/member/login";
 	}
 		
@@ -39,22 +40,28 @@ public class MemberController {
 		MemberVo memberVo = service.selectMember(vo);
 		
 		if(memberVo != null) {
+			
 			sess.setAttribute("sessMember", memberVo);
 			
+			
 			if(vo.getProductCode() > 0) {
+				
 				return "redirect:/product/view?productCode="+vo.getProductCode();
+				
 			}else {
-				return "redirect:/";	
+				
+				return "redirect:/index?success=104";
 			}
+			
 		}else {
-			return "redirect:/member/login?success=100";
+			return "redirect:/member/login?success=101";
 		}
 	}
 	
 	@GetMapping("/member/logout")
 	public String logout(HttpSession sess) {
 		sess.invalidate();
-		return "redirect:/";
+		return "redirect:/member/login?success=102";
 	}
 	
 	@GetMapping("/member/register")

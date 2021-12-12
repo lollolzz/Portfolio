@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>AJAX-List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/styleSearch.css}">
+    <script th:src="@{/js/jsscript.js}"></script>
+    <script th:src="@{/js/zipcode.js}"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body>
+	<th:block th:include="@{_header.html}"></th:block>
+	<main>
+		<section id="search-wrap">
+			<div class="clothes-search">
+				<div class="function">
+						<th:block th:if= "${productCount} != 0">
+							<p class="prdCnt">
+								*
+								<strong>[[${keyword}]]</strong>
+								에 대한 검색 결과
+	        	 				<em>(현 페이지&nbsp;:&nbsp;<span>[[${productCount}]]</span>&nbsp;건)</em>
+	        	 			</p>	
+       		 			</th:block>
+       		 			<th:block th:if= "${productCount} == 0">
+	       		 			<p class="prdCnt-0">
+	       		 				*
+								<strong>[[${keyword}]]</strong>
+								에 대한 검색 결과
+	        	 				<em>(&nbsp;&nbsp;찾으시는 상품이 없습니다!! 다른 <strong>키워드</strong>로 검색해주세요!!)</em>
+	        	 			</p>	
+       		 			</th:block>
+					
+					<!--
+					<div class="search-type-good">
+						<form th:action="@{/product/search}" method="get">
+							<span>
+								<label><input class="good-input2"  type="checkbox" name="chk1" value="1">상품명</label>
+				                <input class="good-input1" type="text" name="keyword"/>
+			              	</span>
+			              	<span>
+			                  <label><input class="good-input3" type="checkbox" name="chk2" value="1">상품가격</label>
+			                  <input class="good-input4" type="text" name="min"/>원&nbsp;~&nbsp;<input class="good-input5" type="text" name="max"/>원
+			                  <input type="submit" value="검색"/>
+		              		</span>
+		            	</form>
+					</div>
+					-->
+				</div>
+			</div>
+			<div class="jinjja-clothes-search">
+				<ul id="rows-and-columns">
+					<!--상품 출력페이지-->
+					<li class="btn_1st-item" th:each="products:${product}" >
+					
+						<div class="box">
+							<span class="top">
+								<input type="checkbox" class="displaynone" hidden/>
+							</span>
+							<p class="prdImg">
+								<a th:href="@{/product/view(cate1=${products.cate1},cate2=${products.cate2},productCode=${products.productCode})}" name="move">
+									<img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${products.cate1}, cate2 = ${products.cate2}, img=${products.thumb1})}" alt="빈티지 자가드 가디건" class="thumb">
+								</a>
+								<span class="wishIcon"></span>
+							</p>
+							<p class="search-product-name">
+								<a href="#" class="">
+									<span class="title_displaynone">
+										<span>상품명</span>
+										:
+									</span>
+									<span>[[${products.name}]]</span>
+								</a>
+							</p>
+							<ul class="product-searchitem">
+								<li class="price">
+									<strong class="title">
+										<span>
+											판매가
+										</span>
+										:
+									</strong>
+									<span class="numbers">
+										[[${#numbers.formatInteger(products.price, 3, 'COMMA')}]]원
+									</span>
+									<span id="tax-type"></span>
+								</li>
+							</ul>
+							<p class="icon"></p>
+							<div class="button">
+								<span class="option"></span>
+							</div>
+						</div>
+						
+					</li>
+				</ul>
+			</div>
+			<!-- 페이징 처리 --> 
+			<th:block th:if= "${productCount} != 0">
+				<div class="paging">
+					<span class="prev">
+	                	<a th:if="${groups[0] > 1}" th:href="@{/product/search(keyword=${keyword}, pg=${groups[0]-1})}" class="prev">이전</a>
+	                </span>
+	                <span class="num">
+	                  	<th:block th:each="num:${#numbers.sequence(groups[0], groups[1])}">
+	                		<a th:href="@{/product/search(keyword=${keyword}, pg=${num})}" th:class="${num==currentPage?'on':''}">[[${num}]]</a>
+	                	</th:block>
+	                </span>
+	                <span class="next">
+						<a th:if="${groups[1] < lastPageNum}" th:href="@{/product/search(keyword=${keyoword}, pg=${groups[1]+1})}" class="next">다음</a>
+	                </span>
+				</div>
+			</th:block>
+			<th:block th:if= "${productCount} == 0">
+				<div class="paging">
+					<!-- keyword 없을때 페이지 처리라서 아무것도 적지 않음  -->
+				</div>
+			</th:block>	
+		</section>
+	</main>
+	<th:block th:include="@{_footer.html}"></th:block>
+</body>
+</html>

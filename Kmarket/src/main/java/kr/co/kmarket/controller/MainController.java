@@ -24,17 +24,16 @@ public class MainController {
 		// 메인상품 조회
 		List<ProductVo> productsHit       = service.selectMainProduct("hit");		
 		List<ProductVo> productsBest      = service.selectMainProduct("sold");
-		//List<ProductVo> productsRecommend = service.selectMainProduct("score");
-		//List<ProductVo> productsLatest    = service.selectMainProduct("rdate");
-		//List<ProductVo> productsDiscount  = service.selectMainProduct("discount");
-		
+		List<ProductVo> productsRecommend = service.selectMainProduct("score");
+		List<ProductVo> productsLatest    = service.selectMainProduct("rdate");
+		List<ProductVo> productsDiscount  = service.selectMainProduct("discount");
 		
 		model.addAttribute("productsHit", productsHit);		
 		model.addAttribute("productsBest", productsBest);
-		//model.addAttribute("productsRecommend", productsRecommend);
-		//model.addAttribute("productsLatest", productsLatest);
-		//model.addAttribute("productsDiscount", productsDiscount);
-		
+		model.addAttribute("productsRecommend", productsRecommend);
+		model.addAttribute("productsLatest", productsLatest);
+		model.addAttribute("productsDiscount", productsDiscount);
+
 		return "/index";
 	}
 	

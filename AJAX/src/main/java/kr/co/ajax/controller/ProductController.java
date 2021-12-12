@@ -24,6 +24,7 @@ import kr.co.ajax.vo.ProductCartVo;
 import kr.co.ajax.vo.ProductOrderVo;
 import kr.co.ajax.vo.ProductReviewVo;
 import kr.co.ajax.vo.ProductVo;
+import kr.co.ajax.vo.SearchVo;
 
 
 @Controller
@@ -229,6 +230,41 @@ public class ProductController {
 			String uid = vo.getUid();
 			cartService.completeOrder(uid);	
 			return "/index";
+		}
+		
+		@GetMapping("/product/search")
+		public String search(SearchVo vos, Model model, String pg, ProductVo vo) {
+			
+			// 리스트 번호 처리
+			int currentPage = service.getCurrentPage(pg);
+			int start = service.getLimitStart(currentPage);
+			int total = service.selectSearchCountTotal(vos);
+			int pageStartNum = service.getPageStartNum(total, start);
+			int lastPageNum = service.getLastPageNum(total);
+			int groups[] = service.getPageGroup(currentPage, lastPageNum);
+			
+			vos.setStart(start);
+			
+			List<ProductVo> products = service.selectProducts(vo);
+			
+			model.addAttribute("products",products);
+			model.addAttribute("productCode", vo.getProductCode());
+			
+			model.addAttribute("totalCount", products.size());		
+			model.addAttribute("pageStartNum", pageStartNum);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("lastPageNum", lastPageNum);
+			model.addAttribute("groups", groups);
+			
+			
+			
+			List<ProductVo> product = service.selectProductSearch(vos);
+			
+			model.addAttribute("product", product);
+			model.addAttribute("productCount", product.size());		
+			model.addAttribute("keyword", vos.getKeyword());
+	
+			return "product/search";
 		}
 	
 }

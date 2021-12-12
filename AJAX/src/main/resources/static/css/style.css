@@ -77,6 +77,10 @@ header > div > ol > li {
   float: left;
   margin-left: 40px;
 }
+.header-menu-right-input{
+	width:100px;
+	margin-right: 10px
+}
 
 header > nav {
   display: none;

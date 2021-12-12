@@ -115,8 +115,9 @@ header > .menu > div > ul {
     display: inline-block;
     margin-top: 16px;
 }        
-header > .menu > div > ul:nth-child(1) {float: left;}
-header > .menu > div > ul:nth-child(2) {float: right;}
+.menu-right{
+	float:right;
+}
 header > .menu > div > ul > li {float: left;}
 header > .menu > div > ul > li > a {
     border-left: 1px solid #e9e9e9;
@@ -1012,7 +1013,7 @@ h5.rating.star5 {background-position: 0 -200px;}
 	position: absolute;
     width: 21px;
     height: 21px;
-    background-image: url(/img/ico_sprites.png);
+    background-image: url(/Kmarket/img/kmarket_buttons.png);
     font-size: 0;
     background-color: transparent;
     border: none;
@@ -1076,7 +1077,7 @@ h5.rating.star5 {background-position: 0 -200px;}
 }
 
 #view .info > .summary > .button > input {
-    float: left;
+    float: right;
     width: 49%;
     height: 50px;
     margin: 2px;
@@ -1089,11 +1090,6 @@ h5.rating.star5 {background-position: 0 -200px;}
     background: #fff;
     border: 1px solid #d9d9d9;
     color: #233549;
-}
-#view .info > .summary > .button > .order {
-    background: #2e8de5;
-    border: 1px solid #217fd7;
-    color: #fff;
 }
 
 #view .notice {}

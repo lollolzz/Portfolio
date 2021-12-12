@@ -79,7 +79,8 @@
 					$.post('/Kmarket/product/cart', jsonData, function(data){
 						
 						if(data.result == 1){
-							alert('이미 장바구니에 상품이 있습니다.');
+							alert('이미 장바구니에 상품이 있습니다.\n장바구니 페이지로 이동하시겠습니까?');
+							location.href = '/Kmarket/product/cart';
 						}else{
 							var result = confirm('장바구니에 상품을 담았습니다.\n장바구니 페이지로 이동하시겠니까?');
 							if(result){
@@ -97,7 +98,8 @@
     		// 주문하기 클릭
     		$('#view .button > .order').click(function(){
     			
-    			alert('주문하기 클릭');
+    			alert('장바구니로 이동 후 주문을 완료해주세요 ^^');
+    			location.href = '/Kmarket/product/cart';
     			
     		});
     		
@@ -186,7 +188,6 @@
 
                             <div class="button">
                                 <input type="button" class="cart"  value="장바구니"/>
-                                <input type="button" class="order" value="구매하기"/>
                             </div>
 
                         </div>

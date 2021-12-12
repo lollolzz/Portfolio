@@ -38,6 +38,7 @@ public class ProductOrderVo {
 	private String pName;
 	private int pPrice;
 	private int pDiscount;
+	private String pDescript;
 	private int pPoint;
 	private int pDelivery;
 	private int salePrice;

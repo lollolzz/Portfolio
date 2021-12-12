@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
-    <script>
+     <script>
     
     	// 슬라이더 스크립트
         $(document).ready(function(){
@@ -55,19 +55,19 @@
     			var top = $(this).scrollTop();    			   			
     			console.log('top : '+top);
     			
-    			if(top > 0 && !isRecommendOk){
+    			if(top > 1000 && !isRecommendOk){
     				// 추천상품 요청하기
-    				getProducts('/Kmarket/getMainProduct?order=score', sectionRecommend);
+    				getProducts('/Kmarket//getMainProduct?order=score', sectionRecommend);
     				isRecommendOk = true;
     				
-    			}else if(top > 1000 && !isLatestOk){
+    			}else if(top > 1800 && !isLatestOk){
     				// 최신상품 요청하기
-    				getProducts('/Kmarket/getMainProduct?order=rdate', sectionNew);
+    				getProducts('/Kmarket//getMainProduct?order=rdate', sectionNew);
     				isLatestOk = true;
     				
-    			}else if(top > 1500 && !isDiscountOk){
+    			}else if(top > 2300 && !isDiscountOk){
     				// 할인상품 요청하기
-    				getProducts('/Kmarket/getMainProduct?order=discount', sectionDiscount);
+    				getProducts('/Kmarket//getMainProduct?order=discount', sectionDiscount);
     				isDiscountOk = true;
     			}
     		});
@@ -84,8 +84,11 @@
 					$.each(data, function(i, productVo){
 						
 						var article = sectionHit.find('article:last-child').clone();
-						article.find('> a').attr('href', '/Kmarket/product/view');
-						article.find('.thumb > img').attr('src', '/thumb/'+productVo.cate1+'/'+productVo.cate2+'/'+productVo.thumb1);
+						/*article.find('> a').attr('href', '/Kmarket/product/view/'+productVo.cate1+'/'+productVo.cate2+'/'+productVo.productCode);*/
+						/*article.find('> a').attr('href', '/Kmarket/product/view?cate1="+productVo.cate1+"&cate2="+productVo.cate2+"&productCode="+productVo.productCode');*/
+						/*article.find('> a').attr('href', '/Kmarket/product/view?productCode=productVo.productCode);*/
+						article.find('> a').attr('href', '/Kmarket/product/view?productCode='+productVo.productCode);
+						article.find('.thumb > img').attr('src', '/Kmarket/thumb/'+productVo.cate1+'/'+productVo.cate2+'/'+productVo.thumb1);
 						article.find('h2').text(productVo.name);
 						article.find('p').text(productVo.descript);
 						article.find('.org_price > del').text(productVo.price.toLocaleString());
@@ -124,7 +127,7 @@
                   <h1><i class="fas fa-crown"></i>베스트상품</h1>
                   <ol>
                     <li th:each="product,i:${productsBest}">
-                      <a href="#">
+                      <a th:href="@{/product/view(cate1=${product.cate1},cate2=${product.cate2},productCode=${product.productCode})}" name="move">
                         <div class="thumb">
                           <i>[[${i.index+1}]]</i>
                           <img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1}, cate2=${product.cate2}, img=${product.thumb1})}" alt="best item">
@@ -153,13 +156,13 @@
                         <li><a href="#"><img src="./img/slider_item5.jpg" alt="item5"></a></li>
                     </ul>
                 </section>
-                <!-- 히트상품 영역 -->
+                 <!-- 히트상품 영역 -->
                 <section class="hit">
                     <h3><span>히트상품</span></h3>
                     <article th:each="product:${productsHit}">
-                        <a href="#">
+                        <a th:href="@{/product/view(cate1=${product.cate1},cate2=${product.cate2},productCode=${product.productCode})}" name="move">
                             <div class="thumb">
-                              <img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1}, cate2=${product.cate2}, img=${product.thumb1})}" alt="t1">
+	                           <img th:src="@{/thumb/{cate1}/{cate2}/{img}(cate1=${product.cate1}, cate2=${product.cate2}, img=${product.thumb1})}" alt="t1">
                             </div>
                             <h2>[[${product.name}]]</h2>
                             <p>[[${product.descript}]]</p>

@@ -26,9 +26,6 @@ $(function(){
 });	
 
 </script>
-
-
-
         <ul class="menu">
              <li><a th:href="@{#}" class="teens">Teens</a></li>  
              <li><a th:href="@{#}" class="twenties">Twenties</a></li>
@@ -37,17 +34,23 @@ $(function(){
          </ul>
 
          <ol class="menu-right">   
-         	 <li><a th:href="@{/about/aboutus}">About Us</a></li>
-             <li><a href="#"><i class="fas fa-search fa-lg" style="color: darkslategray" ></i></a></li>  
+         	 
+         	 <li>
+	         	 <form th:action="@{/product/search}" method="get">
+		         	 <input type="text" name="keyword" class="header-menu-right-input"/>
+		             <button><i class="fas fa-search fa-lg" style="color: darkslategray" ></i></button>
+	             </form>
+	         </li>    
              <th:block th:if= "${session.sessMember} == null">
         	 	<li><a th:href="@{/member/login}"><i class="far fa-id-badge fa-lg" aria-hidden="true" style="color: darkslategray"></i></a></li>
         	 	<li><a th:href="@{/member/login}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
        		 </th:block>
 			 <th:block th:if= "${session.sessMember} != null">
-			 	[[${session.sessMember.name}]]님 반갑습니다.|
+			 	
         	 	<li><a th:href="@{/member/logout}"><i class="fa fa-sign-out" style="color: darkslategray"></i></a></li>
         	 	<li><a th:href="@{/product/cart}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
-       		 </th:block> 
+        	 	<li>[[${session.sessMember.name}]]님 반갑습니다.|</li>
+       		 </th:block>
        	
          </ol>
      </div>

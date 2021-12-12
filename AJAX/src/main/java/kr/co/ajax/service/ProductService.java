@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.co.ajax.dao.ProductDao;
 import kr.co.ajax.vo.CategoriesVo;
 import kr.co.ajax.vo.ProductVo;
+import kr.co.ajax.vo.SearchVo;
 
 @Service
 public class ProductService {
@@ -24,8 +25,16 @@ public class ProductService {
 				return dao.selectProducts(vo);
 			}
 			
+			public List<ProductVo> selectProductSearch(SearchVo vos){
+				return dao.selectProductSearch(vos);
+			}
+			
 			public int  selectProductCountTotal(ProductVo vo) {
 				return dao.selectProductCountTotal(vo);
+			}
+			
+			public int  selectSearchCountTotal(SearchVo vos) {
+				return dao.selectSearchCountTotal(vos);
 			}
 			
 			public CategoriesVo selectCategoryTitle(ProductVo vo) {

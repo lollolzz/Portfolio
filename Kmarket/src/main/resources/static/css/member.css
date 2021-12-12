@@ -359,6 +359,14 @@ footer p > strong {
     border-radius: 2px;
     cursor: pointer;
 }
+.btnZip {
+    position: absolute;
+    left: 195px;
+    top: 16px;
+    width: 80px;
+    height: 32px;
+    font-size: 13px;
+}
 
 /* member-register-seller */
 #member-register-seller {

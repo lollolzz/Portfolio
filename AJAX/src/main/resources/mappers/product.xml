@@ -5,8 +5,6 @@
 <mapper namespace="kr.co.ajax.dao.ProductDao">
 
 	<insert id="insertProduct"></insert>
-	
-	<!-- 시현 20211125 -->
 	<select id="selectProduct" resultType="kr.co.ajax.vo.ProductVo">
 		SELECT 
 			a.*, 
@@ -27,6 +25,22 @@
 		SELECT * FROM
 		`aj_product`
 		WHERE `cate1`=#{cate1} AND `cate2`=#{cate2}
+		ORDER BY `price` ASC
+		LIMIT #{start}, 16;
+	</select>
+	<select id="selectSearchCountTotal" resultType="int">
+		SELECT COUNT(`productCode`) FROM `aj_product`
+		WHERE
+			<if test="chk1==1">`name` LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="chk2==1">AND `price` BETWEEN #{min} AND #{max}</if>
+	</select>
+	<select id="selectProductSearch" resultType="kr.co.ajax.vo.ProductVo">
+		SELECT *
+		FROM `aj_product` 
+		WHERE
+			<if test="chk1==1">`name` LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="chk2==1">AND `price` BETWEEN #{min} AND #{max}</if>
+		ORDER BY `price` DESC
 		LIMIT #{start}, 16;
 	</select>
 	<select id="selectCategoryTitle" resultType="kr.co.ajax.vo.CategoriesVo">

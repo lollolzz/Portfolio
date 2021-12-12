@@ -153,17 +153,22 @@ public class ProductController {
 	}
 	
 	@GetMapping("/product/order-complete")
-	public String orderComplete() {
+	public String orderComplete(Model model,int orderId) {
+		//System.out.println("get방식요청 : " + orderId);
+		List<ProductOrderVo> orderProducts = orderService.selectOrders(orderId);
+		model.addAttribute("orderProducts", orderProducts);
+		model.addAttribute("productOrderVo", orderProducts.get(0));
+
 		return "/product/order-complete";
 	}
 	
 	@ResponseBody
 	@PostMapping("/product/order-complete")
 	public Map<String, Integer> orderComplete(ProductOrderVo vo) {
-		
+		System.out.println("결제방식 : " +vo.getPayment());
 		// 최종 주문 완료하기
 		int result = orderService.updateOrder(vo);
-		
+		//System.out.println("post방식요청 : " + vo.getOrderId());
 		// Jackson 라이브러리가 자바 map 구조체를 Json 데이터로 변환
 		Map<String, Integer> map = new HashMap<>();
 		map.put("result", result);

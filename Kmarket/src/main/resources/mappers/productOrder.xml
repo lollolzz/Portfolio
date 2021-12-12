@@ -28,6 +28,7 @@
 			c.`cate1`, c.`cate2`,
 			c.`thumb1`, 
 			c.`name` AS `pName`, 
+			c.`descript` AS `pDescript`,
 			c.`price` AS `pPrice`,
 			c.`discount` AS `pDiscount`,
 			c.`point` AS `pPoint`, 
@@ -64,9 +65,3 @@
 	</update>
 	<delete id="deleteOrder"></delete>
 </mapper>
-
-
-
-
-
-
