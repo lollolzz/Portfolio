@@ -10,6 +10,8 @@
                 <li th:classappend="${cate}=='chef'? on"><a th:href="@{/board/list(group=Community,cate=chef)}">나도요리사</a></li>
                 <li th:classappend="${cate}=='qna'? on"><a th:href="@{/board/list(group=Community,cate=qna)}">고객문의</a></li>
                 <li th:classappend="${cate}=='faq'? on"><a th:href="@{/board/list(group=Community,cate=faq)}">자주묻는질문</a></li>
+            	<!-- classappend속석ㅇ을 추가하여 각 사이드 카테별 접속을 하였을때 해당 게시판만 호버되면서 
+            	css를 적용시기키 위하여 만들어 준것 -->
             </ul>
 
         </aside>

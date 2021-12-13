@@ -94,8 +94,6 @@ public class BoardService {
 	 // 파일 업로드
     public FileVo fileUpload(MultipartFile fname, int seq) {
 
-    	
-        
         /*
          * 여러 클라이언트가 같은 이름으로 파일을 업로드 할 수 있기 때문에 중복되는것을 막기위하여 구분해주기 위한것
          */
