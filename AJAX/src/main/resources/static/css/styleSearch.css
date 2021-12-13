@@ -99,7 +99,7 @@ li {
 
 .clothes-search .function  .prdCnt {
     float: left;
-    margin-right: 995px;
+    margin-right: 625px;
     color: #555;
     font-size: 1.3rem;
     margin-block-start: 1em;
@@ -144,8 +144,6 @@ strong {
 .good-input5{
 	width:100px;
 }
-
-
 
 .clothes-search .function #search-type {
     display: inline;
@@ -227,7 +225,7 @@ strong {
 .jinjja-clothes-search #rows-and-columns .search-product-name {
     padding: 7px 0;
     width: 280px;
-    height: 39px;
+    height: 60px;
     text-align: center;
     display: block;
     border-bottom: 1px solid #ddd;

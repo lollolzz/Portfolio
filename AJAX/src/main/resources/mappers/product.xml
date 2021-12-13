@@ -23,10 +23,15 @@
 	<!-- Primary Key 는 유일값이므로 정확한 상품의 총 개수를 구하기 위해 ProductCode를 사용 -->
 	<!-- cate1 & cate2로 나눠 총 개수를 가져와야 하므로 where 조건문으로 해당하는 category 가져옴. -->
 	<select id="selectProducts" resultType="kr.co.ajax.vo.ProductVo">
-		SELECT * FROM
-		`aj_product`
-		WHERE `cate1`=#{cate1} AND `cate2`=#{cate2}
-		ORDER BY `price` ASC
+		SELECT *
+		FROM `aj_product`
+		WHERE `cate1`=#{cate1} AND `cate2`=#{cate2}	
+		<!-- 능한 2021.12.13 정렬 방식 추가  -->
+		<if test="order == 1">ORDER BY `price`   ASC</if>
+		<if test="order == 2">ORDER BY `price`  DESC</if>
+		<if test="order == 3">ORDER BY `name`  ASC</if>
+		<if test="order == 4">ORDER BY `rdate`  ASC</if>
+		<!-- 능한 2021.12.13 -->
 		LIMIT #{start}, 16;
 	</select>
 	
@@ -51,16 +56,22 @@
 			<if test="chk2==1">AND `price` BETWEEN #{min} AND #{max}</if>	
 			search 페이지 주석해둔 마크업(디자인 및 기능 추가 관련) 주석 해제시 사용 ~
 			 -->
-		ORDER BY `price` DESC
+			<if test="order == 1">ORDER BY `price`   ASC</if>
+			<if test="order == 2">ORDER BY `price`  DESC</if>
+			<if test="order == 3">ORDER BY `name`  ASC</if>
+			<if test="order == 4">ORDER BY `rdate`  ASC</if>	
 		LIMIT #{start}, 16;
 	</select>
 	
 	<select id="selectCategoryTitle" resultType="kr.co.ajax.vo.CategoriesVo">
-		SELECT b.cate1, b.cate2, a.title as tit1, b.title as tit2
+		SELECT 
+			b.cate1,
+			b.cate2,
+			a.title AS tit1,
+			b.title AS tit2
 		FROM `aj_product_cate1` AS a
 		JOIN `aj_product_cate2` AS b
-		ON a.cate1 =
-		b.cate1
+		ON a.cate1 = b.cate1
 		WHERE b.cate1=#{cate1} AND b.cate2=#{cate2};
 	</select>
 	

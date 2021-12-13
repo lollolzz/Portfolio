@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<title>AJAX-List</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -27,20 +28,24 @@
 						items in this category.
 					</p>
 					<div class="list-type-good">
+						<!-- 능한 2021.12.13 작성되어 있던 정렬 방식 추가 완성 
+						상품 검색하면 기본적으로 낮은 가격순으로 정렬되지만 다른 정렬을 선택 후 다시 낮은 가격순으로 정렬 
+					      을 원할 수 있기 때문에 낮은 가격순 정렬을 넣어둠  -->
 						<ul id="list-type">
 							<li>
-								<a href="#" th:class="${order} == 1 ? on">low price</a>
+								<a th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, order=1)}" th:classappend="${order} == 1 ? on">low price</a>
 							</li>
 							<li>
-								<a href="#" th:class="${order}== 2 ? on">|&nbsp;&nbsp;&nbsp;&nbsp;high price</a>
+								<a th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, order=2)}" th:classappend="${order} == 2 ? on">|&nbsp;&nbsp;&nbsp;&nbsp;high price</a>
 							</li>
 							<li>
-								<a href="#" th:class="${order}== 3 ? on">|&nbsp;&nbsp;&nbsp;&nbsp;name</a>
+								<a th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, order=3)}" th:classappend="${order} == 3 ? on">|&nbsp;&nbsp;&nbsp;&nbsp;name</a>
 							</li>
 							<li>
-								<a href="#" th:class="${order}== 4 ? on">|&nbsp;&nbsp;&nbsp;&nbsp;new item</a>
+								<a th:href="@{/product/list(cate1=${cateVo.cate1}, cate2=${cateVo.cate2}, order=4)}" th:classappend="${order} == 4 ? on">|&nbsp;&nbsp;&nbsp;&nbsp;new item</a>
 							</li>
 						</ul>
+						<!-- 능한 2021.12.13 -->
 					</div>
 				</div>
 			</div>

@@ -261,16 +261,14 @@ public class ProductController {
 		List<ProductVo> products = service.selectProducts(vo);
 		
 		model.addAttribute("products",products);
-		model.addAttribute("productCode", vo.getProductCode());
+		model.addAttribute("order",vo.getOrder());
 		
 		model.addAttribute("totalCount", products.size());		
 		model.addAttribute("pageStartNum", pageStartNum);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("lastPageNum", lastPageNum);
 		model.addAttribute("groups", groups);
-		
-		
-		
+
 		List<ProductVo> product = service.selectProductSearch(vos);
 		
 		model.addAttribute("product", product);
