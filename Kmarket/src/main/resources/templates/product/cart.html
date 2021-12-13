@@ -97,6 +97,8 @@
     			totTotal += total+totDelivery;
     		});*/
     		
+    		// 아래와 같이 간단하게 작성하여 계산 할 수 있기 때문에 작성 
+    		
     		var totTotal = totPrice-totDiscount+totDelivery;
     		
     		$('.info .total').text(totTotal.toLocaleString()+'원');
@@ -164,6 +166,8 @@
     		});
     		
     		// 주문하기
+    		// ajax통신을 통하여 속성값 원하는 페이제에 넘겨 
+    		// 출력시켜주기 ... 잘 사용할 줄 알면 매우 편한 기능 !!! 
     		$('input[name=order]').click(function(){
     			
 				var checkedProduct = $('input[name=checkProduct]:checked');
@@ -181,6 +185,7 @@
     				productCounts.push(productCount);
     			});
     			
+    			// text().replace(/(,|개)/g, ''); 특정 부분만 텍스트로 바꾸겠다는 의미 
     			var uid      = $('.info input[name=uid]').val();
     			var count    = $('.info .count').text().replace(/(,|개)/g, '');
     			var price    = $('.info .price').text().replace(/(,|원)/g, '');

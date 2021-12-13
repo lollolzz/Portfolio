@@ -16,15 +16,16 @@
     	// 슬라이더 스크립트
         $(document).ready(function(){
           $('.slider > ul').bxSlider({
-              pager: false,
-              easing: 'linear'
+              pager: false, // 현재 위치 페이징 표시 여부 설정
+              easing: 'linear' // 애니메이션 자연스럽게 보이기 위한 것 
           });
         });
       
     	// 베스트상품 영역 고정 스크립트
 		$(function(){
 	        var best = $('aside > .best');
-	        $(window).scroll(function(){
+	        $(window).scroll(function(){ 
+			// scroll 내려도 베스트상품영역이 고정되어 같이 내려오게하기 윟나 
 	          var t = $(this).scrollTop();
 	          if(t > 620){
 	            best.css({
@@ -57,6 +58,9 @@
     			
     			if(top > 1000 && !isRecommendOk){
     				// 추천상품 요청하기
+    				// maincotrlloer에서 responseBody로 송신하여 준것을 받아(ProductVo를 받음)
+    				// 정렬기준을 정하여 DB에 등록 되어진 score, rdate, discount순으로 정렬하여 
+    				// 상품을 불러오는 것 
     				getProducts('/Kmarket//getMainProduct?order=score', sectionRecommend);
     				isRecommendOk = true;
     				
@@ -126,7 +130,8 @@
                 <article class="best">
                   <h1><i class="fas fa-crown"></i>베스트상품</h1>
                   <ol>
-                    <li th:each="product,i:${productsBest}">
+                  <!-- 왜 i를 사용해서 순서를 1,2,3 위등을 표시한걸까? -->
+                    <li th:each="product,i:${productsBest}"> 
                       <a th:href="@{/product/view(cate1=${product.cate1},cate2=${product.cate2},productCode=${product.productCode})}" name="move">
                         <div class="thumb">
                           <i>[[${i.index+1}]]</i>
@@ -159,6 +164,7 @@
                  <!-- 히트상품 영역 -->
                 <section class="hit">
                     <h3><span>히트상품</span></h3>
+                    <!-- Maincontroller에서 model을 사용해서 송신하여 준 것을 받아서 작성한 부분 -->
                     <article th:each="product:${productsHit}">
                         <a th:href="@{/product/view(cate1=${product.cate1},cate2=${product.cate2},productCode=${product.productCode})}" name="move">
                             <div class="thumb">

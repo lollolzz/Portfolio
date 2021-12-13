@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    
     <script th:inline="javascript">
     	$(function(){
     		var btnIncrease = $('#view .count > .increase');
@@ -96,12 +97,13 @@
     		
     		
     		// 주문하기 클릭
+    		/* 디자인 적인 고민으로 상품 상세페이지에서 바로 구매하기 버튼을 삭제함 
     		$('#view .button > .order').click(function(){
     			
     			alert('장바구니로 이동 후 주문을 완료해주세요 ^^');
     			location.href = '/Kmarket/product/cart';
     			
-    		});
+    		}); */
     		
     	});
     
@@ -161,8 +163,10 @@
                                 </div>
                             </nav>
                             <nav>
+                            	<!-- 무료배송일 경우와 배송비가 있는경우를 구분하기 위하여 아래와 같이 작성 
                                 <span th:if="${productVo.delivery == 0}" class="delivery">무료배송</span>
                       			<span th:if="${productVo.delivery != 0}">배송비 [[${#numbers.formatInteger(productVo.delivery, 3, 'COMMA')}]]원</span>
+                      			-->
                                 <span class="arrival"></span>
                                 <span class="desc">본 상품은 국내배송만 가능합니다.</span>
                             </nav>

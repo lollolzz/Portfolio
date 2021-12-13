@@ -28,6 +28,9 @@
 				category.append(tag);
 				
 				// 2차 카테고리 생성
+				// 1차 카테고리를 선택하였을 때 1차 카테고리에 포함된 2차 카테고리를 출력하여 준다 
+				// 이 때 2차 카테고리는 DB에 저장되어 져있는데 이걸 cate2Vo에 넣어두었기 때문
+				// cate2Vo.cate 형식으로 불러온것 
 				$.each(catesVo.cate2List, function(j, cate2Vo){				
 					var url = "/Kmarket/product/list?cate1="+cate2Vo.cate1+"&cate2="+cate2Vo.cate2;					
 					$('.cate2s').eq(i).append("<li><a href='"+url+"'>"+cate2Vo.title+"</a></li>");										
