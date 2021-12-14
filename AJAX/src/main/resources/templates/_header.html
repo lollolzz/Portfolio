@@ -5,7 +5,7 @@
 	     </a>
 
 		<script>
-		
+		/*시현 20211130 헤더 js 수정*/
 		$(function(){
 			
 			var menu = $('.menu > li > a');
@@ -24,6 +24,37 @@
 				}
 			});	
 		});	
+		
+		/*예은 헤더 js
+		    $(".menu > li > .teens").mouseenter(function(){
+		        $('.header_sub1').css('background-color','grey');
+		    });
+		    $(".menu > li > .twenties").mouseenter(function(){
+		        $('.header_sub2').css('background-color','grey');
+		    });
+		    $(".menu > li > .thirties").mouseenter(function(){
+		        $('.header_sub3').css('background-color','grey');
+		    });
+		    
+		
+		    $(".menu > li > .teens").mouseleave(function(){
+		        $('.header_sub1').css('background-color','white');
+		    });
+		    $(".menu > li > .twenties").mouseleave(function(){
+		        $('.header_sub2').css('background-color','white');
+		    });
+		    $(".menu > li > .thirties").mouseleave(function(){
+		        $('.header_sub3').css('background-color','white');
+		    });
+		    
+		    twenties.click(function(){
+		        $('.header_sub2').css('background-color','grey');
+		    });
+		
+		    thirties.click(function(){
+		        $('.header_sub3').css('background-color','grey');
+			});
+		});*/
 		
 		</script>
         <ul class="menu">
@@ -46,7 +77,6 @@
         	 	<li><a th:href="@{/member/login}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
        		 </th:block>
 			 <th:block th:if= "${session.sessMember} != null">
-			 	
         	 	<li><a th:href="@{/member/logout}"><i class="fa fa-sign-out" style="color: darkslategray"></i></a></li>
         	 	<li><a th:href="@{/product/cart}"><i class="fas fa-shopping-cart fa-lg" style="color: darkslategray"></i></a></li>
         	 	<li>[[${session.sessMember.name}]]님 반갑습니다.|</li>
