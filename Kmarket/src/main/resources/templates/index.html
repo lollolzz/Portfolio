@@ -77,7 +77,7 @@
     		});
     		
     		// 메인상품 요청함수
-    		function getProducts(url, tag){
+    		function getProducts(url, tag){ // 위에서 받아온 /Kmarket//getMainProduct?order=score 이런 url을 방아오는 문법의 한 형식,, tag는 위의 sectionRecommend를 받아 오는 것이
     			
     			$.get(url, function(data){
 					
@@ -102,8 +102,11 @@
 						article.find('.dis_price > strong').remove();
 						
 						if(productVo.delivery > 0){
+							
 							article.find('.dis_price').append('<strong>배송비 '+productVo.delivery.toLocaleString()+'</strong>');
+							
 						}else{
+							
 							article.find('.dis_price').append('<span>무료배송</span>');
 						}
 						
@@ -130,7 +133,8 @@
                 <article class="best">
                   <h1><i class="fas fa-crown"></i>베스트상품</h1>
                   <ol>
-                  <!-- 왜 i를 사용해서 순서를 1,2,3 위등을 표시한걸까? -->
+                  <!-- 왜 i를 사용해서 순서를 1,2,3 위등을 표시한걸까?
+                  반복문 사용할때 i사용, productBest를 i갯수만큼 반복하겠다 -->
                     <li th:each="product,i:${productsBest}"> 
                       <a th:href="@{/product/view(cate1=${product.cate1},cate2=${product.cate2},productCode=${product.productCode})}" name="move">
                         <div class="thumb">

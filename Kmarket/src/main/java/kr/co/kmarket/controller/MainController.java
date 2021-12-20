@@ -40,7 +40,9 @@ public class MainController {
 	@ResponseBody
 	@GetMapping("/getCategories")
 	public List<CategoriesVo> getCategories() {
+		
 		List<CategoriesVo> cates = service.selectCategories();
+		
 		return cates;
 	}
 	

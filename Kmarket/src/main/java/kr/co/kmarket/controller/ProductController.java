@@ -181,7 +181,8 @@ public class ProductController {
 		
 		List<ProductVo> products = service.selectProductSearch(vo);
 		model.addAttribute("products", products);
-		model.addAttribute("productCount", products.size());		
+		model.addAttribute("productCount", products.size());
+		// 원하는 아이템을 키워드로 찾기위하여 SearchVo vo에 keyword를 넣어 줌 
 		model.addAttribute("keyword", vo.getKeyword());
 		
 		return "/product/search";

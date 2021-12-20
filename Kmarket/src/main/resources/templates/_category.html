@@ -8,6 +8,9 @@
 			
 			// 1차 카테고리 생성
 			$.each(data, function(i, catesVo){
+				// return cates로 보낸것이 catesVo가 되는 것이다.
+				// catesVo라는 변수명으로 명명해준것이다.
+				// data안에 컨트롤러에서 return한 cates를 받아와서 변수명 catesVo로 받아 와서 사용함 
 				
 				var ico = '';
 				if(i == 0) ico = 'fas fa-shopping-bag';

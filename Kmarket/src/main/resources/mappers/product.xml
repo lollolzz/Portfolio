@@ -45,6 +45,7 @@
 		SELECT *, FLOOR(price * (1 - discount / 100)) AS salePrice
 		FROM `km_product` 
 		WHERE
+			<!-- 검색기능을 더 자세히 하기 위하여 작성   -->
 			<if test="chk1==1">`name` LIKE CONCAT('%', #{keyword}, '%')</if>
 			<if test="chk2==1">AND `descript` LIKE CONCAT('%', #{keyword}, '%')</if>
 			<if test="chk3==1">AND FLOOR(price * (1 - discount / 100)) BETWEEN #{min} AND #{max}</if>

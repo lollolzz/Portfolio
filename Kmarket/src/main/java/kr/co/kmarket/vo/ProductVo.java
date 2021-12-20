@@ -47,6 +47,7 @@ public class ProductVo {
 	private String tit1;
 	private String tit2;
 	private int order = 1;
+	// int의 기본값은 0, 1로 하는 이유는 오더를 기본판매로 하기 위해 1로 초기화하는거다.
 	private int start;
 	
 	//추가필드 II

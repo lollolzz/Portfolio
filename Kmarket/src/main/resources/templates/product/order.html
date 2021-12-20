@@ -17,7 +17,8 @@
     	$(document).ready(function(){
     		
     		// 최종 주문하기
-    		// 이페이지에서 
+    		// 해당 페이지에서 필요한 항목들을 jsonData를 통해서 전송하여 준다 
+    		// payment의 value값이 최종 페이지로 넘어 가지 않는다 해결해야함 !!
     		$('input[name=order]').click(function(){
     			
     			var orderId = $('input[name=orderId]').val();
@@ -44,7 +45,7 @@
     				data: jsonData,
     				dataType: 'json',
     				success: function(data){
-						
+						// 주문번호로 cart페이지에서 부터 묶여서 넘어오기 때문에 최종 주문페이지로 갈때도 orderId를 넣어준다 
 						location.href='/Kmarket/product/order-complete?orderId='+orderId;
     				}
     			});
