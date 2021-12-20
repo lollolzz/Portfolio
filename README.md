@@ -18,9 +18,9 @@ SpringBoot를 이용한 쇼핑몰 웹페이지를 구축.
 - SpringBoot, MySql
 - jQuery, JavaScript
 
-#### Advanced Feature :
+<!-- #### Advanced Feature :
 (설명)
-(이미지)(핵심 기능 간단하게)
+(이미지)(핵심 기능 간단하게) -->
 
 #### 개선 사항 :
 - 상품리스트 기준별 정렬기능 추가 필요(2021.12.13 수정)
